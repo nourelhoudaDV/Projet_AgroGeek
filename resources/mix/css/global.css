@@ -1,0 +1,15 @@
+[data-dtr-index] {
+    width: 100% !important;
+}
+
+.dataTables_filter, .dataTables_info {
+    display: none;
+}
+
+.no-sort::after {
+    display: none !important;
+}
+
+.no-sort {
+    cursor: default !important;
+}

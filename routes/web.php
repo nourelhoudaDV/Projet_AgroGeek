@@ -1,0 +1,94 @@
+<?php
+
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FermeController;
+use App\Http\Controllers\StorageController;
+use App\Http\Controllers\TestController;
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+Route::get('/', function () {
+    return view('index');
+})->name('dashboard');
+
+
+Route::name('users.')->prefix('users')->controller(UserController::class)
+    ->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('{id}/delete', 'destroy')->name('delete');
+        Route::get('{id}/show', 'show')->name('show');
+        Route::get('create', 'create')->name('create');
+        Route::post('store', 'store')->name('store');
+        Route::post('{id}/update', 'update')->name('update');
+        Route::post('delete', 'destroyGroup')->name('destroyGroup');
+    });
+
+Route::name('fermes.')->prefix('fermes')->controller(FermeController::class)
+->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('{id}/delete', 'destroy')->name('delete');
+    Route::get('{id}/show', 'show')->name('show');
+    Route::get('create', 'create')->name('create');
+    Route::post('store', 'store')->name('store');
+    Route::post('{id}/update', 'update')->name('update');
+    Route::post('delete', 'destroyGroup')->name('destroyGroup');
+});
+
+Route::group(['prefix' => 'admins'], function () {
+    Route::get('', [AdminController::class, 'index'])
+        ->name('admins');
+    Route::get('delete/{id}', [AdminController::class, 'delete'])
+        ->name('admin.delete');
+    Route::get('create', [AdminController::class, 'create'])
+        ->name('admin.create');
+    Route::post('store', [AdminController::class, 'store'])
+        ->name('admin.store');
+    Route::get('/{id}/get', [AdminController::class, 'show'])
+        ->name('admin.show');
+    Route::post('update/{id}', [AdminController::class, 'update'])
+        ->name('admin.update');
+    Route::get('status/{id}/{status}', [AdminController::class, 'status'])
+        ->name('admin.change.status');
+    Route::get('rule/{id}/{rule}', [AdminController::class, 'rule'])
+        ->name('admin.change.rule');
+});
+
+
+Route::get('language/{locale}', function ($locale = 'fr') {
+    Session::put('locale', $locale);
+    return back();
+})->name('setLang');
+
+
+
+
+
+Route::get('file/{file?}', [StorageController::class, 'public'])
+    ->where('file', '.*')
+    ->name('file.get');
+
+
+Route::get('private/{file?}', [StorageController::class, 'private'])
+    ->where('file', '.*')
+    ->name('file.private.get');
+
+
+Route::get('/error', function () {
+    abort(500);
+});
+
+
+require __DIR__ . '/auth.php';

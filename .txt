@@ -1,0 +1,48 @@
+1 - db
+    + countries
+    + sports
+    + users
+    + user_sports
+2 - factories
+3 - route
+4 - controller
+5 - form request
+6 - views
+7 - lang
+
+
+drop table if exists useradmins cascade;
+create table useradmins
+(
+    idUAdm           int auto_increment     not null
+        primary key,
+    nom              varchar(150)           null,
+    prenom           varchar(150)           null,
+    avatar           varchar(255)           null,
+    dateNaissance    date                   null,
+    genre            varchar(2) default 'H' null,
+    gsm              varchar(15)            null,
+    email            varchar(255)           null,
+    description      varchar(255)           null,
+    fonction         varchar(150)           null,
+    role             varchar(3) default 'A' null,
+    adminStatus      varchar(3) default 'A' null,
+    createdBy        int                    null,
+    dateCreation     datetime               null,
+    lastUpdateBy     int                    null,
+    dateLastUpdate   datetime               null,
+    pswrd            varchar(255)           null,
+    codeGenerer      varchar(100)           null,
+    genratedTime     datetime               null,
+    lastPSWDChange   datetime               null,
+    originalPassword varchar(1) default 'Y' null,
+    remember_token   varchar(100)           null
+);
+
+alter table useradmins
+    add constraint UN__useradmins_email
+        unique (email),
+    add constraint FK__useradmins__useradmins_createdBy
+        foreign key (createdBy) references useradmins (idUAdm),
+    add constraint FK__useradmins__useradmins_lastUpdateBy
+        foreign key (lastUpdateBy) references useradmins (idUAdm);
