@@ -15,10 +15,11 @@ return new class extends Migration
     {
         Schema::create('fermes', function (Blueprint $table) {
             $table->engine = "InnoDB";
-            $table->bigInteger('idF', true, true);
+            $table->bigInteger('id', true, true);
             $table->string('logo')->nullable();
             $table->string('nomDomaine');
             $table->string('fullNameG');
+            $table->string('cin');
             $table->string('contactG')->nullable();
             $table->string('SAT')->nullable();
             $table->string('SAU')->nullable();

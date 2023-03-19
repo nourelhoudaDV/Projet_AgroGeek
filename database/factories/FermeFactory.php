@@ -20,7 +20,8 @@ class FermeFactory extends Factory
             'nomDomaine' => fake()->name(),
             'logo' => fake()->imageUrl,
             'fullNameG' => fake()->userName(),
-            'contactG' => fake()->phoneNumber()
+            'contactG' => fake()->phoneNumber(),
+            'cin' => fake()->randomNumber($nbDigits = NULL, $strict = false)
         ];
     }
 }

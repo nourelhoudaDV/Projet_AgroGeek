@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Helpers\Components\Action;
 use App\Helpers\Components\Head;
-use App\Http\Requests\Clients\Add;
+use App\Http\Requests\Fermes\Add;
 use Illuminate\Http\Request;
 use App\Models\Ferme as ModelTarget;
+use Illuminate\Routing\Route;
+use Symfony\Component\Routing\Route as RoutingRoute;
 
 class FermeController extends Controller
 {
@@ -26,6 +28,7 @@ class FermeController extends Controller
             new Head('logo', Head::TYPE_IMG, trans('words.avatar')),
             new Head('nomDomaine', Head::TYPE_TEXT, trans('words.name')),
             new Head('fullNameG', Head::TYPE_TEXT,'fullNameG'),
+            new Head('cin', Head::TYPE_TEXT,'cin'),
             new Head('contactG', Head::TYPE_TEXT, 'contactG'),
             new Head('SAT', Head::TYPE_TEXT, 'SAT'),
             new Head('SAU', Head::TYPE_TEXT, 'SAU'),
@@ -34,6 +37,7 @@ class FermeController extends Controller
             new Head('fax', Head::TYPE_TEXT, 'fax'),
             new Head('GSM1', Head::TYPE_TEXT, 'GSM1'),
             new Head('GSM2', Head::TYPE_TEXT, 'GSM2'),
+            new Head('email', Head::TYPE_TEXT, trans('words.email')),
             new Head('siteWeb', Head::TYPE_TEXT, 'siteWeb'),
             new Head('Douar', Head::TYPE_TEXT, 'Douar'),
             new Head('Cercle', Head::TYPE_TEXT, 'Circle'),
@@ -81,10 +85,10 @@ class FermeController extends Controller
     public function destroyGroup(Request $request)
     {
         $ids = $request['ids'] ?? [];
-        // foreach ($ids as $id) {
-        //     $client = ModelTarget::query()->find((int)\Crypt::decrypt($id));
-        //     $client?->delete();
-        // }
+        foreach ($ids as $id) {
+            $client = ModelTarget::query()->find((int)\Crypt::decrypt($id));
+            $client?->delete();
+        }
         $this->success(text: trans('messages.deleted_message'));
         return response()->json(['success' => true]);
     }
@@ -99,7 +103,7 @@ class FermeController extends Controller
     {
         ModelTarget::query()->findOrFail($id)->delete();
         $this->success(trans('messages.deleted_message'));
-        return redirect(route('ferme.index'));
+        return redirect(Route('fermes.index'));
     }
 
     /***
@@ -130,7 +134,7 @@ class FermeController extends Controller
         ]);
 
         $this->success(text: trans('messages.added_message'));
-        return redirect(route('ferme.index'));
+        return redirect(Route('fermes.index'));
     }
 
 
@@ -149,10 +153,11 @@ class FermeController extends Controller
         // unset($validated['logo']);
         unset($validated['avatar']);
         $this->saveAndDeleteOld($request->validated()['avatar'] ?? null, 'ferme', $client, 'avatar');
+        // $this->saveAndDeleteOld($request->validated()['logo'] ?? null, 'ferme', $client, 'logo');
         // $this->saveAndDeleteOld($request->validated()['logo'] ?? null, 'clients', $client, 'logo');
         $client->update($validated);
 
         $this->success(text: trans('messages.updated_message'));
-        return redirect(route('ferme.index'));
+        return redirect(Route('fermes.index'));
     }
 }
