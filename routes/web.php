@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\FermeController;
 use App\Http\Controllers\StorageController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\UserController;
@@ -35,17 +34,6 @@ Route::name('users.')->prefix('users')->controller(UserController::class)
         Route::post('{id}/update', 'update')->name('update');
         Route::post('delete', 'destroyGroup')->name('destroyGroup');
     });
-
-Route::name('fermes.')->prefix('fermes')->controller(FermeController::class)
-->group(function () {
-    Route::get('/', 'index')->name('index');
-    Route::get('{id}/delete', 'destroy')->name('delete');
-    Route::get('{id}/show', 'show')->name('show');
-    Route::get('create', 'create')->name('create');
-    Route::post('store', 'store')->name('store');
-    Route::post('{id}/update', 'update')->name('update');
-    Route::post('delete', 'destroyGroup')->name('destroyGroup');
-});
 
 Route::group(['prefix' => 'admins'], function () {
     Route::get('', [AdminController::class, 'index'])
