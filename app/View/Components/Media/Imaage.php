@@ -17,7 +17,7 @@ class Imaage extends Component
      * @param string $src
      * @param bool $lazyload
      */
-    public function __construct(string $src = '', string $alt = '', bool $lazyload = true)
+    public function __construct(string $alt = ' ', string $src = '', bool $lazyload = true)
     {
         $this->alt = $alt;
         $this->src = $src;
