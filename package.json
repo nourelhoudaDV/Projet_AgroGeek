@@ -7,7 +7,11 @@
         "watch-poll": "mix watch -- --watch-options-poll=1000",
         "hot": "mix watch --hot",
         "prod": "npm run production",
-        "production": "mix --production"
+        "production": "mix --production",
+        "build": "mix watch --build",
+        "building": "npm run build"
+        
+       
     },
     "dependencies": {
         "@ckeditor/ckeditor5-alignment": "^35.2.1",
@@ -32,6 +36,7 @@
         "bootstrap-maxlength": "^1.10.1",
         "bootstrap-multiselectsplitter": "^1.0.4",
         "browser-sync-webpack-plugin": "^2.3.0",
+        "build": "^0.1.4",
         "chalk": "^4.1.0",
         "chart.js": "^3.6.0",
         "clipboard": "^2.0.8",
@@ -84,6 +89,7 @@
         "moment": "^2.29.1",
         "nouislider": "^15.2.0",
         "npm": "^9.5.1",
+        "or": "^0.2.0",
         "pdfmake": "^0.2.0",
         "prism-themes": "^1.7.0",
         "prismjs": "^1.24.1",

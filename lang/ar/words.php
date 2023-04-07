@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'user'=>'المستخدم',
     'Home' => 'لوحة القيادة',
     'actions' => 'أجراءات',
     'yes' => 'نعم',
@@ -53,9 +54,9 @@ return [
     'zoom' => 'Zoom',
     'upgrade' => 'Upgrade to unlock',
     'percent_uploaded' => '{percent}% uploaded',
-    'retry' => 'Retry',
-    'filter' => 'Filter the list',
-    'user' => 'مستخدم',
+     'actions' => 'إجراءات',
+'retry' => 'إعادة المحاولة',
+'filter' => 'تصفية القائمة',
 
 
 
