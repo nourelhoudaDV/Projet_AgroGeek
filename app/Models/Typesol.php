@@ -5,13 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Parcelle extends Model
+class Typesol extends Model
 {
     use HasFactory;
-    protected $table = 'parcelles';
-    public $primaryKey='idp';
+    protected $table = 'typesols';
+    public $primaryKey='idTS';
     public $incrementing=true;
     protected $keyType='int';
     public $timestamps=false;
-    public const  PK = 'idp';
+    public const PK='idTS';
+
+
 }

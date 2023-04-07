@@ -1,11 +1,13 @@
 <?php
 
-use App\Http\Controllers\ClientController;
-use App\Http\Controllers\DashboardController;
+// use App\Http\Controllers\ClientController;
+// use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FermeController;
 use App\Http\Controllers\StorageController;
-use App\Http\Controllers\TestController;
+// use App\Http\Controllers\TestController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\TypesolController;
+use App\Http\Controllers\ParcelleController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 
@@ -39,11 +41,33 @@ Route::name('users.')->prefix('users')->controller(UserController::class)
 Route::name('fermes.')->prefix('fermes')->controller(FermeController::class)
 ->group(function () {
     Route::get('/', 'index')->name('index');
-    Route::get('{id}/delete', 'destroy')->name('delete');
-    Route::get('{id}/show', 'show')->name('show');
+    Route::get('{idF}/delete', 'destroy')->name('delete');
+    Route::get('{idF}/show', 'show')->name('show');
     Route::get('create', 'create')->name('create');
     Route::post('store', 'store')->name('store');
-    Route::post('{id}/update', 'update')->name('update');
+    Route::post('{idF}/update', 'update')->name('update');
+    Route::post('delete', 'destroyGroup')->name('destroyGroup');
+});
+
+Route::name('parcelles.')->prefix('parcelles')->controller(ParcelleController::class)
+->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('{idp}/delete', 'destroy')->name('delete');
+    Route::get('{idp}/show', 'show')->name('show');
+    Route::get('create', 'create')->name('create');
+    Route::post('store', 'store')->name('store');
+    Route::post('{idp}/update', 'update')->name('update');
+    Route::post('delete', 'destroyGroup')->name('destroyGroup');
+});
+
+Route::name('typesols.')->prefix('typesols')->controller(TypesolController::class)
+->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('{idTS}/delete', 'destroy')->name('delete');
+    Route::get('{idTS}/show', 'show')->name('show');
+    Route::get('create', 'create')->name('create');
+    Route::post('store', 'store')->name('store');
+    Route::post('{idTS}/update', 'update')->name('update');
     Route::post('delete', 'destroyGroup')->name('destroyGroup');
 });
 

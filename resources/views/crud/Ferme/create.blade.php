@@ -1,14 +1,14 @@
 @extends('layout.master')
 @include('include.blade-components')
 
-@section('page_title' ,'Ajouter noveau ferme')
+@section('page_title' ,trans('pages/ferme.Ajouter_noveau_ferme'))
 @section('breadcrumb')
     <x-group.bread-crumb
 
-        page-tittle= 'Ajouter noveau ferme'
+        page-tittle= "{{ trans('pages/ferme.Ajouter_noveau_ferme')}}"
         :indexes="[
-        ['name'=> 'Ferme' , 'route'=> route('ferme.index')],
-        ['name'=> 'pages/ferme.Ajouter noveau ferme' ,     'current' =>true ],
+        ['name'=> trans('words.ferme') , 'route'=> route('fermes.index')],
+        ['name'=> trans('pages/ferme.Ajouter noveau ferme') ,     'current' =>true ],
     ]"
     />
 @endsection
@@ -27,14 +27,15 @@
             </div>
             <div class="col-10 row">
                 <x-form.input col="col-12 col-sm-6" name="nomDomaine" label="{{ trans('words.name') }}"/>
-                <x-form.select col="col-12 col-sm-6" name="fullNameG" label="fullNameG"
+                <x-form.input col="col-12 col-sm-6" name="fullNameG" label="{{ trans('words.name') }}"/>
+                {{-- <x-form.select col="col-12 col-sm-6" name="fullNameG" label="fullNameG"
                     :bind-with="[
                         \App\Models\Ferme::all(),
                         [
-                            'id' ,  'fullNameG'
+                            'idF' ,  'fullNameG'
                         ]
                     ]"
-                />
+                /> --}}
                 <x-form.input col="col-12 col-sm-6" name="cin" label="cin"/>
                 <x-form.input col="col-12 col-sm-6" name="contactG" label="contactG"/>
                 <x-form.input col="col-12 col-sm-6" name="SAT" label="SAT"/>

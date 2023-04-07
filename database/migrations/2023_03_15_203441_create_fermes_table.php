@@ -15,28 +15,28 @@ return new class extends Migration
     {
         Schema::create('fermes', function (Blueprint $table) {
             $table->engine = "InnoDB";
-            $table->bigInteger('id', true, true);
-            $table->string('logo')->nullable();
-            $table->string('nomDomaine');
-            $table->string('fullNameG');
-            $table->string('cin');
-            $table->string('contactG')->nullable();
-            $table->string('SAT')->nullable();
-            $table->string('SAU')->nullable();
+            $table->bigInteger('idF', true, true);
+            $table->string('logo',255)->nullable();
+            $table->string('nomDomaine',150);
+            $table->string('fullNameG',150);
+            $table->string('cin',15);
+            $table->string('contactG',15)->nullable();
+            $table->float('SAT',10,2)->nullable();
+            $table->float('SAU',10,2)->nullable();
             $table->text('observation')->nullable();
-            $table->string('fixe')->nullable();
-            $table->string('fax')->nullable();
-            $table->string('GSM1')->nullable();
-            $table->string('GSM2')->nullable();
-            $table->string('email')->nullable();
-            $table->string('siteWeb')->nullable();
-            $table->string('Douar')->nullable();
-            $table->string('Cercle')->nullable();
-            $table->string('province')->nullable();
-            $table->string('region')->nullable();
+            $table->string('fixe',15)->nullable();
+            $table->string('fax',15)->nullable();
+            $table->string('GSM1',15)->nullable();
+            $table->string('GSM2',15)->nullable();
+            $table->string('email',150)->nullable();
+            $table->string('siteWeb',150)->nullable();
+            $table->string('Douar',100)->nullable();
+            $table->string('Cercle',100)->nullable();
+            $table->string('province',100)->nullable();
+            $table->string('region',100)->nullable();
             $table->text('adresse')->nullable();
-            $table->string('gps')->nullable();
-            $table->string('ville')->nullable();
+            $table->string('gps',255)->nullable();
+            $table->string('ville',100)->nullable();
             $table->timestamps();
         });
     }

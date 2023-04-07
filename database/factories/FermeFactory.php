@@ -17,11 +17,28 @@ class FermeFactory extends Factory
     public function definition()
     {
         return [
-            'nomDomaine' => fake()->name(),
             'logo' => fake()->imageUrl,
-            'fullNameG' => fake()->userName(),
+            'nomDomaine' => fake()->word(),
+            'fullNameG' => fake()->name(),
+            'cin' => fake()->idNumber(),
+            // 'cin' => fake()->nationalIdNumber(),
             'contactG' => fake()->phoneNumber(),
-            'cin' => fake()->randomNumber($nbDigits = NULL, $strict = false)
+            'SAT'=> fake()->randomFloat(NULL,0,NULL),
+            'SAU'=> fake()->randomFloat(NULL,0,NULL),
+            'observation'=> fake()->word(),
+            'fixe'=> fake()->landlineNumber(),
+            'fax'=> fake()->faxNumber(),
+            'GSM1'=> fake()->phoneNumber(),
+            'GSM2'=> fake()->phoneNumber(),
+            'email'=> fake()->email(),
+            'siteWeb'=> fake()->domainName(),
+            'Douar'=> fake()->streetAddress(),
+            'Cercle'=> fake()->streetName(),
+            'province'=> fake()->city(),
+            'region'=> fake()->region(),
+            'adresse'=> fake()->address(),
+            'gps'=> fake()->address(),
+            'ville'=> fake()->city(),
         ];
     }
 }

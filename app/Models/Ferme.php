@@ -9,5 +9,9 @@ class Ferme extends Model
 {
     use HasFactory;
     protected $table = 'fermes';
-    public const  PK = 'id';
+    public $primaryKey = 'idF';
+    public $incrementing = true;
+    protected $keyType = 'int';
+    public $timestamps = false;
+    public const PK = 'idF';
 }
