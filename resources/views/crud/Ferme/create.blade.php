@@ -28,14 +28,6 @@
             <div class="col-10 row">
                 <x-form.input col="col-12 col-sm-6" name="nomDomaine" label="{{ trans('words.name') }}"/>
                 <x-form.input col="col-12 col-sm-6" name="fullNameG" label="{{ trans('words.name') }}"/>
-                {{-- <x-form.select col="col-12 col-sm-6" name="fullNameG" label="fullNameG"
-                    :bind-with="[
-                        \App\Models\Ferme::all(),
-                        [
-                            'idF' ,  'fullNameG'
-                        ]
-                    ]"
-                /> --}}
                 <x-form.input col="col-12 col-sm-6" name="cin" label="cin"/>
                 <x-form.input col="col-12 col-sm-6" name="contactG" label="contactG"/>
                 <x-form.input col="col-12 col-sm-6" name="SAT" label="SAT"/>

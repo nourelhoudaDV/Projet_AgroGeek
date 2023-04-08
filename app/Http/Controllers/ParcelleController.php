@@ -35,10 +35,10 @@ class ParcelleController extends Controller
         ];
 
         // $collection = ModelTarget::all();
-        $collection2 = ModelTarget::all();
+        $collection = ModelTarget::all();
         // $this->success(text: trans('messages.deleted_message'));
         // return view('crud.parcelle.index', compact(['actions', 'heads', 'collection']));
-        return view('crud.Ferme.index', compact(['actions', 'heads', 'collection2']));
+        return view('crud.Historique', compact(['actions', 'heads', 'collection']));
     }
 
     /***
@@ -110,4 +110,5 @@ class ParcelleController extends Controller
         $this->success(text: trans('messages.updated_message'));
         return redirect(Route('parcelles.index'));
     }
+
 }

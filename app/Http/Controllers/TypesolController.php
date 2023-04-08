@@ -41,7 +41,8 @@ class TypesolController extends Controller
 
         $collection = ModelTarget::all();
         // $this->success(text: trans('messages.deleted_message'));
-        return view('crud.typesol.index', compact(['actions', 'heads', 'collection']));
+        // return view('crud.typesol.index', compact(['actions', 'heads', 'collection']));
+        return view('crud.historique', compact(['actions', 'heads', 'collection']));
     }
 
     /***
