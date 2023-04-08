@@ -8,6 +8,8 @@ use App\Http\Controllers\StorageController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TypesolController;
 use App\Http\Controllers\ParcelleController;
+use App\Http\Controllers\EspecesModelController;
+use App\Http\Controllers\VarieteController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 
@@ -68,6 +70,27 @@ Route::name('typesols.')->prefix('typesols')->controller(TypesolController::clas
     Route::get('create', 'create')->name('create');
     Route::post('store', 'store')->name('store');
     Route::post('{idTS}/update', 'update')->name('update');
+    Route::post('delete', 'destroyGroup')->name('destroyGroup');
+});
+
+Route::name('especes_models.')->prefix('especes_models')->controller(EspecesModelController::class)
+->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('{id}/delete', 'destroy')->name('delete');
+    Route::get('{id}/show', 'show')->name('show');
+    Route::get('create', 'create')->name('create');
+    Route::post('store', 'store')->name('store');
+    Route::post('{id}/update', 'update')->name('update');
+    Route::post('delete', 'destroyGroup')->name('destroyGroup');
+});
+Route::name('varietes.')->prefix('varietes')->controller(VarieteController::class)
+->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('{id}/delete', 'destroy')->name('delete');
+    Route::get('{id}/show', 'show')->name('show');
+    Route::get('create', 'create')->name('create');
+    Route::post('store', 'store')->name('store');
+    Route::post('{id}/update', 'update')->name('update');
     Route::post('delete', 'destroyGroup')->name('destroyGroup');
 });
 
