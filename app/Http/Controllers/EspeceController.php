@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Helpers\Components\Action;
 use App\Helpers\Components\Head;
-use App\Http\Requests\Add;
-use App\Models\EspecesModel as ModelTarget;
+use App\Http\Requests\Especes\Add;
+use App\Models\Espece as ModelTarget;
 use App\Models\Variete;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
-class EspecesModelController extends Controller
+class EspeceController extends Controller
 {
     /***
      *  page index
@@ -21,8 +21,8 @@ class EspecesModelController extends Controller
 
 
         $actions = [
-            new Action(ucwords(trans('words.add')), Action::TYPE_NORMAL, url: route('especes_models.create')),
-            new Action(ucwords(trans('words.delete_all')), Action::TYPE_DELETE_ALL, url: route('especes_models.destroyGroup'))
+            new Action(ucwords(trans('words.add')), Action::TYPE_NORMAL, url: route('especes.create')),
+            new Action(ucwords(trans('words.delete_all')), Action::TYPE_DELETE_ALL, url: route('especes.destroyGroup'))
         ];
         $heads = [
             new Head('nom', Head::TYPE_TEXT, trans('words.nom')),
@@ -70,10 +70,10 @@ class EspecesModelController extends Controller
     public function destroyGroup(Request $request)
     {
         $ids = $request['ids'] ?? [];
-       // foreach ($ids as $id) {
-         //   $client = ModelTarget::query()->find((int)\Crypt::decrypt($id));
-           // $client?->delete();
-        //}
+       foreach ($ids as $id) {
+           $client = ModelTarget::query()->find((int)\Crypt::decrypt($id));
+           $client?->delete();
+        }
         $this->success(text: trans('messages.deleted_message'));
         return response()->json(['success' => true]);
     }
@@ -107,7 +107,7 @@ class EspecesModelController extends Controller
         $categorieEsp = $request->validated()['categorieEspece'];
         $typeEn = $request->validated()['typeEnracinement'];
         $description = $request->validated()['description'];
-     
+
 
         $client = ModelTarget::query()
             ->create($validated);
@@ -139,7 +139,7 @@ class EspecesModelController extends Controller
         $client = ModelTarget::query()->findOrFail($id);
 
         $validated = $request->validated();
-      
+
         $this->saveAndDeleteOld($request->validated()['nom'] ?? null, 'especes_models', $client, 'nom');
         $this->saveAndDeleteOld($request->validated()['nomCommercial'] ?? null, 'especes_models', $client, 'nomCommercial');
         $this->saveAndDeleteOld($request->validated()['appelationAr'] ?? null, 'especes_models', $client, 'appelationAr');

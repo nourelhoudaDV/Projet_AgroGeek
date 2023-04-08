@@ -6,7 +6,7 @@ use App\Models\Variete;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class AddVarietes extends FormRequest
+class Add extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,14 +28,14 @@ class AddVarietes extends FormRequest
 
 
         return [
-            'especes_id' => 'nullable|exists:especes_models,' . Variete::PK,
-            'nomCommercial' => 'string|max:150',
-            'appelationAr' => 'string|max:150',
-            'quantite' => 'string|max:100',
-            'precocite' => 'string|max:150',
-            'resistance' => 'string|max:150',
-            'competitivite' => 'string|max:150',
-            'description' => 'string|max:150',
+            'especes_id' => 'nullable|exists:especes,' . Variete::PK,
+            'nomCommercial' => 'nullable|string|max:150',
+            'appelationAr' => 'nullable|string|max:150',
+            'quantite' => 'nullable|string|max:100',
+            'precocite' => 'nullable|string|max:150',
+            'resistance' => 'nullable|string|max:150',
+            'competitivite' => 'nullable|string|max:150',
+            'description' => 'nullable|string|max:150',
         ];
     }
 }

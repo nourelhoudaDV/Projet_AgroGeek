@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('especes_models', function (Blueprint $table) {
+        Schema::create('especes', function (Blueprint $table) {
             $table->engine = "InnoDB";
-            $table->bigInteger('id' , true , true);
+            $table->bigInteger('ide' , true , true);
             $table->string('nom')->nullable();
             $table->string('nomCommercial')->nullable();
             $table->string('appelationAr')->nullable();
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('especes_models');
+        Schema::dropIfExists('especes');
     }
 };

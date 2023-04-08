@@ -29,7 +29,7 @@
     </div>
     <div id="history" style="display: none">
 
-    <div id="parcelle" style="display: block">
+    <div id="parcelle" style="display: none">
         <div class="col-12 row">
             <x-form.card col="col-12 row" title="{{ ucwords(trans('history parcelle')) }}">
                 @bind( $collection1 )
@@ -68,6 +68,7 @@
             document.getElementById("parcelle").style.display = 'block';
         }
         function display2(){
+            document.getElementById("history").style.display = 'block';
             document.getElementById("parcelle").style.display = 'none';
             document.getElementById('typesol').style.display = 'block';
         }

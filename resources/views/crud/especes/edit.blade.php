@@ -1,12 +1,12 @@
 @extends('layout.master')
 @include('include.blade-components')
-@section('page_title' , trans('pages/especes_models.update_user'))
+@section('page_title' , trans('pages/especes.update_especes'))
 @section('breadcrumb')
     <x-group.bread-crumb
-        page-tittle="{{ trans('pages/especes_models.edit_page_title') }}"
+        page-tittle="{{ trans('pages/especes.edit_page_title') }}"
         :indexes="[
-        ['name'=> trans('words.espece') , 'route'=> route('especes_models.index')],
-        ['name'=> trans('pages/especes_models.update_user') ,     'current' =>true ],
+        ['name'=> trans('words.espece') , 'route'=> route('especes.index')],
+        ['name'=> trans('pages/especes.update_especes') ,     'current' =>true ],
     ]"
     />
 @endsection
@@ -15,10 +15,10 @@
 
     <x-form.form
         method="post"
-        action="{{ route('especes_models.update' , $model[$model::PK]) }}"
+        action="{{ route('especes.update' , $model[$model::PK]) }}"
     >
         <div class="col-12 row">
-            <x-form.card col="col-12 row" title="{{ ucwords(trans('pages/especes_models.edit_form_title')) }}">
+            <x-form.card col="col-12 row" title="{{ ucwords(trans('pages/especes.identification Especes')) }}">
 
                 <div class="col-10 row">
                     <x-form.input   name="nom" label="{{ trans('words.nom') }}" />

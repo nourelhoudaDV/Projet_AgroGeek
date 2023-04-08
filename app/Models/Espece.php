@@ -6,11 +6,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class EspecesModel extends Model
+class Espece extends Model
 {
     use HasFactory;
-    protected $table = 'especes_models';
-    public const  PK = 'id';
+    protected $table = 'especes';
+    public $primaryKey = 'ide';
+    public $incrementing = true;
+    protected $keyType = 'int';
+    public const  PK = 'ide';
     public $timestamps = false;
 
     public function varietes(): HasMany

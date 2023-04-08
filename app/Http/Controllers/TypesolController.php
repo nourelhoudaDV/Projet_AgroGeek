@@ -13,37 +13,37 @@ use League\Flysystem\FilesystemException;
 class TypesolController extends Controller
 {
 
-    protected function index()
-    {
-        /***
-         *  page index
-         */
-        $actions = [
-            new Action(ucwords(trans('words.add')), Action::TYPE_NORMAL, url: route('typesols.create')),
-            new Action(ucwords(trans('words.delete_all')), Action::TYPE_DELETE_ALL, url: route('typesols.destroyGroup'))
-        ];
-        $heads = [
-            new Head('vernaculaure', Head::TYPE_TEXT, trans('words.vernaculaure')),
-            new Head('nomDomaine', Head::TYPE_TEXT, trans('words.nomDomaine')),
-            new Head('teneurArgile', Head::TYPE_TEXT, trans('words.teneurArgile')),
-            new Head('teneurLimon', Head::TYPE_TEXT, trans('words.teneurLimon')),
-            new Head('teneurSable', Head::TYPE_TEXT, trans('words.teneurSable')),
-            new Head('teneurPhosphore', Head::TYPE_TEXT, trans('words.teneurPhosphore')),
-            new Head('teneurPotassiume', Head::TYPE_TEXT, trans('words.teneurPotassiume')),
-            new Head('teneurAzote', Head::TYPE_TEXT, trans('words.teneurAzote')),
-            new Head('calcaireActif', Head::TYPE_TEXT, trans('words.calcaireActif')),
-            new Head('calcaireTotal', Head::TYPE_TEXT, trans('words.calcaireTotal')),
-            new Head('conductiveElectrique', Head::TYPE_TEXT, trans('words.conductiveElectrique')),
-            new Head('HCC', Head::TYPE_TEXT, trans('words.HCC')),
-            new Head('HPF', Head::TYPE_TEXT, trans('words.HPF')),
-            new Head('DA', Head::TYPE_TEXT, trans('words.DA')),
-        ];
+    // protected function index()
+    // {
+    //     /***
+    //      *  page index
+    //      */
+    //     $actions = [
+    //         new Action(ucwords(trans('words.add')), Action::TYPE_NORMAL, url: route('typesols.create')),
+    //         new Action(ucwords(trans('words.delete_all')), Action::TYPE_DELETE_ALL, url: route('typesols.destroyGroup'))
+    //     ];
+    //     $heads = [
+    //         new Head('vernaculaure', Head::TYPE_TEXT, trans('words.vernaculaure')),
+    //         new Head('nomDomaine', Head::TYPE_TEXT, trans('words.nomDomaine')),
+    //         new Head('teneurArgile', Head::TYPE_TEXT, trans('words.teneurArgile')),
+    //         new Head('teneurLimon', Head::TYPE_TEXT, trans('words.teneurLimon')),
+    //         new Head('teneurSable', Head::TYPE_TEXT, trans('words.teneurSable')),
+    //         new Head('teneurPhosphore', Head::TYPE_TEXT, trans('words.teneurPhosphore')),
+    //         new Head('teneurPotassiume', Head::TYPE_TEXT, trans('words.teneurPotassiume')),
+    //         new Head('teneurAzote', Head::TYPE_TEXT, trans('words.teneurAzote')),
+    //         new Head('calcaireActif', Head::TYPE_TEXT, trans('words.calcaireActif')),
+    //         new Head('calcaireTotal', Head::TYPE_TEXT, trans('words.calcaireTotal')),
+    //         new Head('conductiveElectrique', Head::TYPE_TEXT, trans('words.conductiveElectrique')),
+    //         new Head('HCC', Head::TYPE_TEXT, trans('words.HCC')),
+    //         new Head('HPF', Head::TYPE_TEXT, trans('words.HPF')),
+    //         new Head('DA', Head::TYPE_TEXT, trans('words.DA')),
+    //     ];
 
-        $collection = ModelTarget::all();
-        // $this->success(text: trans('messages.deleted_message'));
-        // return view('crud.typesol.index', compact(['actions', 'heads', 'collection']));
-        return view('crud.historique', compact(['actions', 'heads', 'collection']));
-    }
+    //     $collection = ModelTarget::all();
+    //     // $this->success(text: trans('messages.deleted_message'));
+    //     // return view('crud.typesol.index', compact(['actions', 'heads', 'collection']));
+    //     return view('crud.', compact(['actions', 'heads', 'collection']));
+    // }
 
     /***
      * Page create
@@ -86,7 +86,7 @@ class TypesolController extends Controller
     {
         ModelTarget::query()->findOrFail($id)->delete();
         $this->success(trans('messages.deleted_message'));
-        return redirect(Route('typesols.index'));
+        return redirect(Route('fermes.index'));
     }
 
     /***
@@ -99,7 +99,7 @@ class TypesolController extends Controller
             ->create($validated);
         $data->update([]);
         $this->success(text: trans('messages.added_message'));
-        return redirect(Route('typesols.index'));
+        return redirect(Route('fermes.index'));
     }
 
 
@@ -112,6 +112,6 @@ class TypesolController extends Controller
         $validated = $request->validated();
         $data->update($validated);
         $this->success(text: trans('messages.updated_message'));
-        return redirect(Route('typesols.index'));
+        return redirect(Route('fermes.index'));
     }
 }
