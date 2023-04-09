@@ -2,6 +2,8 @@
 
 // use App\Http\Controllers\ClientController;
 // use App\Http\Controllers\DashboardController;
+
+use App\Http\Controllers\CultureParcelleController;
 use App\Http\Controllers\FermeController;
 use App\Http\Controllers\StorageController;
 // use App\Http\Controllers\TestController;
@@ -29,6 +31,12 @@ Route::get('/', function () {
     return view('index');
 })->name('dashboard');
 
+
+Route::name('cultureparcelle.')->prefix('culrurep')->controller(CultureParcelleController::class)
+    ->group(function () {
+        Route::get('create', 'create')->name('create')->name('cpCreate');
+        Route::post('store', 'store')->name('store')->name('cpStore');
+    });
 
 Route::name('users.')->prefix('users')->controller(UserController::class)
     ->group(function () {
