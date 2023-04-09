@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Especes;
 
 use App\Models\Espece;
 use Illuminate\Foundation\Http\FormRequest;
@@ -28,7 +28,8 @@ class Add extends FormRequest
 
 
         return [
-            'nom' => 'required|max:150' . Espece::PK,
+            'nomSc' => 'required|max:150',
+            // 'nom' => 'required|max:150' . Espece::PK,
             'nomCommercial' => 'nullable|string|max:150',
             'appelationAr' => 'nullable|string|max:150',
             'categorieEspece' => 'nullable|string|max:100',

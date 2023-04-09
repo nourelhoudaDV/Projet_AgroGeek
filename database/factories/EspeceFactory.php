@@ -18,7 +18,7 @@ class EspeceFactory extends Factory
     public function definition()
     {
         return [
-            'nom' => fake()->name(),
+            'nomSc' => fake()->name(),
             'nomCommercial' => fake()->userName(),
             'appelationAr' => fake()->phoneNumber(),
             'categorieEspece' => fake()->text(),

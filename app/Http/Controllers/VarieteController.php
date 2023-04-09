@@ -7,7 +7,9 @@ use App\Helpers\Components\Head;
 use App\Models\Variete as ModelTarget;
 use Illuminate\Http\Request;
 use App\Http\Requests\Varietes\Add;
-
+use App\Models\Espece;
+use App\Models\Stade;
+use App\Models\StadeVariete;
 
 class VarieteController extends Controller
 {
@@ -35,10 +37,72 @@ class VarieteController extends Controller
         ];
 
         $collection = ModelTarget::query()
-            ->join('especes', 'especes.ide', 'varietes.especes_id')
-            ->select('varietes.*', 'especes.nom as especes')
+            ->join('especes', 'especes.ide', 'varietes.espece')
+            ->select('varietes.*', 'especes.nomSc as espece')
             ->get();
-        return view('crud.varietes.index', compact(['actions', 'heads', 'collection']));
+
+        $actionsE = [
+            new Action(ucwords(trans('words.add')), Action::TYPE_NORMAL, url: route('especes.create')),
+            new Action(ucwords(trans('words.delete_all')), Action::TYPE_DELETE_ALL, url: route('especes.destroyGroup'))
+        ];
+        $headsE = [
+            new Head('nomSc', Head::TYPE_TEXT, trans('words.nomSc')),
+            new Head('nomCommercial', Head::TYPE_TEXT, trans('words.nomCommercial')),
+            new Head('appelationAr', Head::TYPE_TEXT, trans('words.appelationAr')),
+            new Head('categorieEspece', Head::TYPE_TEXT, trans('words.categorieEspece')),
+            new Head('typeEnracinement', Head::TYPE_TEXT, trans('words.typeEnracinement')),
+            new Head('description', Head::TYPE_TEXT, trans('words.description')),
+        ];
+
+        $collectionE = Espece::all();
+
+        $actionsS = [
+            new Action(ucwords(trans('words.add')), Action::TYPE_NORMAL, url: route('stades.create')),
+            new Action(ucwords(trans('words.delete_all')), Action::TYPE_DELETE_ALL, url: route('stades.destroyGroup'))
+        ];
+        $headsS = [
+            new Head('nom', Head::TYPE_TEXT, trans('words.nom')),
+            new Head('phaseFin', Head::TYPE_TEXT, trans('words.phaseFin')),
+            new Head('espece', Head::TYPE_TEXT, trans('words.espece')),
+            new Head('description', Head::TYPE_TEXT, trans('words.description')),
+        ];
+
+        $collectionS = Stade::query()
+        ->join('especes', 'especes.ide', 'stades.espece')
+        ->select('stades.*', 'especes.nomSc as espece')
+        ->get();
+
+        $actionsSV = [
+            new Action(ucwords(trans('words.add')), Action::TYPE_NORMAL, url: route('stadeVarietes.create')),
+            new Action(ucwords(trans('words.delete_all')), Action::TYPE_DELETE_ALL, url: route('stadeVarietes.destroyGroup'))
+        ];
+        $headsSV = [
+            new Head('nom', Head::TYPE_TEXT, trans('words.nom')),
+            new Head('phaseFin', Head::TYPE_TEXT, trans('words.phaseFin')),
+            new Head('espece', Head::TYPE_TEXT, trans('words.espece')),
+            new Head('variete', Head::TYPE_TEXT, trans('words.variete')),
+            new Head('sommesTemps', Head::TYPE_TEXT, trans('words.sommesTemps')),
+            new Head('sommesTempFroid', Head::TYPE_TEXT, trans('words.sommesTempFroid')),
+            new Head('Kc', Head::TYPE_TEXT, trans('words.Kc')),
+            new Head('enracinement', Head::TYPE_TEXT, trans('words.enracinement')),
+            new Head('maxEnracinement', Head::TYPE_OPTIONS, trans('words.maxEnracinement'),[
+                'Y' => trans('words.OUI'),
+                'N' => trans('words.NON'),
+            ]),
+            new Head('description', Head::TYPE_TEXT, trans('words.description')),
+        ];
+
+        $collectionSV = StadeVariete::query()
+        ->join('varietes', 'varietes.idV', 'stadeVarietes.variete')
+        ->select('stadeVarietes.*', 'variete.nomCommercial as variete')
+        ->join('especes', 'especes.ide', 'stadeVarietes.espece')
+        ->select('stadeVarietes.*', 'especes.nomSc as espece')
+        ->get();
+
+        $espece = ['actionsE', 'headsE', 'collectionE'];
+        $stade = ['actionsS', 'headsS', 'collectionS'];
+        $stadeVariete = ['actionsSV', 'headsSV', 'collectionSV'];
+        return view('crud.varietes.index', compact(['actions', 'heads', 'collection',$espece,$stade,$stadeVariete]));
     }
 
     /***
@@ -72,9 +136,9 @@ class VarieteController extends Controller
     public function destroyGroup(Request $request)
     {
         $ids = $request['ids'] ?? [];
-        foreach ($ids as $id) {
-            $client = ModelTarget::query()->find((int)\Crypt::decrypt($id));
-            $client?->delete();
+       foreach ($ids as $id) {
+           $client = ModelTarget::query()->find((int)\Crypt::decrypt($id));
+           $client?->delete();
         }
         $this->success(text: trans('messages.deleted_message'));
         return response()->json(['success' => true]);
