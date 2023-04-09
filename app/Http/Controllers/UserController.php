@@ -142,4 +142,15 @@ class UserController extends Controller
         $this->success(text: trans('messages.updated_message'));
         return redirect(route('users.index'));
     }
+    // public function deleteAllUsers()
+    // {
+    //     $users = User::all();
+    //     foreach ($users as $user) {
+    //         $user->delete();
+    //     }
+    //     session()->success(text: trans('messages.updated_message'));
+    //     return redirect()->route('users.index');
+    // }
+    
 }
+

@@ -130,9 +130,8 @@ Route::get('language/{locale}', function ($locale = 'fr') {
     return back();
 })->name('setLang');
 
-
-
-
+// // delete all users
+// Route::delete('/users/delete-all', [UserController::class, 'deleteAllUsers'])->name('users.deleteAll');
 
 Route::get('file/{file?}', [StorageController::class, 'public'])
     ->where('file', '.*')
