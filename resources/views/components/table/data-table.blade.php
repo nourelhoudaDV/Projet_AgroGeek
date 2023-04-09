@@ -23,7 +23,7 @@
             {!! $moreHtmlActions !!}
             <ul class="nav nav-custom nav-tabs nav-line-tabs nav-line-tabs-2x border-0  fw-semibold ">
                 <li class="nav-item ms-auto">
-                    <a href="#" class="btn btn-primary ps-7" data-kt-menu-trigger="click" data-kt-menu-attach="parent"
+                    <a href="" class="btn btn-primary ps-7" data-kt-menu-trigger="click" data-kt-menu-attach="parent"
                        data-kt-menu-placement="bottom-end">
                         {{ ucwords(trans('words.actions')) }}
                         <span class="svg-icon svg-icon-2 me-0"></span>
