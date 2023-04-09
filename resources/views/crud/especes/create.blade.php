@@ -1,13 +1,13 @@
 @extends('layout.master')
 @include('include.blade-components')
-@section('page_title' ,'Ajouter noveau produit')
+@section('page_title' ,'Ajouter noveau especes')
 @section('breadcrumb')
     <x-group.bread-crumb
 
-        page-tittle= 'Ajouter noveau produit'
+        page-tittle= 'Ajouter noveau especes'
         :indexes="[
-        ['name'=> 'especes' , 'route'=> route('especes_models.index')],
-        ['name'=> 'pages/especes_models.Ajouter noveau especes' ,     'current' =>true ],
+        ['name'=> 'especes' , 'route'=> route('especes.index')],
+        ['name'=> 'pages/especes.Ajouter noveau especes' ,     'current' =>true ],
     ]"
     />
 @endsection
@@ -17,9 +17,9 @@
 
     <x-form.form
         method="post"
-        action="{{ route('especes_models.store') }}"
+        action="{{ route('especes.store') }}"
     >
-        <x-form.card col="col-12 row" title='pages/especes_models.edit_form_title'>
+        <x-form.card col="col-12 row" title='pages/especes.identification Especes'>
 
             <div class="col-10 row">
                 <x-form.input col="col-12 col-sm-6" name="nom" label="{{ trans('words.nom') }}"/>

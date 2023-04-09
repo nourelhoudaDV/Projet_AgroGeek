@@ -12,34 +12,34 @@ use League\Flysystem\FilesystemException;
 
 class ParcelleController extends Controller
 {
-    protected function index()
-    {
-        /***
-         *  page index
-         */
-        $actions = [
-            new Action(ucwords(trans('words.add')), Action::TYPE_NORMAL, url: route('parcelles.create')),
-            new Action(ucwords(trans('words.delete_all')), Action::TYPE_DELETE_ALL, url: route('parcelles.destroyGroup'))
-        ];
-        $heads = [
-            new Head('codification', Head::TYPE_TEXT, trans('words.codification')),
-            new Head('Ferme', Head::TYPE_TEXT, trans('words.Ferme')),
-            new Head('superficie', Head::TYPE_TEXT, trans('words.superficie')),
-            new Head('modeCulture', Head::TYPE_TEXT, trans('words.modeCulture')),
-            new Head('topographie', Head::TYPE_TEXT, trans('words.topographie')),
-            new Head('pente', Head::TYPE_TEXT, trans('words.pente')),
-            new Head('pierosite', Head::TYPE_TEXT, trans('words.pierosite')),
-            new Head('gps', Head::TYPE_TEXT, trans('words.gps')),
-            new Head('description', Head::TYPE_TEXT, trans('words.description')),
-            new Head('typeSol', Head::TYPE_TEXT, trans('words.typeSol')),
-        ];
+    // protected function index()
+    // {
+    //     /***
+    //      *  page index
+    //      */
+    //     $actions = [
+    //         new Action(ucwords(trans('words.add')), Action::TYPE_NORMAL, url: route('parcelles.create')),
+    //         new Action(ucwords(trans('words.delete_all')), Action::TYPE_DELETE_ALL, url: route('parcelles.destroyGroup'))
+    //     ];
+    //     $heads = [
+    //         new Head('codification', Head::TYPE_TEXT, trans('words.codification')),
+    //         new Head('Ferme', Head::TYPE_TEXT, trans('words.Ferme')),
+    //         new Head('superficie', Head::TYPE_TEXT, trans('words.superficie')),
+    //         new Head('modeCulture', Head::TYPE_TEXT, trans('words.modeCulture')),
+    //         new Head('topographie', Head::TYPE_TEXT, trans('words.topographie')),
+    //         new Head('pente', Head::TYPE_TEXT, trans('words.pente')),
+    //         new Head('pierosite', Head::TYPE_TEXT, trans('words.pierosite')),
+    //         new Head('gps', Head::TYPE_TEXT, trans('words.gps')),
+    //         new Head('description', Head::TYPE_TEXT, trans('words.description')),
+    //         new Head('typeSol', Head::TYPE_TEXT, trans('words.typeSol')),
+    //     ];
 
-        // $collection = ModelTarget::all();
-        $collection = ModelTarget::all();
-        // $this->success(text: trans('messages.deleted_message'));
-        // return view('crud.parcelle.index', compact(['actions', 'heads', 'collection']));
-        return view('crud.Historique', compact(['actions', 'heads', 'collection']));
-    }
+    //     // $collection = ModelTarget::all();
+    //     $collection = ModelTarget::all();
+    //     // $this->success(text: trans('messages.deleted_message'));
+    //     // return view('crud.parcelle.index', compact(['actions', 'heads', 'collection']));
+    //     return view('crud.', compact(['actions', 'heads', 'collection']));
+    // }
 
     /***
      * Page create
@@ -82,7 +82,7 @@ class ParcelleController extends Controller
     {
         ModelTarget::query()->findOrFail($id)->delete();
         $this->success(trans('messages.deleted_message'));
-        return redirect(Route('parcelles.index'));
+        return redirect(Route('fermes.index'));
     }
 
     /***
@@ -95,7 +95,7 @@ class ParcelleController extends Controller
             ->create($validated);
         $data->update([]);
         $this->success(text: trans('messages.added_message'));
-        return redirect(Route('parcelles.index'));
+        return redirect(Route('fermes.index'));
     }
 
 
@@ -108,7 +108,7 @@ class ParcelleController extends Controller
         $validated = $request->validated();
         $data->update($validated);
         $this->success(text: trans('messages.updated_message'));
-        return redirect(Route('parcelles.index'));
+        return redirect(Route('fermes.index'));
     }
 
 }

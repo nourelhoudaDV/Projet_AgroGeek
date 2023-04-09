@@ -8,7 +8,7 @@ use App\Http\Controllers\StorageController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TypesolController;
 use App\Http\Controllers\ParcelleController;
-use App\Http\Controllers\EspecesModelController;
+use App\Http\Controllers\EspeceController;
 use App\Http\Controllers\VarieteController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
@@ -73,7 +73,7 @@ Route::name('typesols.')->prefix('typesols')->controller(TypesolController::clas
     Route::post('delete', 'destroyGroup')->name('destroyGroup');
 });
 
-Route::name('especes_models.')->prefix('especes_models')->controller(EspecesModelController::class)
+Route::name('especes.')->prefix('especes')->controller(EspeceController::class)
 ->group(function () {
     Route::get('/', 'index')->name('index');
     Route::get('{id}/delete', 'destroy')->name('delete');

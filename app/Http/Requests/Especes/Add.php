@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Models\EspecesModel;
+use App\Models\Espece;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -28,12 +28,12 @@ class Add extends FormRequest
 
 
         return [
-            'nom' => 'required|max:150' . EspecesModel::PK,
-            'nomCommercial' => 'string|max:150',
-            'appelationAr' => 'string|max:150',
-            'categorieEspece' => 'string|max:100',
-            'typeEnracinement' => 'string|max:150',
-            'description' => 'string|max:150',
+            'nom' => 'required|max:150' . Espece::PK,
+            'nomCommercial' => 'nullable|string|max:150',
+            'appelationAr' => 'nullable|string|max:150',
+            'categorieEspece' => 'nullable|string|max:100',
+            'typeEnracinement' => 'nullable|string|max:150',
+            'description' => 'nullable|string|max:150',
         ];
     }
 }

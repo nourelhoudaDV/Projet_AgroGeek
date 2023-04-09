@@ -3,15 +3,15 @@
 
 
 
-@section('page_title' , 'Espece list')
+@section('page_title' , 'Type de sols liste')
 @section('breadcrumb')
     <x-group.bread-crumb
-        page-tittle="liste des Especes"
+        page-tittle="liste des Type de sols"
         :indexes="[
 
             [
-               'name'=> 'liste des Especes',
-               'route'=> route('especes.index')
+               'name'=> 'liste des Type de sols',
+               'route'=> route('typesols.index')
            ],
         ]"
     />
@@ -22,12 +22,10 @@
         <x-table.data-table
             :actions="$actions"
             :heads="$heads"
-            edit-route="especes.show"
-            delete-route="especes.delete"
+            edit-route="typesols.show"
+            delete-route="typesols.delete"
         />
     @endBinding
 @endsection
-
-
 
 
