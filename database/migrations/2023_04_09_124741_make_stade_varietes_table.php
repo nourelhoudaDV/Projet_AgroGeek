@@ -13,20 +13,26 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('varietes', function (Blueprint $table) {
+        Schema::create('stadeVarietes', function (Blueprint $table) {
             $table->engine = "InnoDB";
-            $table->bigInteger('idV', true, true);
+            $table->bigInteger('idS', true, true);
+            $table->string('nom',150);
+            $table->string('phaseFin',150);
             $table->foreignId('espece')
             ->constrained()
             ->references('ide')
             ->on('especes')
             ->cascadeOnUpdate();
-            $table->string('nomCommercial')->nullable();
-            $table->string('appelationAr')->nullable();
-            $table->string('qualite')->nullable();
-            $table->string('precocite');
-            $table->string('resistance')->nullable();
-            $table->string('competitivite')->nullable();
+            $table->foreignId('variete')
+            ->constrained()
+            ->references('idV')
+            ->on('varietes')
+            ->cascadeOnUpdate();
+            $table->float('sommesTemps',10,2);
+            $table->float('sommesTempFroid',20,2);
+            $table->float('Kc',10,2);
+            $table->float('enracinement',10,2);
+            $table->string('maxEnracinement',1);
             $table->text('description')->nullable();
             $table->timestamps();
         });
@@ -39,6 +45,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('varietes');
+        Schema::dropIfExists('stadeVarietes');
     }
 };

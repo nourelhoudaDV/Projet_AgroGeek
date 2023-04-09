@@ -16,12 +16,12 @@ return new class extends Migration
         Schema::create('especes', function (Blueprint $table) {
             $table->engine = "InnoDB";
             $table->bigInteger('ide' , true , true);
-            $table->string('nom')->nullable();
-            $table->string('nomCommercial')->nullable();
-            $table->string('appelationAr')->nullable();
-            $table->string('categorieEspece')->nullable();
-            $table->string('typeEnracinement');
-            $table->string('description')->nullable();
+            $table->string('nomSc',150);
+            $table->string('nomCommercial',150);
+            $table->string('appelationAr',150)->nullable();
+            $table->string('categorieEspece',100);
+            $table->string('typeEnracinement',150)->nullable();
+            $table->text('description')->nullable();
         });
     }
 
