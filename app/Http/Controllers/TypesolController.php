@@ -70,10 +70,10 @@ class TypesolController extends Controller
     //---------------------------------
     public function destroyGroup(Request $request)
     {
-        $idTS = $request['idTS'] ?? [];
-        foreach ($idTS as $id) {
-            $data = ModelTarget::query()->find((int)\Crypt::decrypt($id));
-            $data?->delete();
+        $ids = $request['ids'] ?? [];
+       foreach ($ids as $id) {
+           $client = ModelTarget::query()->find((int)\Crypt::decrypt($id));
+           $client?->delete();
         }
         $this->success(text: trans('messages.deleted_message'));
         return response()->json(['success' => true]);

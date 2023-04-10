@@ -5,7 +5,7 @@
 @section('breadcrumb')
     <x-group.bread-crumb page-tittle='Ajouter noveau Stade variete' :indexes="[
         ['name' => 'Stadevariete', 'route' => route('stadeVarietes.index')],
-        ['name' => 'pages/parcelles.Ajouter noveau Stade variete', 'current' => true],
+        ['name' => 'pages/stadeVarietes.Ajouter noveau Stade variete', 'current' => true],
     ]" />
 @endsection
 

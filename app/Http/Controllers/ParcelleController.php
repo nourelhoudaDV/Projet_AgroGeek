@@ -66,10 +66,10 @@ class ParcelleController extends Controller
     //---------------------------------
     public function destroyGroup(Request $request)
     {
-        $idp = $request['idp'] ?? [];
-        foreach ($idp as $id) {
-            $data = ModelTarget::query()->find((int)\Crypt::decrypt($id));
-            $data?->delete();
+        $ids = $request['ids'] ?? [];
+       foreach ($ids as $id) {
+           $client = ModelTarget::query()->find((int)\Crypt::decrypt($id));
+           $client?->delete();
         }
         $this->success(text: trans('messages.deleted_message'));
         return response()->json(['success' => true]);

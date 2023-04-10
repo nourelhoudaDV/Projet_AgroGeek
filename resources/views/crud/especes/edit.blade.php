@@ -21,7 +21,7 @@
             <x-form.card col="col-12 row" title="{{ ucwords(trans('pages/especes.identification Especes')) }}">
 
                 <div class="col-10 row">
-                    <x-form.input   name="nom" label="{{ trans('words.nom') }}" />
+                    <x-form.input   name="nomSc" label="{{ trans('words.nomSc') }}" />
                     <x-form.input   name="nomCommercial" label="{{ trans('words.nomCommercial') }}" />
                     <x-form.input   name="appelationAr" label="{{ trans('words.appelationAr') }}" />
                     <x-form.input   name="categorieEspece" label="{{ trans('words.categorieEspece') }}" />
