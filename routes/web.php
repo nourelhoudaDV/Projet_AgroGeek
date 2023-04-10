@@ -34,8 +34,8 @@ Route::get('/', function () {
 
 Route::name('cultureparcelle.')->prefix('culrurep')->controller(CultureParcelleController::class)
     ->group(function () {
-        Route::get('create', 'create')->name('create')->name('cpCreate');
-        Route::post('store', 'store')->name('store')->name('cpStore');
+        Route::get('create', 'create')->name('create');
+        Route::post('store', 'store')->name('store');
     });
 
 Route::name('users.')->prefix('users')->controller(UserController::class)

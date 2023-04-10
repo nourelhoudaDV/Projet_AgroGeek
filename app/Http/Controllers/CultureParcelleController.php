@@ -14,8 +14,12 @@ class CultureParcelleController extends Controller
 
     public function store(Request $request)
     {
-        CultureParcelle::create($request->all());
+        // dd($request->idp);
+        CultureParcelle::create([
+            'varieteID' => $request->idV, 
+            'parcelleId' => $request->idp
+        ]);
         $this->success(text: trans('messages.added_message'));
-        return redirect()->route('cpCreate');
+        return redirect()->route('cultureparcelle.create');
     }
 }
