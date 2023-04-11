@@ -47,3 +47,14 @@ alter table useradmins
         foreign key (createdBy) references useradmins (idUAdm),
     add constraint FK__useradmins__useradmins_lastUpdateBy
         foreign key (lastUpdateBy) references useradmins (idUAdm);
+
+
+
+
+
+nom
+nomCommercial
+appelationAr
+categorieEspece
+typeEnracinement
+description
