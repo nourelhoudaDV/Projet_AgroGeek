@@ -16,15 +16,17 @@
     method="post"
     action="{{ route('cultureparcelle.store') }}"
     >
+
+
         <x-form.card col="col-12 row" title="{{ ucwords(trans('pages/users.pagename')) }}">
-            <x-form.select name="idV" label="{{ trans('words.')}}"
+            {{-- <x-form.select name="idV" label="{{ trans('words.')}}"
                         :bind-with="[
                 \App\Models\Variete::all(),
                 [
                     'idV' ,  'nomCommercial'
                 ]
             ]"
-            />
+            /> --}}
 
             <x-form.select name="idp" label="{{ trans('words.Parcelle') }}"
                         :bind-with="[
@@ -34,6 +36,12 @@
                 ]
             ]"
             />
+
+            @bind( $collection )
+            <x-table.data-table
+                :heads="$heads"
+            />
+        @endBinding
 
             <div class="col-12 mt-5">
                 <x-form.button/>

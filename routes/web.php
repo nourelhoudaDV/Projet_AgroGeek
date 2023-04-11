@@ -33,9 +33,9 @@ Route::get('/', function () {
 })->name('dashboard');
 
 
-Route::name('cultureparcelle.')->prefix('culrurep')->controller(CultureParcelleController::class)
+Route::name('cultureparcelle.')->prefix('cultureparcelle')->controller(CultureParcelleController::class)
     ->group(function () {
-        Route::get('create', 'create')->name('create');
+        Route::get('/', 'create')->name('create');
         Route::post('store', 'store')->name('store');
     });
 
