@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('culture_parcelles', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('varieteID')->constrained()->references('idV')->on('varietes');
+            $table->foreignId('parcelleId')->constrained()->references('idp')->on('parcelles');
             $table->timestamps();
         });
     }
