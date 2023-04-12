@@ -21,10 +21,10 @@ return new class extends Migration
             ->references('ide')
             ->on('especes')
             ->cascadeOnUpdate();
-            $table->string('nomCommercial')->nullable();
+            $table->string('nomCommercial');
             $table->string('appelationAr')->nullable();
             $table->string('qualite')->nullable();
-            $table->string('precocite');
+            $table->string('precocite')->nullable();
             $table->string('resistance')->nullable();
             $table->string('competitivite')->nullable();
             $table->text('description')->nullable();

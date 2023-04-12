@@ -19,7 +19,7 @@
         action="{{ route('varietes.store') }}"
     >
         <x-form.card col="col-12 row" title="{{ ucwords(trans('pages/varietes.identification_Varietes')) }}">
-                <x-form.select col="col-12 col-sm-6" name="especes_id" label="{{ trans('words.especes_id') }}"
+                <x-form.select col="col-12 col-sm-6" name="espece" label="{{ trans('words.espece') }}"
                                :bind-with="[
                     \App\Models\Espece::all(),
                     [

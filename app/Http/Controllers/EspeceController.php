@@ -88,7 +88,7 @@ class EspeceController extends Controller
     {
         ModelTarget::query()->findOrFail($id)->delete();
         $this->success(trans('messages.deleted_message'));
-        return Redirect()->route('especes.index');
+        return Redirect()->route('varietes.index');
     }
 
     /***
@@ -101,12 +101,12 @@ class EspeceController extends Controller
     {
         $validated = $request->validated();
 
-        $nomSc = $request->validated()['nomSc'];
-        $nomCommercial = $request->validated()['nomCommercial'];
-        $appelationAr = $request->validated()['appelationAr'];
-        $categorieEspece = $request->validated()['categorieEspece'];
-        $typeEnracinement = $request->validated()['typeEnracinement'];
-        $description = $request->validated()['description'];
+        // $nomSc = $request->validated()['nomSc'];
+        // $nomCommercial = $request->validated()['nomCommercial'];
+        // $appelationAr = $request->validated()['appelationAr'];
+        // $categorieEspece = $request->validated()['categorieEspece'];
+        // $typeEnracinement = $request->validated()['typeEnracinement'];
+        // $description = $request->validated()['description'];
 
 
         $client = ModelTarget::query()
@@ -114,16 +114,16 @@ class EspeceController extends Controller
 
 
         $client->update([
-            'nomSc' => $nomSc,
-            'nomCommercial' => $nomCommercial,
-            'appelationAr' => $appelationAr,
-            'categorieEspece' => $categorieEspece,
-            'typeEnracinement' => $typeEnracinement,
-            'description' => $description,
+            // 'nomSc' => $nomSc,
+            // 'nomCommercial' => $nomCommercial,
+            // 'appelationAr' => $appelationAr,
+            // 'categorieEspece' => $categorieEspece,
+            // 'typeEnracinement' => $typeEnracinement,
+            // 'description' => $description,
         ]);
 
         $this->success(text: trans('messages.added_message'));
-        return Redirect()->route('especes.index');
+        return Redirect()->route('varietes.index');
     }
 
 
@@ -140,16 +140,16 @@ class EspeceController extends Controller
 
         $validated = $request->validated();
 
-        $this->saveAndDeleteOld($request->validated()['nomSc'] ?? null, 'especes', $client, 'nomSc');
-        $this->saveAndDeleteOld($request->validated()['nomCommercial'] ?? null, 'especes', $client, 'nomCommercial');
-        $this->saveAndDeleteOld($request->validated()['appelationAr'] ?? null, 'especes', $client, 'appelationAr');
-        $this->saveAndDeleteOld($request->validated()['categorieEspece'] ?? null, 'especes', $client, 'categorieEspece');
-        $this->saveAndDeleteOld($request->validated()['typeEnracinement'] ?? null, 'especes', $client, 'typeEnracinement');
-        $this->saveAndDeleteOld($request->validated()['description'] ?? null, 'especes', $client, 'description');
+        // $this->saveAndDeleteOld($request->validated()['nomSc'] ?? null, 'especes', $client, 'nomSc');
+        // $this->saveAndDeleteOld($request->validated()['nomCommercial'] ?? null, 'especes', $client, 'nomCommercial');
+        // $this->saveAndDeleteOld($request->validated()['appelationAr'] ?? null, 'especes', $client, 'appelationAr');
+        // $this->saveAndDeleteOld($request->validated()['categorieEspece'] ?? null, 'especes', $client, 'categorieEspece');
+        // $this->saveAndDeleteOld($request->validated()['typeEnracinement'] ?? null, 'especes', $client, 'typeEnracinement');
+        // $this->saveAndDeleteOld($request->validated()['description'] ?? null, 'especes', $client, 'description');
         $client->update($validated);
 
         $this->success(text: trans('messages.updated_message'));
-        return Redirect()->route('especes.index');
+        return Redirect()->route('varietes.index');
     }
 }
 

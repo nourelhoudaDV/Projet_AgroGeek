@@ -22,7 +22,7 @@
 
                 <x-form.input col="col-12 col-sm-6" name="nomCommercial" label="{{ trans('words.nomCommercial') }}" />
 
-                <x-form.select col="col-12 col-sm-6" name="especes_id" label="{{ trans('words.especes_id') }}"
+                <x-form.select col="col-12 col-sm-6" name="espece" label="{{ trans('words.espece') }}"
                                 :bind-with="[
                 \App\Models\Espece::all(),
                 [

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Varietes;
 
 use App\Models\Variete;
 use Illuminate\Foundation\Http\FormRequest;
@@ -28,8 +28,8 @@ class Add extends FormRequest
 
 
         return [
-            'especes_id' => 'nullable|exists:especes,' . Variete::PK,
-            'nomCommercial' => 'nullable|string|max:150',
+            'espece' => 'required|string',
+            'nomCommercial' => 'required|string|max:150',
             'appelationAr' => 'nullable|string|max:150',
             'quantite' => 'nullable|string|max:100',
             'precocite' => 'nullable|string|max:150',

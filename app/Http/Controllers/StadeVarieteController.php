@@ -88,7 +88,7 @@ class StadeVarieteController extends Controller
     {
         ModelTarget::query()->findOrFail($id)->delete();
         $this->success(trans('messages.deleted_message'));
-        return redirect(Route('stadeVarietes.index'));
+        return redirect(Route('varietes.index'));
     }
 
     /***
@@ -101,7 +101,7 @@ class StadeVarieteController extends Controller
             ->create($validated);
         $data->update([]);
         $this->success(text: trans('messages.added_message'));
-        return redirect(Route('stadeVarietes.index'));
+        return redirect(Route('varietes.index'));
     }
 
 
@@ -114,7 +114,7 @@ class StadeVarieteController extends Controller
         $validated = $request->validated();
         $data->update($validated);
         $this->success(text: trans('messages.updated_message'));
-        return redirect(Route('stadeVarietes.index'));
+        return redirect(Route('varietes.index'));
     }
 
 }

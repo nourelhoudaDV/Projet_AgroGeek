@@ -77,7 +77,7 @@ class StadeController extends Controller
     {
         ModelTarget::query()->findOrFail($id)->delete();
         $this->success(trans('messages.deleted_message'));
-        return redirect(Route('stades.index'));
+        return redirect(Route('varietes.index'));
     }
 
     /***
@@ -90,7 +90,7 @@ class StadeController extends Controller
             ->create($validated);
         $data->update([]);
         $this->success(text: trans('messages.added_message'));
-        return redirect(Route('stades.index'));
+        return redirect(Route('varietes.index'));
     }
 
 
@@ -103,7 +103,7 @@ class StadeController extends Controller
         $validated = $request->validated();
         $data->update($validated);
         $this->success(text: trans('messages.updated_message'));
-        return redirect(Route('stades.index'));
+        return redirect(Route('varietes.index'));
     }
 
 }
