@@ -1,6 +1,9 @@
 <?php
 return [
-    'home' => 'Home',
+    'name'=>'liste of users',
+    "update_user"=>'update user',
+    'user'=>"User",
+    'Home' => 'Home',
     'actions' => 'actions',
     'yes' => 'Yes',
     'no' => 'No',
@@ -12,7 +15,7 @@ return [
     'man' => 'man',
     'woman' => 'woman',
     'identity' => 'identity',
-    'logo' => 'Logo',
+    'logo' => './idFerme/Images/logo/idF+" "+nomF.extention',
     'avatar' => 'Avatar',
     'name' => 'name',
     'birthday' => 'Birthday',
@@ -20,39 +23,344 @@ return [
     'country' => 'country',
     'gender' => 'Gender',
     'clients' => 'clients',
-    'update' => 'Mettre à jour',
-    'save' => 'Sauver',
-    'add' => 'Ajouter',
-    'cancel' => 'Annuler',
-    'confirm' => 'Confirmer',
-    'delete_confirm' => 'Êtes-vous sûr(e) ?',
-    'delete' => 'Supprimer',
-    'edit' => 'Éditer',
-    'upload' => 'Envoyer',
-    'download' => 'Télécharger',
-    'save_close' => 'Enregistrer et fermer',
-    'close' => 'Fermer',
-    'copy' => 'Copier',
-    'create' => 'Créer',
-    'remove' => 'Enlever',
-    'revoke' => 'Révoquer',
-    'done' => 'Terminé',
-    'back' => 'Précédent',
-    'verify' => 'Vérifier',
-    'new' => 'nouveau',
-    'unknown' => 'Je ne sais pas',
-    'load_more' => 'Charger plus',
-    'loading' => 'Chargement…',
-    'with' => 'avec',
-    'today' => 'aujourd’hui',
-    'yesterday' => 'hier',
-    'another_day' => 'un autre jour',
+    'update' => 'Update',
+    'save' => 'Save',
+    'add' => 'Add',
+    'cancel' => 'Cancel',
+    'confirm' => 'Confirm',
+    'delete_confirm' => 'Are you sure?',
+    'delete' => 'Delete',
+    'edit' => 'Edit',
+    'upload' => 'Upload',
+    'download' => 'Download',
+    'save_close' => 'Save and Close',
+    'close' => 'Close',
+    'copy' => 'Copy',
+    'create' => 'Create',
+    'remove' => 'Remove',
+    'revoke' => 'Revoke',
+    'done' => 'Done',
+    'back' => 'Back',
+    'verify' => 'Verify',
+    'new' => 'New',
+    'unknown' => 'Unknown',
+    'load_more' => 'Load More',
+    'loading' => 'Loading...',
+    'with' => 'with',
+    'today' => 'Today',
+    'yesterday' => 'Yesterday',
+    'another_day' => 'Another Day',
     'date' => 'Date',
     'type' => 'Type',
     'zoom' => 'Zoom',
-    'upgrade' => 'Mettre à jour pour débloquer',
-    'percent_uploaded' => '{percent}% téléchargés',
-    'retry' => 'Réessayer',
-    'filter' => 'Filtrer la liste',
+    'upgrade' => 'Upgrade to unlock',
+    'percent_uploaded' => '{percent}% uploaded',
+    'retry' => 'Retry',
+    
+    'name' => 'nom',
+    'fullNameG' => 'full name Manager',
+    'cin' => 'ID number',
+    'contactG' => 'phone number Manager',
+    'SAT' => 'Total Agricultural Area in ha',
+    'SAU' => 'Usable Agricultural Area in ha',
+    'observation' => 'observation',
+    'fixe' => 'fixed line phone number',
+    'GSM1' => 'mobile phone number 1',
+    'GSM2' => 'mobile phone number 2',
+    'email' => 'email',
+    'siteWeb' => 'website',
+    'Douar' => 'village',
+    'Circle' => 'administrative district',
+    'province' => 'province',
+    'region' => 'region',
+    'address' => 'address',
+    'gps' => 'gps',
+    'city' => 'city',
+    
+    
+    
+    
+    
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
 ];
