@@ -7,11 +7,11 @@ return [
 
     'add_a_new_espece' => 'add Species',
     'update_espece' => 'Update Species',
-    
+
     'nomSc' => 'Scientific Name',
-    'nomCommercial' => 'trade name',
+    'nomCommercial' => 'Commercial name',
     'appelationAr' => 'name in Arabic',
     'categorieEspece' => 'Species category',
-    'typeEnracinement' => 'rooting type',
+    'typeEnracinement' => 'root type',
     'description' => 'description'
 ];

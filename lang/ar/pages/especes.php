@@ -7,11 +7,11 @@ return [
 
     'add_a_new_espece' => 'إضافة نوع جديد',
     'update_espece' => 'تحديث النوع',
-    
+
     'nomSc' => 'الاسم العلمي',
     'nomCommercial' => 'الاسم التجاري',
-    'appelationAr' => 'الاسم باللغة العربية',
+    'appelationAr' => 'الاسم بالعربية',
     'categorieEspece' => 'فئة النوع',
-    'typeEnracinement' => 'نوع التجذير ',
+    'typeEnracinement' => 'نوع الجذر ',
     'description' => 'الوصف'
 ];

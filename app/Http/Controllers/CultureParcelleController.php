@@ -12,7 +12,7 @@ class CultureParcelleController extends Controller
     public function create()
     {
         $heads = [
-            new Head('especes_id', Head::TYPE_TEXT, trans('words.especes_id')),
+            new Head('espece', Head::TYPE_TEXT, trans('words.especes_id')),
             new Head('nomCommercial', Head::TYPE_TEXT, trans('words.nomCommercial')),
             new Head('appelationAr', Head::TYPE_TEXT, trans('words.appelationAr')),
             new Head('qualite', Head::TYPE_TEXT, trans('words.qualite')),
@@ -31,7 +31,7 @@ class CultureParcelleController extends Controller
         foreach($request->ckeck as $key => $idV)
         {
             CultureParcelle::create([
-            'varieteID' => $idV, 
+            'varieteID' => $idV,
             'parcelleId' => $request->idp
             ]);
         }
