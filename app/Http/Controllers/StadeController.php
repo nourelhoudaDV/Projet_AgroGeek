@@ -18,14 +18,14 @@ class StadeController extends Controller
     //      *  page index
     //      */
     //     $actions = [
-    //         new Action(ucwords(trans('words.add')), Action::TYPE_NORMAL, url: route('stades.create')),
+    //         new Action(ucwords(trans('pages/stades.add_a_new_stade')), Action::TYPE_NORMAL, url: route('stades.create')),
     //         new Action(ucwords(trans('words.delete_all')), Action::TYPE_DELETE_ALL, url: route('stades.destroyGroup'))
     //     ];
     //     $heads = [
-    //         new Head('nom', Head::TYPE_TEXT, trans('words.nom')),
-    //         new Head('phaseFin', Head::TYPE_TEXT, trans('words.phaseFin')),
-    //         new Head('espece', Head::TYPE_TEXT, trans('words.espece')),
-    //         new Head('description', Head::TYPE_TEXT, trans('words.description')),
+    //         new Head('nom', Head::TYPE_TEXT, trans('pages/stades.nom')),
+    //         new Head('phaseFin', Head::TYPE_TEXT, trans('pages/stades.phaseFin')),
+    //         new Head('espece', Head::TYPE_TEXT, trans('pages/stades.espece')),
+    //         new Head('description', Head::TYPE_TEXT, trans('pages/stades.description')),
     //     ];
 
     // $collection = ModelTarget::query()

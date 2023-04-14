@@ -12,6 +12,6 @@ return [
     'nomCommercial' => 'nom Commercial',
     'appelationAr' => 'nom en arabe',
     'categorieEspece' => 'catégorie de l espece',
-    'typeEnracinement' => 'type d enracinement',
+    'typeEnracinement' => 'type de racine',
     'description' => 'description'
 ];

@@ -24,79 +24,79 @@ class FermeController extends Controller
     {
 
         $actions = [
-            new Action(ucwords(trans('words.add_ferme')), Action::TYPE_NORMAL, url: route('fermes.create')),
+            new Action(ucwords(trans('pages/fermes.add_a_new_ferme')), Action::TYPE_NORMAL, url: route('fermes.create')),
             new Action(ucwords(trans('words.delete_all')), Action::TYPE_DELETE_ALL, url: route('fermes.destroyGroup')),
-            new Action(ucwords(trans('words.add_parcelle')), Action::TYPE_NORMAL, url: route('parcelles.create')),
-            new Action(ucwords(trans('words.add_typesol')), Action::TYPE_NORMAL, url: route('typesols.create')),
+            new Action(ucwords(trans('pages/parcelles.add_a_new_parcelle')), Action::TYPE_NORMAL, url: route('parcelles.create')),
+            new Action(ucwords(trans('pages/typeSols.add_a_new_typesol')), Action::TYPE_NORMAL, url: route('typesols.create')),
         ];
         $heads = [
-            new Head('logo', Head::TYPE_IMG, trans('words.logo')),
-            new Head('nomDomaine', Head::TYPE_TEXT, trans('words.name')),
-            new Head('fullNameG', Head::TYPE_TEXT, 'words.fullNameG'),
-            new Head('cin', Head::TYPE_TEXT, 'words.cin'),
-            new Head('contactG', Head::TYPE_TEXT, 'words.contactG'),
-            new Head('SAT', Head::TYPE_TEXT, 'words.SAT'),
-            new Head('SAU', Head::TYPE_TEXT, 'words.SAU'),
-            new Head('observation', Head::TYPE_TEXT, 'words.observation'),
-            new Head('fixe', Head::TYPE_TEXT, 'words.fixe'),
-            new Head('fax', Head::TYPE_TEXT, 'words.fax'),
-            new Head('GSM1', Head::TYPE_TEXT, 'words.GSM1'),
-            new Head('GSM2', Head::TYPE_TEXT, 'words.GSM2'),
-            new Head('email', Head::TYPE_TEXT, trans('words.words.email')),
-            new Head('siteWeb', Head::TYPE_TEXT, 'words.siteWeb'),
-            new Head('Douar', Head::TYPE_TEXT, 'words.Douar'),
-            new Head('Cercle', Head::TYPE_TEXT, 'words.Circle'),
-            new Head('province', Head::TYPE_TEXT, 'words.province'),
-            new Head('region', Head::TYPE_TEXT, 'words.region'),
-            new Head('adresse', Head::TYPE_TEXT, 'words.address'),
-            new Head('gps', Head::TYPE_TEXT, 'words.gps'),
-            new Head('ville', Head::TYPE_TEXT, 'words.city'),
+            new Head('logo', Head::TYPE_IMG, trans('pages/fermes.logo')),
+            new Head('nomDomaine', Head::TYPE_TEXT, trans('pages/fermes.nomDomaine')),
+            new Head('fullNameG', Head::TYPE_TEXT, trans('pages/fermes.fullNameG')),
+            new Head('cin', Head::TYPE_TEXT, trans('pages/fermes.cin')),
+            new Head('contactG', Head::TYPE_TEXT, trans('pages/fermes.contactG')),
+            new Head('SAT', Head::TYPE_TEXT, trans('pages/fermes.SAT')),
+            new Head('SAU', Head::TYPE_TEXT, trans('pages/fermes.SAU')),
+            new Head('observation', Head::TYPE_TEXT, trans('pages/fermes.observation')),
+            new Head('fixe', Head::TYPE_TEXT, trans('pages/fermes.fixe')),
+            new Head('fax', Head::TYPE_TEXT, trans('pages/fermes.fax')),
+            new Head('GSM1', Head::TYPE_TEXT, trans('pages/fermes.GSM1')),
+            new Head('GSM2', Head::TYPE_TEXT, trans('pages/fermes.GSM2')),
+            new Head('email', Head::TYPE_TEXT, trans('pages/fermes.email')),
+            new Head('siteWeb', Head::TYPE_TEXT, trans('pages/fermes.siteWeb')),
+            new Head('Douar', Head::TYPE_TEXT, trans('pages/fermes.Douar')),
+            new Head('Cercle', Head::TYPE_TEXT, trans('pages/fermes.Circle')),
+            new Head('province', Head::TYPE_TEXT, trans('pages/fermes.province')),
+            new Head('region', Head::TYPE_TEXT, trans('pages/fermes.region')),
+            new Head('adresse', Head::TYPE_TEXT, trans('pages/fermes.address')),
+            new Head('gps', Head::TYPE_TEXT, trans('pages/fermes.gps')),
+            new Head('ville', Head::TYPE_TEXT, trans('pages/fermes.city')),
         ];
 
         $collection = ModelTarget::all();
 
         $actions1 = [
-            new Action(ucwords(trans('words.add')), Action::TYPE_NORMAL, url: route('parcelles.create')),
+            new Action(ucwords(trans('pages/parcelles.add_a_new_parcelle')), Action::TYPE_NORMAL, url: route('parcelles.create')),
             new Action(ucwords(trans('words.delete_all')), Action::TYPE_DELETE_ALL, url: route('parcelles.destroyGroup'))
         ];
         $heads1 = [
-            new Head('codification', Head::TYPE_TEXT, trans('words.codification')),
-            new Head('Ferme', Head::TYPE_TEXT, trans('words.Ferme')),
-            new Head('superficie', Head::TYPE_TEXT, trans('words.superficie')),
-            new Head('modeCulture', Head::TYPE_TEXT, trans('words.modeCulture')),
-            new Head('topographie', Head::TYPE_TEXT, trans('words.topographie')),
-            new Head('pente', Head::TYPE_TEXT, trans('words.pente')),
-            new Head('pierosite', Head::TYPE_TEXT, trans('words.pierosite')),
-            new Head('gps', Head::TYPE_TEXT, trans('words.gps')),
-            new Head('description', Head::TYPE_TEXT, trans('words.description')),
-            new Head('typeSol', Head::TYPE_TEXT, trans('words.typeSol')),
+            new Head('codification', Head::TYPE_TEXT, trans('pages/parcelles.codification')),
+            new Head('Ferme', Head::TYPE_TEXT, trans('pages/parcelles.Ferme')),
+            new Head('superficie', Head::TYPE_TEXT, trans('pages/parcelles.superficie')),
+            new Head('modeCulture', Head::TYPE_TEXT, trans('pages/parcelles.modeCulture')),
+            new Head('topographie', Head::TYPE_TEXT, trans('pages/parcelles.topographie')),
+            new Head('pente', Head::TYPE_TEXT, trans('pages/parcelles.pente')),
+            new Head('pierosite', Head::TYPE_TEXT, trans('pages/parcelles.pierosite')),
+            new Head('gps', Head::TYPE_TEXT, trans('pages/parcelles.gps')),
+            new Head('description', Head::TYPE_TEXT, trans('pages/parcelles.description')),
+            new Head('typeSol', Head::TYPE_TEXT, trans('pages/parcelles.typeSol')),
         ];
         $actions2 = [
-            new Action(ucwords(trans('words.add')), Action::TYPE_NORMAL, url: route('typesols.create')),
+            new Action(ucwords(trans('pages/typeSols.add_a_new_typesol')), Action::TYPE_NORMAL, url: route('typesols.create')),
             new Action(ucwords(trans('words.delete_all')), Action::TYPE_DELETE_ALL, url: route('typesols.destroyGroup'))
         ];
         $heads2 = [
-            new Head('vernaculaure', Head::TYPE_TEXT, trans('words.vernaculaure')),
-            new Head('nomDomaine', Head::TYPE_TEXT, trans('words.nomDomaine')),
-            new Head('teneurArgile', Head::TYPE_TEXT, trans('words.teneurArgile')),
-            new Head('teneurLimon', Head::TYPE_TEXT, trans('words.teneurLimon')),
-            new Head('teneurSable', Head::TYPE_TEXT, trans('words.teneurSable')),
-            new Head('teneurPhosphore', Head::TYPE_TEXT, trans('words.teneurPhosphore')),
-            new Head('teneurPotassiume', Head::TYPE_TEXT, trans('words.teneurPotassiume')),
-            new Head('teneurAzote', Head::TYPE_TEXT, trans('words.teneurAzote')),
-            new Head('calcaireActif', Head::TYPE_TEXT, trans('words.calcaireActif')),
-            new Head('calcaireTotal', Head::TYPE_TEXT, trans('words.calcaireTotal')),
-            new Head('conductiveElectrique', Head::TYPE_TEXT, trans('words.conductiveElectrique')),
-            new Head('HCC', Head::TYPE_TEXT, trans('words.HCC')),
-            new Head('HPF', Head::TYPE_TEXT, trans('words.HPF')),
-            new Head('DA', Head::TYPE_TEXT, trans('words.DA')),
+            new Head('vernaculaure', Head::TYPE_TEXT, trans('pages/typeSols.vernaculaure')),
+            new Head('nomDomaine', Head::TYPE_TEXT, trans('pages/typeSols.nomDomaine')),
+            new Head('teneurArgile', Head::TYPE_TEXT, trans('pages/typeSols.teneurArgile')),
+            new Head('teneurLimon', Head::TYPE_TEXT, trans('pages/typeSols.teneurLimon')),
+            new Head('teneurSable', Head::TYPE_TEXT, trans('pages/typeSols.teneurSable')),
+            new Head('teneurPhosphore', Head::TYPE_TEXT, trans('pages/typeSols.teneurPhosphore')),
+            new Head('teneurPotassiume', Head::TYPE_TEXT, trans('pages/typeSols.teneurPotassiume')),
+            new Head('teneurAzote', Head::TYPE_TEXT, trans('pages/typeSols.teneurAzote')),
+            new Head('calcaireActif', Head::TYPE_TEXT, trans('pages/typeSols.calcaireActif')),
+            new Head('calcaireTotal', Head::TYPE_TEXT, trans('pages/typeSols.calcaireTotal')),
+            new Head('conductiveElectrique', Head::TYPE_TEXT, trans('pages/typeSols.conductiveElectrique')),
+            new Head('HCC', Head::TYPE_TEXT, trans('pages/typeSols.HCC')),
+            new Head('HPF', Head::TYPE_TEXT, trans('pages/typeSols.HPF')),
+            new Head('DA', Head::TYPE_TEXT, trans('pages/typeSols.DA')),
         ];
 
         $collection1 = Parcelle::all();
         $collection2 = Typesol::all();
         $parcelle = ['actions1', 'heads1', 'collection1'];
         $typesol = ['actions2', 'heads2', 'collection2'];
-        // $this->success(text: trans('messages.deleted_message'));
+        $this->success(text: trans('messages.deleted_message'));
         return view('crud.Ferme.index', compact(['actions', 'heads', 'collection',$parcelle,$typesol]));
     }
 

@@ -21,16 +21,16 @@ class EspeceController extends Controller
 
 
     //     $actions = [
-    //         new Action(ucwords(trans('words.add')), Action::TYPE_NORMAL, url: route('especes.create')),
+    //         new Action(ucwords(trans('pages/especes.add_a_new_espece')), Action::TYPE_NORMAL, url: route('especes.create')),
     //         new Action(ucwords(trans('words.delete_all')), Action::TYPE_DELETE_ALL, url: route('especes.destroyGroup'))
     //     ];
     //     $heads = [
-    //         new Head('nomSc', Head::TYPE_TEXT, trans('words.nomSc')),
-    //         new Head('nomCommercial', Head::TYPE_TEXT, trans('words.nomCommercial')),
-    //         new Head('appelationAr', Head::TYPE_TEXT, trans('words.appelationAr')),
-    //         new Head('categorieEspece', Head::TYPE_TEXT, trans('words.categorieEspece')),
-    //         new Head('typeEnracinement', Head::TYPE_TEXT, trans('words.typeEnracinement')),
-    //         new Head('description', Head::TYPE_TEXT, trans('words.description')),
+    //         new Head('nomSc', Head::TYPE_TEXT, trans('pages/especes.nomSc')),
+    //         new Head('nomCommercial', Head::TYPE_TEXT, trans('pages/especes.nomCommercial')),
+    //         new Head('appelationAr', Head::TYPE_TEXT, trans('pages/especes.appelationAr')),
+    //         new Head('categorieEspece', Head::TYPE_TEXT, trans('pages/especes.categorieEspece')),
+    //         new Head('typeEnracinement', Head::TYPE_TEXT, trans('pages/especes.typeEnracinement')),
+    //         new Head('description', Head::TYPE_TEXT, trans('pages/especes.description')),
     //     ];
 
     //     $collection = ModelTarget::all();

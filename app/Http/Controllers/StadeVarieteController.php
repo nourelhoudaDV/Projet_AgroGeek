@@ -18,23 +18,23 @@ class StadeVarieteController extends Controller
     //      *  page index
     //      */
     //     $actions = [
-    //         new Action(ucwords(trans('words.add')), Action::TYPE_NORMAL, url: route('stadeVarietes.create')),
+    //         new Action(ucwords(trans('pages/stadeVarietes.add_a_new_stadeVariete')), Action::TYPE_NORMAL, url: route('stadeVarietes.create')),
     //         new Action(ucwords(trans('words.delete_all')), Action::TYPE_DELETE_ALL, url: route('stadeVarietes.destroyGroup'))
     //     ];
     //     $heads = [
-    //         new Head('nom', Head::TYPE_TEXT, trans('words.nom')),
-    //         new Head('phaseFin', Head::TYPE_TEXT, trans('words.phaseFin')),
-    //         new Head('espece', Head::TYPE_TEXT, trans('words.espece')),
-    //         new Head('variete', Head::TYPE_TEXT, trans('words.variete')),
-    //         new Head('sommesTemps', Head::TYPE_TEXT, trans('words.sommesTemps')),
-    //         new Head('sommesTempFroid', Head::TYPE_TEXT, trans('words.sommesTempFroid')),
-    //         new Head('Kc', Head::TYPE_TEXT, trans('words.Kc')),
-    //         new Head('enracinement', Head::TYPE_TEXT, trans('words.enracinement')),
-    //         new Head('maxEnracinement', Head::TYPE_OPTIONS, trans('words.maxEnracinement'),[
-    //             'Y' => trans('words.OUI'),
-    //             'N' => trans('words.NON'),
+    //         new Head('nom', Head::TYPE_TEXT, trans('pages/stadeVarietes.nom')),
+    //         new Head('phaseFin', Head::TYPE_TEXT, trans('pages/stadeVarietes.phaseFin')),
+    //         new Head('espece', Head::TYPE_TEXT, trans('pages/stadeVarietes.espece')),
+    //         new Head('variete', Head::TYPE_TEXT, trans('pages/stadeVarietes.variete')),
+    //         new Head('sommesTemps', Head::TYPE_TEXT, trans('pages/stadeVarietes.sommesTemps')),
+    //         new Head('sommesTempFroid', Head::TYPE_TEXT, trans('pages/stadeVarietes.sommesTempFroid')),
+    //         new Head('Kc', Head::TYPE_TEXT, trans('pages/stadeVarietes.Kc')),
+    //         new Head('enracinement', Head::TYPE_TEXT, trans('pages/stadeVarietes.enracinement')),
+    //         new Head('maxEnracinement', Head::TYPE_OPTIONS, trans('pages/stadeVarietes.maxEnracinement'),[
+    //             'Y' => trans('words.yes'),
+    //             'N' => trans('words.no'),
     //         ]),
-    //         new Head('description', Head::TYPE_TEXT, trans('words.description')),
+    //         new Head('description', Head::TYPE_TEXT, trans('pages/stadeVarietes.description')),
     //     ];
 
     // $collection = ModelTarget::query()
