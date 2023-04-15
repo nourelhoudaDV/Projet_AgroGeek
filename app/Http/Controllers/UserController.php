@@ -28,6 +28,7 @@ class UserController extends Controller
             new Action(ucwords(trans('words.delete_all')), Action::TYPE_DELETE_ALL, url: route('users.destroyGroup'))
         ];
         $heads = [
+         
             new Head('avatar', Head::TYPE_IMG, trans('words.avatar')),
             new Head('full_name', Head::TYPE_TEXT, trans('words.name')),
             new Head('gender', Head::TYPE_OPTIONS, trans('words.gender'), [
@@ -141,4 +142,15 @@ class UserController extends Controller
         $this->success(text: trans('messages.updated_message'));
         return redirect(route('users.index'));
     }
+    // public function deleteAllUsers()
+    // {
+    //     $users = User::all();
+    //     foreach ($users as $user) {
+    //         $user->delete();
+    //     }
+    //     session()->success(text: trans('messages.updated_message'));
+    //     return redirect()->route('users.index');
+    // }
+    
 }
+

@@ -8,7 +8,6 @@
     <x-group.bread-crumb
         page-tittle="liste des users"
         :indexes="[
-
             [
                'name'=> 'liste des users',
                'route'=> route('users.index')
