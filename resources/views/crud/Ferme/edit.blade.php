@@ -25,7 +25,7 @@
                         <x-form.text-area col="col-12 col-sm-12" name="observation" label="{{ trans('pages/fermes.observation') }}" />
                     </div>
                 </x-form.card>
-                <x-form.card col="col-12 row" title='{{ trans(pages/fermes.contact)}}'>
+                <x-form.card col="col-12 row" title='{{ trans('pages/fermes.contact')}}'>
                     <div class="col-10 row">
                         <x-form.input col="col-12 col-sm-3" name="fixe" label="{{ trans('pages/fermes.fixe') }}" />
                         <x-form.input col="col-12 col-sm-3" name="fax" label="{{ trans('pages/fermes.fax') }}" />
@@ -35,7 +35,7 @@
                         <x-form.input col="col-12 col-sm-6" name="siteWeb" label="{{ trans('pages/fermes.siteWeb') }}" />
                     </div>
                 </x-form.card>
-                <x-form.card col="col-12 row" title='{{ trans(pages/fermes.adresse)}}'>
+                <x-form.card col="col-12 row" title='{{ trans('pages/fermes.adresse')}}'>
                     <div class="col-10 row">
                         <x-form.input col="col-12 col-sm-6" name="Douar" label="{{ trans('pages/fermes.Douar') }}" />
                         <x-form.input col="col-12 col-sm-6" name="Cercle" label="{{ trans('pages/fermes.Cercle') }}" />
