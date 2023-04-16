@@ -18,20 +18,20 @@ class ParcelleController extends Controller
     //      *  page index
     //      */
     //     $actions = [
-    //         new Action(ucwords(trans('words.add')), Action::TYPE_NORMAL, url: route('parcelles.create')),
+    //         new Action(ucwords(trans('pages/parcelles.add_a_new_parcelle')), Action::TYPE_NORMAL, url: route('parcelles.create')),
     //         new Action(ucwords(trans('words.delete_all')), Action::TYPE_DELETE_ALL, url: route('parcelles.destroyGroup'))
     //     ];
     //     $heads = [
-    //         new Head('codification', Head::TYPE_TEXT, trans('words.codification')),
-    //         new Head('Ferme', Head::TYPE_TEXT, trans('words.Ferme')),
-    //         new Head('superficie', Head::TYPE_TEXT, trans('words.superficie')),
-    //         new Head('modeCulture', Head::TYPE_TEXT, trans('words.modeCulture')),
-    //         new Head('topographie', Head::TYPE_TEXT, trans('words.topographie')),
-    //         new Head('pente', Head::TYPE_TEXT, trans('words.pente')),
-    //         new Head('pierosite', Head::TYPE_TEXT, trans('words.pierosite')),
-    //         new Head('gps', Head::TYPE_TEXT, trans('words.gps')),
-    //         new Head('description', Head::TYPE_TEXT, trans('words.description')),
-    //         new Head('typeSol', Head::TYPE_TEXT, trans('words.typeSol')),
+    //         new Head('codification', Head::TYPE_TEXT, trans('pages/parcelles.codification')),
+            // new Head('Ferme', Head::TYPE_TEXT, trans('pages/parcelles.Ferme')),
+            // new Head('superficie', Head::TYPE_TEXT, trans('pages/parcelles.superficie')),
+            // new Head('modeCulture', Head::TYPE_TEXT, trans('pages/parcelles.modeCulture')),
+            // new Head('topographie', Head::TYPE_TEXT, trans('pages/parcelles.topographie')),
+            // new Head('pente', Head::TYPE_TEXT, trans('pages/parcelles.pente')),
+            // new Head('pierosite', Head::TYPE_TEXT, trans('pages/parcelles.pierosite')),
+            // new Head('gps', Head::TYPE_TEXT, trans('pages/parcelles.gps')),
+            // new Head('description', Head::TYPE_TEXT, trans('pages/parcelles.description')),
+            // new Head('typeSol', Head::TYPE_TEXT, trans('pages/parcelles.typeSol')),
     //     ];
 
     //     // $collection = ModelTarget::all();

@@ -3,11 +3,11 @@
 
 
 
-@section('page_title', 'Les données du Ferme')
+@section('page_title', trans('pages/fermes.index_page_title'))
 @section('breadcrumb')
-    <x-group.bread-crumb page-tittle="Les données du Ferme" :indexes="[
+    <x-group.bread-crumb page-tittle="{{ trans('pages/fermes.index_page_title') }}" :indexes="[
         [
-            'name' => 'Les données du Ferme',
+            'name' => trans('pages/fermes.index_page_title'),
             'route' => route('fermes.index'),
         ],
     ]" />
