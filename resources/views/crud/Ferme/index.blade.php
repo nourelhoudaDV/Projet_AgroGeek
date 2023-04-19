@@ -1,8 +1,6 @@
 @extends('layout.master')
 @include('include.blade-components')
 
-
-
 @section('page_title', trans('pages/fermes.index_page_title'))
 @section('breadcrumb')
     <x-group.bread-crumb page-tittle="{{ trans('pages/fermes.index_page_title') }}" :indexes="[
@@ -13,6 +11,8 @@
     ]" />
 
 @endsection
+
+
 @section('content')
     @bind($collection)
         <x-table.data-table
@@ -22,7 +22,7 @@
         delete-route="fermes.delete" />
     @endBinding
 
-    <div class="mt-4 mb-4">
+    {{-- <div class="mt-4 mb-4">
         <button onclick="display1()" class="btn btn-primary">parcelle history</button>
 
         <button onclick="display2()" class="btn btn-primary">type de sol history</button>
@@ -57,10 +57,10 @@
             </x-form.card>
         </div>
     </div>
-</div>
+</div> --}}
 @endsection
 
-@push('scripts')
+{{-- @push('scripts')
     <script>
         function display1(){
             document.getElementById("history").style.display = 'block';
@@ -73,4 +73,4 @@
             document.getElementById('typesol').style.display = 'block';
         }
     </script>
-@endpush
+@endpush --}}

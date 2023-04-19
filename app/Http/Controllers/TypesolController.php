@@ -48,9 +48,20 @@ class TypesolController extends Controller
     /***
      * Page create
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('crud.typesol.create');
+        $fermeId = $request->get('id_ferme') ?? null;
+
+        $pagesIndexes = [
+            ['name' => 'Ajoute type de sol', 'current' => true],
+        ];
+        if ($request->has('back')) {
+            array_unshift($pagesIndexes, [
+                'name' => "page president", 'route' => $request->get('back'),
+            ]);
+        }
+
+        return view('crud.typesol.create', compact('pagesIndexes', 'fermeId'));
     }
 
     /***
@@ -58,10 +69,22 @@ class TypesolController extends Controller
      */
     public function show(Request $request, $id)
     {
-        $data = ModelTarget::query()->findOrFail($id);
-        return view('crud.typesol.edit', [
-            'model' => $data
-        ]);
+        $model = ModelTarget::query()->where(ModelTarget::PK, $id)->firstOrFail();
+
+        $pagesIndexes = [
+            ['name' => 'Modifier type de sol', 'current' => true],
+        ];
+        if ($request->has('back')) {
+            array_unshift($pagesIndexes, [
+                'name' => "page president", 'route' => $request->get('back'),
+            ]);
+        }
+        return view('crud.typesol.edit', compact('model', "pagesIndexes"));
+
+        // $data = ModelTarget::query()->findOrFail($id);
+        // return view('crud.typesol.edit', [
+        //     'model' => $data
+        // ]);
     }
 
     /***

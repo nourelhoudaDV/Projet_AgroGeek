@@ -14,4 +14,20 @@ class Ferme extends Model
     protected $keyType = 'int';
     public $timestamps = false;
     public const PK = 'idF';
+
+    public function parcelles()
+    {
+        return $this->hasMany(Parcelle::class, 'ferme');
+    }
+    // public function typesols()
+    // {
+    //     return $this->hasMany(Typesol::class, 'ferme');
+    // }
+
+    public static function allForSelect()
+    {
+        return self::query()
+            ->select('ferme.'.self::PK, \DB::raw('CONCAT(fermes.nomDomaine) as ferme_name'))
+            ->get();
+    }
 }
