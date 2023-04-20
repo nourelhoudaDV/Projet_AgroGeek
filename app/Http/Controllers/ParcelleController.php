@@ -35,18 +35,30 @@ class ParcelleController extends Controller
     //     ];
 
     //     // $collection = ModelTarget::all();
-    //     $collection = ModelTarget::all();
     //     // $this->success(text: trans('messages.deleted_message'));
     //     // return view('crud.parcelle.index', compact(['actions', 'heads', 'collection']));
-    //     return view('crud.', compact(['actions', 'heads', 'collection']));
     // }
 
     /***
      * Page create
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('crud.parcelle.create');
+        // return view('crud.parcelle.create');
+        $fermeId = $request->get('id_ferme') ?? null;
+
+
+        $pagesIndexes = [
+            ['name' => 'Ajoute parcelle', 'current' => true],
+        ];
+        if ($request->has('back')) {
+            array_unshift($pagesIndexes, [
+                'name' => "page president", 'route' => $request->get('back'),
+            ]);
+        }
+
+
+        return view('crud.parcelle.create', compact('pagesIndexes', 'fermeId'));
     }
 
     /***
@@ -54,10 +66,21 @@ class ParcelleController extends Controller
      */
     public function show(Request $request, $id)
     {
-        $data = ModelTarget::query()->findOrFail($id);
-        return view('crud.parcelle.edit', [
-            'model' => $data
-        ]);
+        // $data = ModelTarget::query()->findOrFail($id);
+        // return view('crud.parcelle.edit', [
+        //     'model' => $data
+        // ]);
+        $model = ModelTarget::query()->where(ModelTarget::PK, $id)->firstOrFail();
+
+        $pagesIndexes = [
+            ['name' => 'Modifier parcelle', 'current' => true],
+        ];
+        if ($request->has('back')) {
+            array_unshift($pagesIndexes, [
+                'name' => "page president", 'route' => $request->get('back'),
+            ]);
+        }
+        return view('crud.parcelle.edit', compact('model', "pagesIndexes"));
     }
 
     /***
@@ -80,9 +103,13 @@ class ParcelleController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        ModelTarget::query()->findOrFail($id)->delete();
+        // ModelTarget::query()->findOrFail($id)->delete();
+        $model = ModelTarget::query()->where(ModelTarget::PK, $id)->firstOrFail();
+        $idFerme = $model['ferme'];
         $this->success(trans('messages.deleted_message'));
-        return redirect(Route('fermes.index'));
+        // return redirect(Route('fermes.index'));
+        return redirect(route('ferme.show' , $idFerme));
+
     }
 
     /***
@@ -91,11 +118,12 @@ class ParcelleController extends Controller
     public function store(ParcellesAdd $request)
     {
         $validated = $request->validated();
-        $data = ModelTarget::query()
-            ->create($validated);
-        $data->update([]);
+        $data = ModelTarget::query()->create($validated);
+        // $data->update([]);
         $this->success(text: trans('messages.added_message'));
-        return redirect(Route('fermes.index'));
+        // return redirect(Route('fermes.index'));
+        return redirect(route('fermes.show', $data['ferme']));
+
     }
 
 
@@ -104,11 +132,13 @@ class ParcelleController extends Controller
      */
     public function update(ParcellesAdd $request, $id)
     {
-        $data = ModelTarget::query()->findOrFail($id);
+        // $data = ModelTarget::query()->findOrFail($id);
+        $data = ModelTarget::query()->where(ModelTarget::PK, $id)->firstOrFail();
         $validated = $request->validated();
         $data->update($validated);
         $this->success(text: trans('messages.updated_message'));
-        return redirect(Route('fermes.index'));
+        // return redirect(Route('fermes.index'));
+        return redirect(route('fermes.show', $data['ferme']));
     }
 
 }

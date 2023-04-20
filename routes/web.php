@@ -63,7 +63,6 @@ Route::name('fermes.')->prefix('fermes')->controller(FermeController::class)
 
 Route::name('parcelles.')->prefix('parcelles')->controller(ParcelleController::class)
 ->group(function () {
-    Route::get('/', 'index')->name('index');
     Route::get('{idp}/delete', 'destroy')->name('delete');
     Route::get('{idp}/show', 'show')->name('show');
     Route::get('create', 'create')->name('create');
@@ -74,7 +73,6 @@ Route::name('parcelles.')->prefix('parcelles')->controller(ParcelleController::c
 
 Route::name('typesols.')->prefix('typesols')->controller(TypesolController::class)
 ->group(function () {
-    Route::get('/', 'index')->name('index');
     Route::get('{idTS}/delete', 'destroy')->name('delete');
     Route::get('{idTS}/show', 'show')->name('show');
     Route::get('create', 'create')->name('create');
