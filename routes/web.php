@@ -11,6 +11,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\TypesolController;
 use App\Http\Controllers\ParcelleController;
 use App\Http\Controllers\EspeceController;
+use App\Http\Controllers\Qualifications;
 use App\Http\Controllers\VarieteController;
 use App\Http\Controllers\StadeVarieteController;
 use App\Http\Controllers\StadeController;
@@ -91,14 +92,14 @@ Route::name('especes.')->prefix('especes')->controller(EspeceController::class)
     Route::post('{ide}/update', 'update')->name('update');
     Route::post('delete', 'destroyGroup')->name('destroyGroup');
 });
-Route::name('varietes.')->prefix('varietes')->controller(VarieteController::class)
+Route::name('varietes.')->prefix('varietes')->controller(Qualifications::class)
 ->group(function () {
     Route::get('/', 'index')->name('index');
-    Route::get('{idV}/delete', 'destroy')->name('delete');
-    Route::get('{idV}/show', 'show')->name('show');
+    Route::get('{idQ}/delete', 'destroy')->name('delete');
+    Route::get('{idQ}/show', 'show')->name('show');
     Route::get('create', 'create')->name('create');
     Route::post('store', 'store')->name('store');
-    Route::post('{idV}/update', 'update')->name('update');
+    Route::post('{idQ}/update', 'update')->name('update');
     Route::post('delete', 'destroyGroup')->name('destroyGroup');
 });
 Route::name('stadeVarietes.')->prefix('stadeVarietes')->controller(StadeVarieteController::class)
@@ -112,6 +113,16 @@ Route::name('stadeVarietes.')->prefix('stadeVarietes')->controller(StadeVarieteC
     Route::post('delete', 'destroyGroup')->name('destroyGroup');
 });
 Route::name('stades.')->prefix('stades')->controller(StadeController::class)
+->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('{idS}/delete', 'destroy')->name('delete');
+    Route::get('{idS}/show', 'show')->name('show');
+    Route::get('create', 'create')->name('create');
+    Route::post('store', 'store')->name('store');
+    Route::post('{idS}/update', 'update')->name('update');
+    Route::post('delete', 'destroyGroup')->name('destroyGroup');
+});
+Route::name('qualifications.')->prefix('qualifications')->controller(StadeController::class)
 ->group(function () {
     Route::get('/', 'index')->name('index');
     Route::get('{idS}/delete', 'destroy')->name('delete');
