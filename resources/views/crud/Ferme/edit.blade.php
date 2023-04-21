@@ -111,8 +111,8 @@
             </div>
 
             <div class="tab-pane fade show" id="kt_typesols_tab" role="tabpanel">
-{{--
-                @bind( $model2)
+
+                @bind( $typesols->typesols)
                 <x-table.data-table
                     :actions="$actions2"
                     :heads="$heads2"
@@ -136,7 +136,7 @@
                         ]
                     ]"
                 />
-                @endBinding --}}
+                @endBinding
             </div>
 
         </div>

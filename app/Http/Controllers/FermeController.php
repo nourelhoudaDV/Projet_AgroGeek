@@ -62,9 +62,8 @@ class FermeController extends Controller
     public function show(Request $request, $id)
     {
         $model = ModelTarget::query()->with('parcelles')->where(ModelTarget::PK, $id)->firstOrFail();
-        // $typesol=Parcelle::query()->with('typesols')->where( Parcelle::PK, $id )->firstOrFail();
-        // $model2 = ModelTarget::query()->with('parcelles')->where('parcelle_id',$typesol->id)->first();
-        // $model2 = Typesol::all();
+        $typesols = ModelTarget::findOrFail($id)->typesols;
+
         $actions = [
             new Action(ucwords(trans('words.add')), Action::TYPE_NORMAL, url: route('parcelles.create', [
                 'id_ferme' => $model[ModelTarget::PK],
@@ -72,13 +71,13 @@ class FermeController extends Controller
             ])),
             new Action(ucwords(trans('words.delete_all')), Action::TYPE_DELETE_ALL, url: route('parcelles.destroyGroup'))
         ];
-        // $actions2 = [
-        //     new Action(ucwords(trans('words.add')), Action::TYPE_NORMAL, url: route('typesols.create', [
-        //         // 'id_ferme' => $model2[ModelTarget::PK],
-        //         'back' => url()->current()
-        //     ])),
-        //     new Action(ucwords(trans('words.delete_all')), Action::TYPE_DELETE_ALL, url: route('typesols.destroyGroup'))
-        // ];
+        $actions2 = [
+            new Action(ucwords(trans('words.add')), Action::TYPE_NORMAL, url: route('typesols.create', [
+                'id_ferme' => $typesols[ModelTarget::PK],
+                'back' => url()->current()
+            ])),
+            new Action(ucwords(trans('words.delete_all')), Action::TYPE_DELETE_ALL, url: route('typesols.destroyGroup'))
+        ];
         $heads = [
             new Head('codification', Head::TYPE_TEXT, trans('pages/parcelles.codification')),
             new Head('Ferme', Head::TYPE_TEXT, trans('pages/parcelles.Ferme')),
@@ -91,24 +90,23 @@ class FermeController extends Controller
             new Head('description', Head::TYPE_TEXT, trans('pages/parcelles.description')),
             new Head('typeSol', Head::TYPE_TEXT, trans('pages/parcelles.typeSol')),
         ];
-        // $heads2 = [
-        //     new Head('vernaculaure', Head::TYPE_TEXT, trans('pages/typeSols.vernaculaure')),
-        //     new Head('nomDomaine', Head::TYPE_TEXT, trans('pages/typeSols.nomDomaine')),
-        //     new Head('teneurArgile', Head::TYPE_TEXT, trans('pages/typeSols.teneurArgile')),
-        //     new Head('teneurLimon', Head::TYPE_TEXT, trans('pages/typeSols.teneurLimon')),
-        //     new Head('teneurSable', Head::TYPE_TEXT, trans('pages/typeSols.teneurSable')),
-        //     new Head('teneurPhosphore', Head::TYPE_TEXT, trans('pages/typeSols.teneurPhosphore')),
-        //     new Head('teneurPotassiume', Head::TYPE_TEXT, trans('pages/typeSols.teneurPotassiume')),
-        //     new Head('teneurAzote', Head::TYPE_TEXT, trans('pages/typeSols.teneurAzote')),
-        //     new Head('calcaireActif', Head::TYPE_TEXT, trans('pages/typeSols.calcaireActif')),
-        //     new Head('calcaireTotal', Head::TYPE_TEXT, trans('pages/typeSols.calcaireTotal')),
-        //     new Head('conductiveElectrique', Head::TYPE_TEXT, trans('pages/typeSols.conductiveElectrique')),
-        //     new Head('HCC', Head::TYPE_TEXT, trans('pages/typeSols.HCC')),
-        //     new Head('HPF', Head::TYPE_TEXT, trans('pages/typeSols.HPF')),
-        //     new Head('DA', Head::TYPE_TEXT, trans('pages/typeSols.DA')),
-        // ];
-        return view('crud.ferme.edit', compact('model', 'heads', 'actions'));
-        // , 'model2', 'heads2', 'actions2'));
+        $heads2 = [
+            new Head('vernaculaure', Head::TYPE_TEXT, trans('pages/typeSols.vernaculaure')),
+            new Head('nomDomaine', Head::TYPE_TEXT, trans('pages/typeSols.nomDomaine')),
+            new Head('teneurArgile', Head::TYPE_TEXT, trans('pages/typeSols.teneurArgile')),
+            new Head('teneurLimon', Head::TYPE_TEXT, trans('pages/typeSols.teneurLimon')),
+            new Head('teneurSable', Head::TYPE_TEXT, trans('pages/typeSols.teneurSable')),
+            new Head('teneurPhosphore', Head::TYPE_TEXT, trans('pages/typeSols.teneurPhosphore')),
+            new Head('teneurPotassiume', Head::TYPE_TEXT, trans('pages/typeSols.teneurPotassiume')),
+            new Head('teneurAzote', Head::TYPE_TEXT, trans('pages/typeSols.teneurAzote')),
+            new Head('calcaireActif', Head::TYPE_TEXT, trans('pages/typeSols.calcaireActif')),
+            new Head('calcaireTotal', Head::TYPE_TEXT, trans('pages/typeSols.calcaireTotal')),
+            new Head('conductiveElectrique', Head::TYPE_TEXT, trans('pages/typeSols.conductiveElectrique')),
+            new Head('HCC', Head::TYPE_TEXT, trans('pages/typeSols.HCC')),
+            new Head('HPF', Head::TYPE_TEXT, trans('pages/typeSols.HPF')),
+            new Head('DA', Head::TYPE_TEXT, trans('pages/typeSols.DA')),
+        ];
+        return view('crud.ferme.edit', compact('model', 'heads', 'actions','typesols', 'heads2', 'actions2'));
     }
 
     public function destroyGroup(Request $request)

@@ -26,4 +26,11 @@ class Ferme extends Model
             ->select('fermes.'.self::PK, \DB::raw('CONCAT(fermes.nomDomaine) as ferme_name'))
             ->get();
     }
+
+    public function typesols()
+    {
+        return $this->hasManyThrough(TypeSol::class, Parcelle::class);
+    }
+
+
 }
