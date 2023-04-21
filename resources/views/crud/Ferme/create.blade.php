@@ -15,10 +15,9 @@
 @section('content')
 
     <x-form.form
-        method="post"
+        methode="post"
         action="{{ route('fermes.store') }}"
-        >
-
+    >
         <x-form.card col="col-12 row" title="{{ trans('pages/fermes.id_ferme')}}">
 
             <div class="col-12">
@@ -35,7 +34,7 @@
 
         </x-form.card>
 
-        <x-form.card col="col-12 row" title='{{ trans('pages/fermes.contact')}}'>
+        <x-form.card col="col-12 row" title="{{ trans('pages/fermes.contact')}}">
 
             <x-form.input col="col-12 col-sm-3" name="fixe" label="{{ trans('pages/fermes.fixe') }}" />
             <x-form.input col="col-12 col-sm-3" name="fax" label="{{ trans('pages/fermes.fax') }}" />
@@ -46,7 +45,7 @@
 
         </x-form.card>
 
-        <x-form.card col="col-12 row" title='{{ trans('pages/fermes.adresse')}}'>
+        <x-form.card col="col-12 row" title="{{ trans('pages/fermes.adresse')}}">
 
             <x-form.input col="col-12 col-sm-6" name="Douar" label="{{ trans('pages/fermes.Douar') }}" />
             <x-form.input col="col-12 col-sm-6" name="Cercle" label="{{ trans('pages/fermes.Cercle') }}" />
@@ -59,14 +58,9 @@
             <div class="col-12 mt-5">
                 <x-form.button />
             </div>
-            
-        </x-form.card>
 
+        </x-form.card>
     </x-form.form>
 
 @endsection
 
-
-{{-- @push('scripts')
-    <script src="{{ asset('assets/js/custom/crud/users/create.js') }}"></script>
-@endpush --}}

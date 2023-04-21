@@ -19,15 +19,11 @@ class Ferme extends Model
     {
         return $this->hasMany(Parcelle::class, 'ferme');
     }
-    // public function typesols()
-    // {
-    //     return $this->hasMany(Typesol::class, 'ferme');
-    // }
 
     public static function allForSelect()
     {
         return self::query()
-            ->select('ferme.'.self::PK, \DB::raw('CONCAT(fermes.nomDomaine) as ferme_name'))
+            ->select('fermes.'.self::PK, \DB::raw('CONCAT(fermes.nomDomaine) as ferme_name'))
             ->get();
     }
 }

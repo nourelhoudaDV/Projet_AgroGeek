@@ -12,39 +12,6 @@ use League\Flysystem\FilesystemException;
 
 class TypesolController extends Controller
 {
-
-    // protected function index()
-    // {
-    //     /***
-    //      *  page index
-    //      */
-    //     $actions = [
-    //         new Action(ucwords(trans('pages/typeSols.add_a_new_typesol')), Action::TYPE_NORMAL, url: route('typesols.create')),
-    //         new Action(ucwords(trans('words.delete_all')), Action::TYPE_DELETE_ALL, url: route('typesols.destroyGroup'))
-    //     ];
-    //     $heads = [
-    //         new Head('vernaculaure', Head::TYPE_TEXT, trans('pages/typeSols.vernaculaure')),
-            // new Head('nomDomaine', Head::TYPE_TEXT, trans('pages/typeSols.nomDomaine')),
-            // new Head('teneurArgile', Head::TYPE_TEXT, trans('pages/typeSols.teneurArgile')),
-            // new Head('teneurLimon', Head::TYPE_TEXT, trans('pages/typeSols.teneurLimon')),
-            // new Head('teneurSable', Head::TYPE_TEXT, trans('pages/typeSols.teneurSable')),
-            // new Head('teneurPhosphore', Head::TYPE_TEXT, trans('pages/typeSols.teneurPhosphore')),
-            // new Head('teneurPotassiume', Head::TYPE_TEXT, trans('pages/typeSols.teneurPotassiume')),
-            // new Head('teneurAzote', Head::TYPE_TEXT, trans('pages/typeSols.teneurAzote')),
-            // new Head('calcaireActif', Head::TYPE_TEXT, trans('pages/typeSols.calcaireActif')),
-            // new Head('calcaireTotal', Head::TYPE_TEXT, trans('pages/typeSols.calcaireTotal')),
-            // new Head('conductiveElectrique', Head::TYPE_TEXT, trans('pages/typeSols.conductiveElectrique')),
-            // new Head('HCC', Head::TYPE_TEXT, trans('pages/typeSols.HCC')),
-            // new Head('HPF', Head::TYPE_TEXT, trans('pages/typeSols.HPF')),
-            // new Head('DA', Head::TYPE_TEXT, trans('pages/typeSols.DA')),
-    //     ];
-
-    //     $collection = ModelTarget::all();
-    //     // $this->success(text: trans('messages.deleted_message'));
-    //     // return view('crud.typesol.index', compact(['actions', 'heads', 'collection']));
-    //     return view('crud.', compact(['actions', 'heads', 'collection']));
-    // }
-
     /***
      * Page create
      */
@@ -63,7 +30,6 @@ class TypesolController extends Controller
 
         return view('crud.typesol.create', compact('pagesIndexes', 'fermeId'));
     }
-
     /***
      * Page edit
      */
@@ -80,13 +46,7 @@ class TypesolController extends Controller
             ]);
         }
         return view('crud.typesol.edit', compact('model', "pagesIndexes"));
-
-        // $data = ModelTarget::query()->findOrFail($id);
-        // return view('crud.typesol.edit', [
-        //     'model' => $data
-        // ]);
     }
-
     /***
      * Delete multi records
      */
@@ -111,21 +71,17 @@ class TypesolController extends Controller
         $this->success(trans('messages.deleted_message'));
         return redirect(Route('fermes.index'));
     }
-
     /***
      * Add a new record
      */
     public function store(TypesolsAdd $request)
     {
         $validated = $request->validated();
-        $data = ModelTarget::query()
-            ->create($validated);
+        $data = ModelTarget::query()->create($validated);
         $data->update([]);
         $this->success(text: trans('messages.added_message'));
         return redirect(Route('fermes.index'));
     }
-
-
     /***
      * Update record if exists
      */

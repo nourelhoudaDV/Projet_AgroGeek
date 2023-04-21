@@ -13,71 +13,70 @@
 
 
 @section('content')
+
     @bind($model)
-        <x-form.form
-            method="post"
-            action="{{ route('fermes.update', $model[$model::PK]) }}"
-            >
 
-            <x-form.card col="col-12 row" title='{{ trans('pages/fermes.id_ferme')}}'>
+    <x-form.form
+        method="post"
+        action="{{ route('fermes.update', $model[$model::PK]) }}"
+    >
 
-                <div class="col-12">
-                    <x-form.file col="col-12 col-sm-12" name="logo" label="{{ trans('pages/fermes.logo') }}" />
-                </div>
+    <x-form.card col="col-12 row" title="{{ trans('pages/fermes.id_ferme')}}">
 
-                <x-form.input col="col-12 col-sm-6" name="nomDomaine" label="{{ trans('pages/fermes.nomDomaine') }}" />
-                <x-form.input col="col-12 col-sm-6" name="fullNameG" label="{{ trans('pages/fermes.fullNameG') }}" />
-                <x-form.input col="col-12 col-sm-3" name="cin" label="{{ trans('pages/fermes.cin') }}" />
-                <x-form.input col="col-12 col-sm-3" name="contactG" label="{{ trans('pages/fermes.contactG') }}" />
-                <x-form.input col="col-12 col-sm-3" name="SAT" label="{{ trans('pages/fermes.SAT') }}" />
-                <x-form.input col="col-12 col-sm-3" name="SAU" label="{{ trans('pages/fermes.SAU') }}" />
-                <x-form.text-area col="col-12 col-sm-12" name="observation" label="{{ trans('pages/fermes.observation') }}" />
+        <div class="col-12">
+            <x-form.file col="col-12 col-sm-12" name="logo" label="{{ trans('pages/fermes.logo') }}" />
+        </div>
 
-            </x-form.card>
+        <x-form.input col="col-12 col-sm-6" name="nomDomaine" label="{{ trans('pages/fermes.nomDomaine') }}" />
+        <x-form.input col="col-12 col-sm-6" name="fullNameG" label="{{ trans('pages/fermes.fullNameG') }}" />
+        <x-form.input col="col-12 col-sm-3" name="cin" label="{{ trans('pages/fermes.cin') }}" />
+        <x-form.input col="col-12 col-sm-3" name="contactG" label="{{ trans('pages/fermes.contactG') }}" />
+        <x-form.input col="col-12 col-sm-3" name="SAT" label="{{ trans('pages/fermes.SAT') }}" />
+        <x-form.input col="col-12 col-sm-3" name="SAU" label="{{ trans('pages/fermes.SAU') }}" />
+        <x-form.text-area col="col-12 col-sm-12" name="observation" label="{{ trans('pages/fermes.observation') }}" />
 
-            <x-form.card col="col-12 row" title='{{ trans('pages/fermes.contact')}}'>
+    </x-form.card>
 
-                <x-form.input col="col-12 col-sm-3" name="fixe" label="{{ trans('pages/fermes.fixe') }}" />
-                <x-form.input col="col-12 col-sm-3" name="fax" label="{{ trans('pages/fermes.fax') }}" />
-                <x-form.input col="col-12 col-sm-3" name="GSM1" label="{{ trans('pages/fermes.GSM1') }}" />
-                <x-form.input col="col-12 col-sm-3" name="GSM2" label="{{ trans('pages/fermes.GSM2') }}" />
-                <x-form.input col="col-12 col-sm-6" name="email" label="{{ trans('pages/fermes.email') }}" />
-                <x-form.input col="col-12 col-sm-6" name="siteWeb" label="{{ trans('pages/fermes.siteWeb') }}" />
+    <x-form.card col="col-12 row" title="{{ trans('pages/fermes.contact')}}">
 
-            </x-form.card>
+        <x-form.input col="col-12 col-sm-3" name="fixe" label="{{ trans('pages/fermes.fixe') }}" />
+        <x-form.input col="col-12 col-sm-3" name="fax" label="{{ trans('pages/fermes.fax') }}" />
+        <x-form.input col="col-12 col-sm-3" name="GSM1" label="{{ trans('pages/fermes.GSM1') }}" />
+        <x-form.input col="col-12 col-sm-3" name="GSM2" label="{{ trans('pages/fermes.GSM2') }}" />
+        <x-form.input col="col-12 col-sm-6" name="email" label="{{ trans('pages/fermes.email') }}" />
+        <x-form.input col="col-12 col-sm-6" name="siteWeb" label="{{ trans('pages/fermes.siteWeb') }}" />
 
-            <x-form.card col="col-12 row" title='{{ trans('pages/fermes.adresse')}}'>
+    </x-form.card>
 
-                <x-form.input col="col-12 col-sm-6" name="Douar" label="{{ trans('pages/fermes.Douar') }}" />
-                <x-form.input col="col-12 col-sm-6" name="Cercle" label="{{ trans('pages/fermes.Cercle') }}" />
-                <x-form.input col="col-12 col-sm-6" name="province" label="{{ trans('pages/fermes.province') }}" />
-                <x-form.input col="col-12 col-sm-6" name="region" label="{{ trans('pages/fermes.region') }}" />
-                <x-form.text-area col="col-12 col-sm-12" name="adresse" label="{{ trans('pages/fermes.adresse') }}" />
-                <x-form.input col="col-12 col-sm-6" name="gps" label="{{ trans('pages/fermes.gps') }}" />
-                <x-form.input col="col-12 col-sm-6" name="ville" label="{{ trans('pages/fermes.ville') }}" />
+    <x-form.card col="col-12 row" title="{{ trans('pages/fermes.adresse')}}">
 
-                <div class="col-12 mt-5">
-                    <x-form.button />
-                </div>
+        <x-form.input col="col-12 col-sm-6" name="Douar" label="{{ trans('pages/fermes.Douar') }}" />
+        <x-form.input col="col-12 col-sm-6" name="Cercle" label="{{ trans('pages/fermes.Cercle') }}" />
+        <x-form.input col="col-12 col-sm-6" name="province" label="{{ trans('pages/fermes.province') }}" />
+        <x-form.input col="col-12 col-sm-6" name="region" label="{{ trans('pages/fermes.region') }}" />
+        <x-form.text-area col="col-12 col-sm-12" name="adresse" label="{{ trans('pages/fermes.adresse') }}" />
+        <x-form.input col="col-12 col-sm-6" name="gps" label="{{ trans('pages/fermes.gps') }}" />
+        <x-form.input col="col-12 col-sm-6" name="ville" label="{{ trans('pages/fermes.ville') }}" />
 
-            </x-form.card>
+        <div class="col-12 mt-5">
+            <x-form.button />
+        </div>
 
-        </x-form.form>
+    </x-form.card>
+
+    </x-form.form>
+
     @endBinding
 
-
-    <x-form.card col="col-12 row pt-5" title="Historique">
+    <x-form.card col="col-12 row" title="Historique">
 
         <ul class="nav nav-tabs nav-line-tabs nav-line-tabs-2x mb-5 fs-6">
-
             <li class="nav-item">
                 <a class="nav-link active" data-bs-toggle="tab" href="#kt_parcelles_tab">Parcelle</a>
             </li>
-
             <li class="nav-item">
-                <a class="nav-link " data-bs-toggle="tab" href="#kt_typesols_tab">Type de sol</a>
+                <a class="nav-link" data-bs-toggle="tab" href="#kt_typesols_tab">Type de sol</a>
             </li>
-
         </ul>
 
         <div class="tab-content" id="myTabContent">
@@ -88,8 +87,7 @@
                 <x-table.data-table
                     :actions="$actions"
                     :heads="$heads"
-
-                    :more-routes="[
+                    :more-route="[
                         [
                             'name' => 'Modifier',
                             'route' => 'parcelles.show',
@@ -108,25 +106,17 @@
 
                         ]
                     ]"
-
                 />
                 @endBinding
-
             </div>
 
-            <div class="tab-pane fade show " id="kt_typesols_tab" role="tabpanel">
-
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Eaque officiis tempore veniam consectetur nesciunt soluta non sit,
-                praesentium excepturi esse nulla delectus mollitia distinctio facilis
-                dolorum. Numquam officia libero porro.
-
-                {{-- @bind( $model2->typesols )
+            <div class="tab-pane fade show" id="kt_typesols_tab" role="tabpanel">
+{{--
+                @bind( $model2)
                 <x-table.data-table
                     :actions="$actions2"
                     :heads="$heads2"
-
-                    :more-routes="[
+                    :more-route="[
                         [
                             'name' => 'Modifier',
                             'route' => 'typesols.show',
@@ -145,13 +135,12 @@
 
                         ]
                     ]"
-
                 />
                 @endBinding --}}
-
-
             </div>
+
         </div>
+
     </x-form.card>
 
 @endsection
