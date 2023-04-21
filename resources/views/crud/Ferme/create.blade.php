@@ -15,7 +15,7 @@
 @section('content')
 
     <x-form.form
-        methode="post"
+        method="post"
         action="{{ route('fermes.store') }}"
     >
         <x-form.card col="col-12 row" title="{{ trans('pages/fermes.id_ferme')}}">

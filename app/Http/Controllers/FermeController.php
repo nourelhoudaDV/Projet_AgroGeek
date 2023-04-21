@@ -129,7 +129,7 @@ class FermeController extends Controller
 
     public function store(FermesAdd $request)
     {
-        dd($request);
+        // dd($request);
         $validated = $request->validated();
         $logo = $request->validated()['logo'] ?? null;
         unset($validated['logo']);

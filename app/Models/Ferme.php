@@ -29,7 +29,7 @@ class Ferme extends Model
 
     public function typesols()
     {
-        return $this->hasManyThrough(TypeSol::class, Parcelle::class);
+        return $this->hasManyThrough( Parcelle::class, TypeSol::class);
     }
 
 
