@@ -1,47 +1,95 @@
 @extends('layout.master')
 @include('include.blade-components')
-@section('page_title' , trans('pages/varietes.update_variete'))
+@section('page_title' , 'Modifier Variete')
 @section('breadcrumb')
     <x-group.bread-crumb
-        page-tittle="{{ trans('pages/varietes.edit_page_title') }}"
+        page-tittle="Modifier Variete"
         :indexes="[
-        ['name'=> trans('words.variete') , 'route'=> route('varietes.index')],
-        ['name'=> trans('pages/varietes.update_variete') ,     'current' =>true ],
+        ['name'=> 'Les Varietes' , 'route'=> route('varietes.index')],
+        ['name'=> 'Modifier Variete' ,     'current' =>true ],
     ]"
     />
 @endsection
 @section('content')
-    @bind($model)
-
     <x-form.form
         method="post"
         action="{{ route('varietes.update' , $model[$model::PK]) }}"
-    >
+    > 
+    <x-form.card col="col-12 row" title="Entree Les Informations De Variete">
+
+        @bind($model)
         <div class="col-12 row">
-            <x-form.card col="col-12 row" title="{{ ucwords(trans('pages/varietes.identification_Varietes')) }}">
+                <div class="col-10 row">
+                    <x-form.select
+                    col="col-12 col-sm-6"
+                    required
+                    name="espece"
+                    label="espece"
+                    :bind-with="[\App\Models\Espece::allForSelect(), [\App\Models\Espece::PK , 'espece_name']]"
+                />
+                    <x-form.input   name="nomCommercial" label="nom Commercial" />
+                    <x-form.input   name="appelationAr" label="appelation Ar" />
+                    <x-form.input   name="quantite" label="quantite" />
+                    <x-form.input   name="precocite" label="precocite" />
+                    <x-form.input   name="resistance" label="resistance" />
+                    <x-form.input   name="competitivite" label="competitivite" />
+                    <x-form.text-area col="col-12 col-sm-6" name="description" label="description"/>
+                       @endBinding
 
-                <x-form.input col="col-12 col-sm-6" name="nomCommercial" label="{{ trans('words.nomCommercial') }}" />
-
-                <x-form.select col="col-12 col-sm-6" name="espece" label="{{ trans('words.espece') }}"
-                                :bind-with="[
-                \App\Models\Espece::all(),
-                [
-                    'id' ,  'nom'
-                ]
-                ]"
-                    />
-                <x-form.input col="col-12 col-sm-6" name="appelationAr" label="{{ trans('words.appelationAr') }}" />
-                <x-form.input col="col-12 col-sm-12" name="qualite" label="{{ trans('words.qualite') }}" />
-                <x-form.input col="col-12 col-sm-6" name="precocite" label="{{ trans('words.precocite') }}" />
-                <x-form.input col="col-12 col-sm-6" name="resistance" label="{{ trans('words.resistance') }}" />
-                <x-form.input col="col-12 col-sm-6" name="competitivite" label="{{ trans('words.competitivite') }}" />
-                <x-form.text-area col="col-12 col-sm-12" name="description" label="description"/>
-
-
-                <div class="col-12 mt-5">
-                    <x-form.button/>
-                </div>
+                    <div class="col-12 mt-5">
+                        <x-form.button/>
+                    </div>
             </x-form.card>
+        </div>
     </x-form.form>
-    @endBinding
+
+    <x-form.card col="col-12 row pt-5" title="Historique">
+        <ul class="nav nav-tabs nav-line-tabs nav-line-tabs-2x mb-5 fs-6">
+            <li class="nav-item">
+                <a class="nav-link active" data-bs-toggle="tab" href="#kt_stades_tab">Stade Varietes</a>
+            </li>
+
+        </ul>
+
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="kt_stades_tab" role="tabpanel">
+
+
+                    @bind( $model->stadevarietes )
+                    <x-table.data-table
+                        :actions="$actions"
+                        :heads="$heads"
+
+                        :more-routes="[
+                           [
+                               'name' => 'Modifier',
+                               'route' => 'stadevarietes.show',
+                               'paras' => [
+                                        \App\Models\StadeVariete::PK ,
+                                        [
+                                            'back' => url()->current()
+                                        ]
+                               ],
+
+                           ],
+                           [
+                               'name' => 'Supprime',
+                               'route' => 'stadevarietes.delete',
+                               'paras' => [\App\Models\StadeVariete::PK ],
+
+                           ]
+                      ]"
+
+                    />
+                    @endBinding
+
+
+            </div>
+
+            <div class="tab-pane fade show " id="kt_users_tab" role="tabpanel">
+
+            </div>
+        </div>
+    </x-form.card>
+    
 @endsection

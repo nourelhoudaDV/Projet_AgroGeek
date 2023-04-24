@@ -4,40 +4,49 @@ namespace App\Http\Controllers;
 
 use App\Helpers\Components\Action;
 use App\Helpers\Components\Head;
-use App\Http\Requests\Especes\Add;
+use App\Http\Requests\AddEspece;
+use App\Http\Requests\AddSecteur;
+
+use App\Models\Espece;
+use App\Models\Filliere;
 use App\Models\Espece as ModelTarget;
-use App\Models\Variete;
+use App\Models\Secteur;
+use App\Models\Stade;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
+use League\Flysystem\FilesystemException;
 
 class EspeceController extends Controller
 {
+
     /***
      *  page index
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    // protected function index()
-    // {
+    protected function index(Request $request)
+    {
 
 
-    //     $actions = [
-    //         new Action(ucwords(trans('pages/especes.add_a_new_espece')), Action::TYPE_NORMAL, url: route('especes.create')),
-    //         new Action(ucwords(trans('words.delete_all')), Action::TYPE_DELETE_ALL, url: route('especes.destroyGroup'))
-    //     ];
-    //     $heads = [
-    //         new Head('nomSc', Head::TYPE_TEXT, trans('pages/especes.nomSc')),
-    //         new Head('nomCommercial', Head::TYPE_TEXT, trans('pages/especes.nomCommercial')),
-    //         new Head('appelationAr', Head::TYPE_TEXT, trans('pages/especes.appelationAr')),
-    //         new Head('categorieEspece', Head::TYPE_TEXT, trans('pages/especes.categorieEspece')),
-    //         new Head('typeEnracinement', Head::TYPE_TEXT, trans('pages/especes.typeEnracinement')),
-    //         new Head('description', Head::TYPE_TEXT, trans('pages/especes.description')),
-    //     ];
+        $actions = [
+            new Action(ucwords(trans('words.add')), Action::TYPE_NORMAL, url: route('especes.create')),
+            new Action(ucwords(trans('words.delete_all')), Action::TYPE_DELETE_ALL, url: route('especes.destroyGroup'))
+        ];
+        $heads = [
+            new Head('nomSc' , Head::TYPE_TEXT, "nom d'espece"),
+            new Head('nomCommercial' , Head::TYPE_TEXT, 'nom commercial'),
+            new Head('appelationAr' , Head::TYPE_TEXT, 'appelation Ar'),
+            new Head('categorieEspece' , Head::TYPE_TEXT, "categorie d'espece"),
+            new Head('typeEnracinement' , Head::TYPE_TEXT, 'type enracinement'),
+            new Head('description' , Head::TYPE_TEXT, 'description'),
+        ];
 
-    //     $collection = ModelTarget::all();
-    //     $variete = Variete::all();
-    //     $this->success(text: trans('messages.deleted_message'));
-    //     return view('crud.especes.index', compact(['actions', 'heads', 'collection', 'variete']));
-    // }
+
+        $collection = ModelTarget::all();
+
+
+
+        return view('crud.especes.index', compact(['actions', 'heads', 'collection']));
+    }
+
 
     /***
      * Page create
@@ -56,10 +65,24 @@ class EspeceController extends Controller
      */
     public function show(Request $request, $id)
     {
-        $clinet = ModelTarget ::query()->findOrFail($id);
-        return view('crud.especes.edit', [
-            'model' => $clinet
-        ]);
+
+        $model = ModelTarget::query()->with('stades')->where( ModelTarget::PK, $id )->firstOrFail();
+
+        $actions = [
+            new Action(ucwords(trans('words.add')), Action::TYPE_NORMAL, url: route('stades.create' , [
+                'id_espece' => $model[ModelTarget::PK],
+                'back' => url()->current()
+            ])),
+            new Action(ucwords(trans('words.delete_all')), Action::TYPE_DELETE_ALL, url: route('stades.destroyGroup'))
+        ];
+        $heads = [
+            new Head('nom' , Head::TYPE_TEXT, "nom"),
+            new Head('phaseFin' , Head::TYPE_TEXT, 'phaseFin'),
+            new Head('description' , Head::TYPE_TEXT, "description"),
+        ];
+
+
+        return view('crud.especes.edit', compact('model' , 'heads' , 'actions'));
     }
 
     /***
@@ -69,10 +92,11 @@ class EspeceController extends Controller
      */
     public function destroyGroup(Request $request)
     {
+
         $ids = $request['ids'] ?? [];
-       foreach ($ids as $id) {
-           $client = ModelTarget::query()->find((int)\Crypt::decrypt($id));
-           $client?->delete();
+        foreach ($ids as $id) {
+            $model = ModelTarget::query()->find((int)\Crypt::decrypt($id));
+            $model?->delete();
         }
         $this->success(text: trans('messages.deleted_message'));
         return response()->json(['success' => true]);
@@ -88,7 +112,7 @@ class EspeceController extends Controller
     {
         ModelTarget::query()->findOrFail($id)->delete();
         $this->success(trans('messages.deleted_message'));
-        return Redirect()->route('varietes.index');
+        return redirect(route('especes.index'));
     }
 
     /***
@@ -97,33 +121,13 @@ class EspeceController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      * @throws FilesystemException
      */
-    public function store(Add $request)
+    public function store(AddEspece $request)
     {
         $validated = $request->validated();
-
-        // $nomSc = $request->validated()['nomSc'];
-        // $nomCommercial = $request->validated()['nomCommercial'];
-        // $appelationAr = $request->validated()['appelationAr'];
-        // $categorieEspece = $request->validated()['categorieEspece'];
-        // $typeEnracinement = $request->validated()['typeEnracinement'];
-        // $description = $request->validated()['description'];
-
-
-        $client = ModelTarget::query()
-            ->create($validated);
-
-
-        $client->update([
-            // 'nomSc' => $nomSc,
-            // 'nomCommercial' => $nomCommercial,
-            // 'appelationAr' => $appelationAr,
-            // 'categorieEspece' => $categorieEspece,
-            // 'typeEnracinement' => $typeEnracinement,
-            // 'description' => $description,
-        ]);
-
+        $model = ModelTarget::query()->create($validated);
         $this->success(text: trans('messages.added_message'));
-        return Redirect()->route('varietes.index');
+
+        return redirect(route('especes.show', $model[ModelTarget::PK]));
     }
 
 
@@ -134,22 +138,12 @@ class EspeceController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      * @throws FilesystemException
      */
-    public function update(Add $request, $id)
+    public function update(AddEspece $request, $id)
     {
-        $client = ModelTarget::query()->findOrFail($id);
-
+        $model = ModelTarget::query()->findOrFail($id);
         $validated = $request->validated();
-
-        // $this->saveAndDeleteOld($request->validated()['nomSc'] ?? null, 'especes', $client, 'nomSc');
-        // $this->saveAndDeleteOld($request->validated()['nomCommercial'] ?? null, 'especes', $client, 'nomCommercial');
-        // $this->saveAndDeleteOld($request->validated()['appelationAr'] ?? null, 'especes', $client, 'appelationAr');
-        // $this->saveAndDeleteOld($request->validated()['categorieEspece'] ?? null, 'especes', $client, 'categorieEspece');
-        // $this->saveAndDeleteOld($request->validated()['typeEnracinement'] ?? null, 'especes', $client, 'typeEnracinement');
-        // $this->saveAndDeleteOld($request->validated()['description'] ?? null, 'especes', $client, 'description');
-        $client->update($validated);
-
+        $model->update($validated);
         $this->success(text: trans('messages.updated_message'));
-        return Redirect()->route('varietes.index');
+        return back();
     }
 }
-

@@ -13,16 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('stades', function (Blueprint $table) {
-            $table->engine = "InnoDB";
-            $table->bigInteger('idS', true, true);
-            $table->string('nom',150);
-            $table->string('phaseFin',150);
-            $table->foreignId('espece')
-            ->constrained()
-            ->references('ide')
-            ->on('especes')
-            ->cascadeOnUpdate();
+        Schema::create('especes', function (Blueprint $table) {
+            $table->id('ide');
+            $table->string('nomSc',150);
+            $table->string('nomCommercial',150);
+            $table->string('appelationAr',150)->nullable();
+            $table->string('categorieEspece',100);
+            $table->string('typeEnracinement',150)->nullable();
             $table->text('description')->nullable();
             $table->timestamps();
         });
@@ -35,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('stades');
+        Schema::dropIfExists('especes');
     }
 };

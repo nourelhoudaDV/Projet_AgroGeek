@@ -14,19 +14,18 @@ return new class extends Migration
     public function up()
     {
         Schema::create('varietes', function (Blueprint $table) {
-            $table->engine = "InnoDB";
-            $table->bigInteger('idV', true, true);
+            $table->id('idV');
             $table->foreignId('espece')
-            ->constrained()
-            ->references('ide')
+            ->references(\App\Models\Espece::PK)
             ->on('especes')
-            ->cascadeOnUpdate();
+            ->cascadeOnUpdate()
+            ->cascadeOnDelete();
             $table->string('nomCommercial');
             $table->string('appelationAr')->nullable();
-            $table->string('qualite')->nullable();
-            $table->string('precocite')->nullable();
-            $table->string('resistance')->nullable();
-            $table->string('competitivite')->nullable();
+            $table->string('quantite');
+            $table->string('precocite');
+            $table->string('resistance');
+            $table->string('competitivite');
             $table->text('description')->nullable();
             $table->timestamps();
         });

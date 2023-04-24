@@ -2,11 +2,12 @@
 
 namespace Database\Factories;
 
-use App\Models\Variete;
+use App\Models\Espece;
+use App\Models\Secteur;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Variete>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Stade>
  */
 class StadeFactory extends Factory
 {
@@ -17,11 +18,22 @@ class StadeFactory extends Factory
      */
     public function definition()
     {
+        $especeId = null;
+        if (\Schema::hasTable('especes')) {
+            $espece = Espece::query()->first();
+            if ($espece !== null) {
+                $especeId = $espece[Espece::PK];
+            } else {
+                $especeId = Espece::factory()->create()->first()[Espece::PK];
+            }
+        }
+
         return [
-           'nom' =>fake()->name(),
-           'phaseFin' =>fake()->word(),
-           'espece' => fake()->randomDigit(),
-           'description' => fake()->text(),
+
+            'nom' => fake()->name,
+            'phaseFin' => fake()->name,
+            'espece' => $especeId,
+            'description' => fake()->text,
         ];
     }
 }

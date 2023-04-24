@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Espece;
 use App\Models\Variete;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -17,8 +18,18 @@ class VarieteFactory extends Factory
      */
     public function definition()
     {
+        $especeId = null;
+        if (\Schema::hasTable('especes')) {
+            $espece = Espece::query()->first();
+            if ($espece !== null) {
+                $especeId = $espece[Espece::PK];
+            } else {
+                $especeId = Espece::factory()->create()->first()[Espece::PK];
+            }
+        }
+
         return [
-           ' especes_id' => Variete::factory(1)->create()->first()[Variete::PK],
+           ' espece' => Variete::factory(1)->create()->first()[Variete::PK],
            'nomCommercial' =>fake()->name(),
            'appelationAr' => fake()->name(),
            'quantite' => fake()->text(),

@@ -83,46 +83,44 @@ Route::name('typesols.')->prefix('typesols')->controller(TypesolController::clas
     Route::post('delete', 'destroyGroup')->name('destroyGroup');
 });
 
-Route::name('especes.')->prefix('especes')->controller(EspeceController::class)
-->group(function () {
-    Route::get('/', 'index')->name('index');
-    Route::get('{ide}/delete', 'destroy')->name('delete');
-    Route::get('{ide}/show', 'show')->name('show');
-    Route::get('create', 'create')->name('create');
-    Route::post('store', 'store')->name('store');
-    Route::post('{ide}/update', 'update')->name('update');
-    Route::post('delete', 'destroyGroup')->name('destroyGroup');
-});
-Route::name('varietes.')->prefix('varietes')->controller(VarieteController::class)
-->group(function () {
-    Route::get('/', 'index')->name('index');
-    Route::get('{idV}/delete', 'destroy')->name('delete');
-    Route::get('{idV}/show', 'show')->name('show');
-    Route::get('create', 'create')->name('create');
-    Route::post('store', 'store')->name('store');
-    Route::post('{idV}/update', 'update')->name('update');
-    Route::post('delete', 'destroyGroup')->name('destroyGroup');
-});
-Route::name('stadeVarietes.')->prefix('stadeVarietes')->controller(StadeVarieteController::class)
-->group(function () {
-    Route::get('/', 'index')->name('index');
-    Route::get('{idS}/delete', 'destroy')->name('delete');
-    Route::get('{idS}/show', 'show')->name('show');
-    Route::get('create', 'create')->name('create');
-    Route::post('store', 'store')->name('store');
-    Route::post('{idS}/update', 'update')->name('update');
-    Route::post('delete', 'destroyGroup')->name('destroyGroup');
-});
-Route::name('stades.')->prefix('stades')->controller(StadeController::class)
-->group(function () {
-    Route::get('/', 'index')->name('index');
-    Route::get('{idS}/delete', 'destroy')->name('delete');
-    Route::get('{idS}/show', 'show')->name('show');
-    Route::get('create', 'create')->name('create');
-    Route::post('store', 'store')->name('store');
-    Route::post('{idS}/update', 'update')->name('update');
-    Route::post('delete', 'destroyGroup')->name('destroyGroup');
-});
+Route::name('especes.')->prefix('especes')->controller(\App\Http\Controllers\EspeceController::class)
+    ->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('{id}/delete', 'destroy')->name('delete');
+        Route::get('{id}/show', 'show')->name('show');
+        Route::get('create', 'create')->name('create');
+        Route::post('store', 'store')->name('store');
+        Route::post('{id}/update', 'update')->name('update');
+        Route::post('delete', 'destroyGroup')->name('destroyGroup');
+    });
+Route::name('stades.')->prefix('stades')->controller(\App\Http\Controllers\StadeController::class)
+    ->group(function () {
+        Route::get('{id}/delete', 'destroy')->name('delete');
+        Route::get('{id}/show', 'show')->name('show');
+        Route::get('create', 'create')->name('create');
+        Route::post('store', 'store')->name('store');
+        Route::post('{id}/update', 'update')->name('update');
+        Route::post('delete', 'destroyGroup')->name('destroyGroup');
+    });
+    Route::name('varietes.')->prefix('varietes')->controller(\App\Http\Controllers\VarieteController::class)
+    ->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('{id}/delete', 'destroy')->name('delete');
+        Route::get('{id}/show', 'show')->name('show');
+        Route::get('create', 'create')->name('create');
+        Route::post('store', 'store')->name('store');
+        Route::post('{id}/update', 'update')->name('update');
+        Route::post('delete', 'destroyGroup')->name('destroyGroup');
+    });
+    Route::name('stadevarietes.')->prefix('stadevarietes')->controller(\App\Http\Controllers\StadeVarieteController::class)
+    ->group(function () {
+        Route::get('{id}/delete', 'destroy')->name('delete');
+        Route::get('{id}/show', 'show')->name('show');
+        Route::get('create', 'create')->name('create');
+        Route::post('store', 'store')->name('store');
+        Route::post('{id}/update', 'update')->name('update');
+        Route::post('delete', 'destroyGroup')->name('destroyGroup');
+    });
 
 Route::group(['prefix' => 'admins'], function () {
     Route::get('', [AdminController::class, 'index'])

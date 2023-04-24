@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Helpers\Components\Action;
 use App\Helpers\Components\Head;
 use Illuminate\Http\Request;
-use App\Http\Requests\StadeVarietes\Add as StadeVarieteAdd;
+use App\Http\Requests\StadeVarietes\Add;
 use App\Models\StadeVariete as ModelTarget;
 use League\Flysystem\FilesystemException;
 
@@ -50,71 +50,109 @@ class StadeVarieteController extends Controller
     /***
      * Page create
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('crud.stadeVariete.create');
+        $especeId = $request->get('id_espece') ?? null;
+        $varieteId = $request->get('id_variete') ?? null;
+
+        $pagesIndexes = [
+            ['name' => 'Ajoute Stade Varietes', 'current' => true],
+        ];
+        if ($request->has('back')) {
+            array_unshift($pagesIndexes, [
+                'name' => "page president", 'route' => $request->get('back'),
+            ]);
+        }
+
+
+        return view('crud.stadevariete.create', compact('pagesIndexes', 'varieteId'));
     }
 
     /***
      * Page edit
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function show(Request $request, $id)
     {
-        $data = ModelTarget::query()->findOrFail($id);
-        return view('crud.stadeVariete.edit', [
-            'model' => $data
-        ]);
+        $model = ModelTarget::query()->where(ModelTarget::PK, $id)->firstOrFail();
+
+        $pagesIndexes = [
+            ['name' => 'Modifier Stade Varietes', 'current' => true],
+        ];
+        if ($request->has('back')) {
+            array_unshift($pagesIndexes, [
+                'name' => "page president", 'route' => $request->get('back'),
+            ]);
+        }
+        return view('crud.stadevariete.edit', compact('model', "pagesIndexes"));
     }
 
     /***
-     * Delete multiple
+     * Delete multi records
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
      */
-    //---------------------------------
     public function destroyGroup(Request $request)
     {
+
         $ids = $request['ids'] ?? [];
-       foreach ($ids as $id) {
-           $client = ModelTarget::query()->find((int)\Crypt::decrypt($id));
-           $client?->delete();
+        foreach ($ids as $id) {
+            $model = ModelTarget::query()->find((int)\Crypt::decrypt($id));
+            $model?->delete();
         }
+
         $this->success(text: trans('messages.deleted_message'));
         return response()->json(['success' => true]);
     }
-    //----------------------------
+
     /***
      * Delete one record by id if exists
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function destroy(Request $request, $id)
     {
-        ModelTarget::query()->findOrFail($id)->delete();
+
+        $model = ModelTarget::query()->where(ModelTarget::PK, $id)->firstOrFail();
+        $idEspece = $model['espece'];
+        $idvariete = $model['variete'];
+        $model->delete();
         $this->success(trans('messages.deleted_message'));
-        return redirect(Route('varietes.index'));
+        return redirect(route('varietes.show' , $idEspece, $idvariete));
     }
 
     /***
      * Add a new record
+     * @param Add $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @throws FilesystemException
      */
-    public function store(StadeVarieteAdd $request)
+    public function store(Add $request)
     {
         $validated = $request->validated();
-        $data = ModelTarget::query()
-            ->create($validated);
-        $data->update([]);
+        $model = ModelTarget::query()->create($validated);
         $this->success(text: trans('messages.added_message'));
-        return redirect(Route('varietes.index'));
+        return redirect(route('varietes.show', $model['variete']));
     }
 
 
     /***
      * Update record if exists
+     * @param Add $request
+     * @param $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @throws FilesystemException
      */
-    public function update(StadeVarieteAdd $request, $id)
+    public function update(Add $request, $id)
     {
-        $data = ModelTarget::query()->findOrFail($id);
+        $model = ModelTarget::query()->where(ModelTarget::PK, $id)->firstOrFail();
         $validated = $request->validated();
-        $data->update($validated);
+        $model->update($validated);
         $this->success(text: trans('messages.updated_message'));
-        return redirect(Route('varietes.index'));
+        return redirect(route('varietes.show', $model['variete']));
     }
 
 }
