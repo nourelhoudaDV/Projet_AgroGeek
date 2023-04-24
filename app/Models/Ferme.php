@@ -27,10 +27,9 @@ class Ferme extends Model
             ->get();
     }
 
-    public function typesols()
-    {
-        return $this->hasManyThrough( Parcelle::class, TypeSol::class);
-    }
-
+    // public function typesols()
+    // {
+    //     return $this->hasManyThrough( Parcelle::class, TypeSol::class);
+    // }
 
 }
