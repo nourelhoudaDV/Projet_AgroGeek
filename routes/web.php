@@ -6,10 +6,12 @@
 use App\Http\Controllers\CultureParcelleController;
 use App\Http\Controllers\FermeController;
 use App\Http\Controllers\StorageController;
-// use App\Http\Controllers\TestController;
+//use App\Http\Controllers\TestController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TypesolController;
 use App\Http\Controllers\ParcelleController;
+use App\Http\Controllers\GerantFermeController;
+
 use App\Http\Controllers\EspeceController;
 use App\Http\Controllers\VarieteController;
 use App\Http\Controllers\StadeVarieteController;
@@ -49,6 +51,21 @@ Route::name('users.')->prefix('users')->controller(UserController::class)
         Route::post('{id}/update', 'update')->name('update');
         Route::post('delete', 'destroyGroup')->name('destroyGroup');
     });
+
+
+    
+    Route::name('GerantFermes.')->prefix('GerantFermes')->controller(GerantFermeController::class)
+    ->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('{id}/delete', 'destroy')->name('delete');
+        Route::get('{id}/show', 'show')->name('show');
+        Route::get('create', 'create')->name('create');
+        Route::post('store', 'store')->name('store');
+        Route::post('{id}/update', 'update')->name('update');
+        Route::post('delete', 'destroyGroup')->name('destroyGroup');
+    });
+
+
 
 Route::name('fermes.')->prefix('fermes')->controller(FermeController::class)
 ->group(function () {
@@ -168,3 +185,6 @@ Route::get('/error', function () {
 
 
 require __DIR__ . '/auth.php';
+
+
+
