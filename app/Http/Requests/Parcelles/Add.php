@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests\Parcelles;
 
+use App\Models\Ferme;
+use App\Models\Typesol;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -33,7 +35,7 @@ class Add extends FormRequest
 
         return   [
             'codification' => 'nullable|string|max:50',
-            'Ferme' => 'required|string|max:100',
+            'Ferme' => 'required|exists:fermes,'.Ferme::PK,
             'superficie' => 'required|string|max:15',
             'modeCulture' => 'required|string',
             'topographie' => 'nullable|string|max:255',
@@ -41,7 +43,7 @@ class Add extends FormRequest
             'pierosite' => 'nullable|string',
             'gps' => 'nullable|string|max:255',
             'description' => 'nullable|string',
-            'typeSol' => 'nullable|string|max:100',
+            'typeSol' => 'nullable|exists:typesols,'.Typesol::PK,
         ];
     }
 }

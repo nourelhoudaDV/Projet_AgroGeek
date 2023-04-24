@@ -15,5 +15,15 @@ class Typesol extends Model
     public $timestamps=false;
     public const PK='idTS';
 
+    public function parcelles()
+    {
+        return $this->hasOne(Parcelle::class, 'typesol');
+    }
+    // public static function allForSelect()
+    // {
+    //     return self::query()
+    //         ->select('typesol.'.self::PK, \DB::raw('CONCAT(typesols.vernaculaure, " ",typesols.nomDomaine) as typesol_name'))
+    //         ->get();
+    // }
 
 }
