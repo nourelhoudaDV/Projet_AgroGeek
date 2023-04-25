@@ -63,6 +63,10 @@ class FermeController extends Controller
     public function show(Request $request, $id)
     {
         $model = ModelTarget::query()->with('parcelles')->where(ModelTarget::PK, $id)->firstOrFail();
+        $parcelles = DB::table('parcelles')
+            ->select('parcelles.*')
+            ->where('parcelles.Ferme', '=', $id)
+            ->get();
         $typesols = DB::table('parcelles')
             ->select('typesols.*', 'parcelles.Ferme as laravel_through_key')
             ->join('typesols', 'typesols.idTS', '=', 'parcelles.typeSol')
@@ -112,7 +116,8 @@ class FermeController extends Controller
             new Head('HPF', Head::TYPE_TEXT, trans('pages/typeSols.HPF')),
             new Head('DA', Head::TYPE_TEXT, trans('pages/typeSols.DA')),
         ];
-        return view('crud.ferme.edit', compact('model', 'heads', 'actions', 'typesols', 'heads2', 'actions2'));
+        // dd($model,$heads, $actions, $typesols, $heads2, $actions2, $parcelles);
+        return view('crud.ferme.edit', compact('model', 'heads', 'actions', 'typesols', 'heads2', 'actions2','parcelles'));
     }
 
     public function destroyGroup(Request $request)

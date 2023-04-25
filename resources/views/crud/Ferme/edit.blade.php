@@ -77,8 +77,13 @@
 
             <div class="tab-pane fade show active" id="kt_parcelles_tab" role="tabpanel">
 
-                @bind($model->parcelles)
-                    <x-table.data-table :actions="$actions" :heads="$heads" :more-route="[
+                @bind($parcelles)
+                {{-- @bind($modem->parcelles) --}}
+                {{-- @dd($parcelles); --}}
+                    <x-table.data-table
+                        :actions="$actions"
+                        :heads="$heads"
+                        :more-route="[
                         [
                             'name' => 'Modifier',
                             'route' => 'parcelles.show',
@@ -101,7 +106,10 @@
             <div class="tab-pane fade show" id="kt_typesols_tab" role="tabpanel">
 
                 @bind($typesols)
-                    <x-table.data-table :actions="$actions2" :heads="$heads2" :more-route="[
+                    <x-table.data-table
+                        :actions="$actions2"
+                        :heads="$heads2"
+                        :more-route="[
                         [
                             'name' => 'Modifier',
                             'route' => 'typesols.show',
