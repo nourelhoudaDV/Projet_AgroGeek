@@ -16,4 +16,6 @@ class Qualifications extends Model
         'description',
         'techniqueA_id',
     ];
+    protected $keyType = 'int'; public const PK = 'idQ';
 }
+
