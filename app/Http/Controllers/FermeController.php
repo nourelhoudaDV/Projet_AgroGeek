@@ -10,6 +10,7 @@ use App\Models\Ferme as ModelTarget;
 use App\Models\Parcelle;
 use App\Models\Typesol;
 use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\DB;
 use Symfony\Component\Routing\Route as RoutingRoute;
 use League\Flysystem\FilesystemException;
 
@@ -20,14 +21,12 @@ class FermeController extends Controller
     /***
      *  page index
      */
-    protected function index()
+    protected function index(Request $request)
     {
 
         $actions = [
             new Action(ucwords(trans('pages/fermes.add_a_new_ferme')), Action::TYPE_NORMAL, url: route('fermes.create')),
             new Action(ucwords(trans('words.delete_all')), Action::TYPE_DELETE_ALL, url: route('fermes.destroyGroup')),
-            new Action(ucwords(trans('pages/parcelles.add_a_new_parcelle')), Action::TYPE_NORMAL, url: route('parcelles.create')),
-            new Action(ucwords(trans('pages/typeSols.add_a_new_typesol')), Action::TYPE_NORMAL, url: route('typesols.create')),
         ];
         $heads = [
             new Head('logo', Head::TYPE_IMG, trans('pages/fermes.logo')),
@@ -52,14 +51,44 @@ class FermeController extends Controller
             new Head('gps', Head::TYPE_TEXT, trans('pages/fermes.gps')),
             new Head('ville', Head::TYPE_TEXT, trans('pages/fermes.city')),
         ];
-
         $collection = ModelTarget::all();
+        return view('crud.ferme.index', compact(['actions', 'heads', 'collection']));
+    }
 
-        $actions1 = [
-            new Action(ucwords(trans('pages/parcelles.add_a_new_parcelle')), Action::TYPE_NORMAL, url: route('parcelles.create')),
+    public function create()
+    {
+        return view('crud.ferme.create');
+    }
+
+    public function show(Request $request, $id)
+    {
+        $model = ModelTarget::query()->with('parcelles')->where(ModelTarget::PK, $id)->firstOrFail();
+        $parcelles = DB::table('parcelles')
+            ->select('parcelles.*')
+            ->where('parcelles.Ferme', '=', $id)
+            ->get();
+        $typesols = DB::table('parcelles')
+            ->select('typesols.*', 'parcelles.Ferme as laravel_through_key')
+            ->join('typesols', 'typesols.idTS', '=', 'parcelles.typeSol')
+            ->where('parcelles.Ferme', '=', $id)
+            ->get();
+
+        $actions = [
+            new Action(ucwords(trans('words.add')), Action::TYPE_NORMAL, url: route('parcelles.create', [
+                'id_ferme' => $model[ModelTarget::PK],
+                'back' => url()->current()
+            ])),
             new Action(ucwords(trans('words.delete_all')), Action::TYPE_DELETE_ALL, url: route('parcelles.destroyGroup'))
         ];
-        $heads1 = [
+        $actions2 = [
+            new Action(ucwords(trans('words.add')), Action::TYPE_NORMAL, url: route('typesols.create',
+             [
+                // 'id_ferme' => $typesols[ModelTarget::PK],
+                'back' => url()->current()
+            ])),
+            new Action(ucwords(trans('words.delete_all')), Action::TYPE_DELETE_ALL, url: route('typesols.destroyGroup'))
+        ];
+        $heads = [
             new Head('codification', Head::TYPE_TEXT, trans('pages/parcelles.codification')),
             new Head('Ferme', Head::TYPE_TEXT, trans('pages/parcelles.Ferme')),
             new Head('superficie', Head::TYPE_TEXT, trans('pages/parcelles.superficie')),
@@ -70,10 +99,6 @@ class FermeController extends Controller
             new Head('gps', Head::TYPE_TEXT, trans('pages/parcelles.gps')),
             new Head('description', Head::TYPE_TEXT, trans('pages/parcelles.description')),
             new Head('typeSol', Head::TYPE_TEXT, trans('pages/parcelles.typeSol')),
-        ];
-        $actions2 = [
-            new Action(ucwords(trans('pages/typeSols.add_a_new_typesol')), Action::TYPE_NORMAL, url: route('typesols.create')),
-            new Action(ucwords(trans('words.delete_all')), Action::TYPE_DELETE_ALL, url: route('typesols.destroyGroup'))
         ];
         $heads2 = [
             new Head('vernaculaure', Head::TYPE_TEXT, trans('pages/typeSols.vernaculaure')),
@@ -91,34 +116,16 @@ class FermeController extends Controller
             new Head('HPF', Head::TYPE_TEXT, trans('pages/typeSols.HPF')),
             new Head('DA', Head::TYPE_TEXT, trans('pages/typeSols.DA')),
         ];
-
-        $collection1 = Parcelle::all();
-        $collection2 = Typesol::all();
-        $parcelle = ['actions1', 'heads1', 'collection1'];
-        $typesol = ['actions2', 'heads2', 'collection2'];
-        $this->success(text: trans('messages.deleted_message'));
-        return view('crud.Ferme.index', compact(['actions', 'heads', 'collection',$parcelle,$typesol]));
-    }
-
-    public function create()
-    {
-        return view('crud.Ferme.create');
-    }
-
-    public function show(Request $request, $id)
-    {
-        $data = ModelTarget::query()->findOrFail($id);
-        return view('crud.Ferme.edit', [
-            'model' => $data
-        ]);
+        // dd($model,$heads, $actions, $typesols, $heads2, $actions2, $parcelles);
+        return view('crud.ferme.edit', compact('model', 'heads', 'actions', 'typesols', 'heads2', 'actions2','parcelles'));
     }
 
     public function destroyGroup(Request $request)
     {
         $ids = $request['ids'] ?? [];
-       foreach ($ids as $id) {
-           $client = ModelTarget::query()->find((int)\Crypt::decrypt($id));
-           $client?->delete();
+        foreach ($ids as $id) {
+            $client = ModelTarget::query()->find((int)\Crypt::decrypt($id));
+            $client?->delete();
         }
         $this->success(text: trans('messages.deleted_message'));
         return response()->json(['success' => true]);
@@ -137,52 +144,30 @@ class FermeController extends Controller
         $logo = $request->validated()['logo'] ?? null;
         unset($validated['logo']);
 
-        // $data = ModelTarget::query()
-        //     ->create($validated);
-        // $logo = $this->saveFile('fermes', file: $logo);
-        // $data->update([
-        //     'logo' => $logo
-        // ]);
-
         $model = ModelTarget::query()->create($validated);
         $model->update([
             'logo' => $this->saveFile('fermes', file: $logo)
         ]);
         $this->success(text: trans('messages.added_message'));
-        return redirect(Route('fermes.index'));
+        return redirect(route('fermes.show', $model[ModelTarget::PK]));
     }
 
-    // public function update(FermesAdd $request, $id)
-    // {
-    //     $data = ModelTarget::query()->findOrFail($id);
-
-    //     $validated = $request->validated();
-    //     unset($validated['logo']);
-
-    //     $this->saveAndDeleteOld(
-    //         $request->validated()['logo'] ?? null, 'fermes', $data, 'logo');
-    //     $data->update($validated);
-
-    //     $this->success(text: trans('messages.updated_message'));
-    //     return redirect(Route('fermes.index'));
-    // }
     public function update(FermesAdd $request, $id)
-{
-    $data = ModelTarget::query()->findOrFail($id);
+    {
+        $data = ModelTarget::query()->findOrFail($id);
 
-    $validated = $request->validated();
+        $validated = $request->validated();
 
-    $logo = $validated['logo'] ?? null;
-    unset($validated['logo']);
+        $logo = $validated['logo'] ?? null;
+        unset($validated['logo']);
 
-    if ($logo !== null) {
-        $this->saveAndDeleteOld($logo, 'fermes', $data, 'logo');
+        if ($logo !== null) {
+            $this->saveAndDeleteOld($logo, 'fermes', $data, 'logo');
+        }
+
+        $data->update($validated);
+
+        $this->success(text: trans('messages.updated_message'));
+        return back();
     }
-
-    $data->update($validated);
-
-    $this->success(text: trans('messages.updated_message'));
-    return redirect(Route('fermes.index'));
-}
-
 }

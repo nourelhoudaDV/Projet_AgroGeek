@@ -18,9 +18,28 @@ class ParcelleFactory extends Factory
      */
     public function definition()
     {
+        $FermeId = null;
+        if (\Schema::hasTable('fermes')) {
+            $ferme = Ferme::query()->first();
+            if ($ferme !== null) {
+                $FermeId = $ferme[Ferme::PK];
+            } else {
+                $FermeId = Ferme::factory()->create()->first()[Ferme::PK];
+            }
+        }
+        $typeSolId = null;
+        if (\Schema::hasTable('typesols')) {
+            $typesol = Typesol::query()->first();
+            if ($typesol !== null) {
+                $typeSolId = $typesol[Typesol::PK];
+            } else {
+                $typeSolId = Typesol::factory()->create()->first()[Typesol::PK];
+            }
+        }
         return [
             'codification' => fake()->randomNumber(NULL, false),
-            'Ferme'=> Ferme::factory(1)->create()->first()[Ferme::PK],
+            // 'Ferme'=> Ferme::factory(1)->create()->first()[Ferme::PK],
+            'Ferme'=> $FermeId,
             'superficie' => fake()->randomFloat(NULL, 0, NULL),
             'modeCulture' => fake()->randomElement(['S' , 'M' , 'E']),
             'topographie' => fake()->text(255),
@@ -28,7 +47,8 @@ class ParcelleFactory extends Factory
             'pierosite' => fake()->randomFloat(NULL, 0, NULL),
             'gps' => fake()->address(),
             'description' => fake()->text(255),
-            'typeSol'=> Typesol::factory(1)->create()->first()[Typesol::PK],
+            'typeSol'=> $typeSolId,
+            // 'typeSol'=> Typesol::factory(1)->create()->first()[Typesol::PK],
         ];
     }
 }

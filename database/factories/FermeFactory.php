@@ -21,7 +21,6 @@ class FermeFactory extends Factory
             'nomDomaine' => fake()->word(),
             'fullNameG' => fake()->name(),
             'cin' => fake()->idNumber(),
-            // 'cin' => fake()->nationalIdNumber(),
             'contactG' => fake()->phoneNumber(),
             'SAT'=> fake()->randomFloat(NULL,0,NULL),
             'SAU'=> fake()->randomFloat(NULL,0,NULL),
