@@ -17,7 +17,6 @@
     action="{{ route('cultureparcelle.store') }}"
     >
 
-
         <x-form.card col="col-12 row" title="{{ ucwords(trans('pages/users.pagename')) }}">
             {{-- <x-form.select name="idV" label="{{ trans('words.')}}"
                         :bind-with="[

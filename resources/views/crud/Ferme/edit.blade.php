@@ -76,30 +76,28 @@
         <div class="tab-content" id="myTabContent">
 
             <div class="tab-pane fade show active" id="kt_parcelles_tab" role="tabpanel">
-
-                @bind($parcelles)
-                {{-- @bind($modem->parcelles) --}}
+            {{-- @bind($modem->parcelles) --}}
                 {{-- @dd($parcelles); --}}
-                    <x-table.data-table
-                        :actions="$actions"
-                        :heads="$heads"
-                        :more-route="[
-                        [
-                            'name' => 'Modifier',
-                            'route' => 'parcelles.show',
-                            'paras' => [
-                                \App\Models\Parcelle::PK,
-                                [
-                                    'back' => url()->current(),
-                                ],
+                @bind($parcelles)
+                 <x-table.data-table
+                    :heads="$heads"
+                    :more-route="[
+                    [
+                        'name' => 'Modifier',
+                        'route' => 'parcelles.show',
+                        'paras' => [
+                            \App\Models\Parcelle::PK,
+                            [
+                                'back' => url()->current(),
                             ],
                         ],
-                        [
-                            'name' => 'Supprime',
-                            'route' => 'parcelles.delete',
-                            'paras' => [\App\Models\Parcelle::PK],
-                        ],
-                    ]" />
+                    ],
+                    [
+                        'name' => 'Supprime',
+                        'route' => 'parcelles.delete',
+                        'paras' => [\App\Models\Parcelle::PK],
+                    ],
+                ]" /> 
                 @endBinding
             </div>
 
@@ -131,6 +129,6 @@
 
         </div>
 
-    </x-form.card>
+    </x-form.card> 
 
 @endsection
