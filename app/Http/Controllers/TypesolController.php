@@ -69,7 +69,7 @@ class TypesolController extends Controller
     {
         ModelTarget::query()->findOrFail($id)->delete();
         $this->success(trans('messages.deleted_message'));
-        return redirect(Route('fermes.index'));
+        return redirect(Route('fermes.show'));
     }
     /***
      * Add a new record
@@ -80,7 +80,7 @@ class TypesolController extends Controller
         $data = ModelTarget::query()->create($validated);
         $data->update([]);
         $this->success(text: trans('messages.added_message'));
-        return redirect(Route('fermes.index'));
+        return redirect(Route('fermes.show'));
     }
     /***
      * Update record if exists
@@ -91,6 +91,6 @@ class TypesolController extends Controller
         $validated = $request->validated();
         $data->update($validated);
         $this->success(text: trans('messages.updated_message'));
-        return redirect(Route('fermes.index'));
+        return redirect(Route('fermes.show'));
     }
 }

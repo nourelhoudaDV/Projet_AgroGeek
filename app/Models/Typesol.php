@@ -19,11 +19,11 @@ class Typesol extends Model
     {
         return $this->hasOne(Parcelle::class, 'typesol');
     }
-    // public static function allForSelect()
-    // {
-    //     return self::query()
-    //         ->select('typesol.'.self::PK, \DB::raw('CONCAT(typesols.vernaculaure, " ",typesols.nomDomaine) as typesol_name'))
-    //         ->get();
-    // }
+    public static function allForSelect()
+    {
+        return self::query()
+            ->select('typesols.'.self::PK, \DB::raw('CONCAT(typesols.vernaculaure, " ",typesols.nomDomaine) as typesol_name'))
+            ->get();
+    }
 
 }

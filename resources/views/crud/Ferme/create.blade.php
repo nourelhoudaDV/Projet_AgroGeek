@@ -18,6 +18,7 @@
         method="post"
         action="{{ route('fermes.store') }}"
     >
+    
         <x-form.card col="col-12 row" title="{{ trans('pages/fermes.id_ferme')}}">
 
             <div class="col-12">

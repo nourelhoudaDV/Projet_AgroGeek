@@ -10,6 +10,7 @@ use App\Models\Ferme as ModelTarget;
 use App\Models\Parcelle;
 use App\Models\Typesol;
 use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\DB;
 use Symfony\Component\Routing\Route as RoutingRoute;
 use League\Flysystem\FilesystemException;
 
@@ -62,7 +63,15 @@ class FermeController extends Controller
     public function show(Request $request, $id)
     {
         $model = ModelTarget::query()->with('parcelles')->where(ModelTarget::PK, $id)->firstOrFail();
-        $typesols = ModelTarget::findOrFail($id)->typesols;
+        $parcelles = DB::table('parcelles')
+            ->select('parcelles.*')
+            ->where('parcelles.Ferme', '=', $id)
+            ->get();
+        $typesols = DB::table('parcelles')
+            ->select('typesols.*', 'parcelles.Ferme as laravel_through_key')
+            ->join('typesols', 'typesols.idTS', '=', 'parcelles.typeSol')
+            ->where('parcelles.Ferme', '=', $id)
+            ->get();
 
         $actions = [
             new Action(ucwords(trans('words.add')), Action::TYPE_NORMAL, url: route('parcelles.create', [
@@ -72,8 +81,9 @@ class FermeController extends Controller
             new Action(ucwords(trans('words.delete_all')), Action::TYPE_DELETE_ALL, url: route('parcelles.destroyGroup'))
         ];
         $actions2 = [
-            new Action(ucwords(trans('words.add')), Action::TYPE_NORMAL, url: route('typesols.create', [
-                'id_ferme' => $typesols[ModelTarget::PK],
+            new Action(ucwords(trans('words.add')), Action::TYPE_NORMAL, url: route('typesols.create',
+             [
+                // 'id_ferme' => $typesols[ModelTarget::PK],
                 'back' => url()->current()
             ])),
             new Action(ucwords(trans('words.delete_all')), Action::TYPE_DELETE_ALL, url: route('typesols.destroyGroup'))
@@ -106,7 +116,8 @@ class FermeController extends Controller
             new Head('HPF', Head::TYPE_TEXT, trans('pages/typeSols.HPF')),
             new Head('DA', Head::TYPE_TEXT, trans('pages/typeSols.DA')),
         ];
-        return view('crud.ferme.edit', compact('model', 'heads', 'actions','typesols', 'heads2', 'actions2'));
+        // dd($model,$heads, $actions, $typesols, $heads2, $actions2, $parcelles);
+        return view('crud.ferme.edit', compact('model', 'heads', 'actions', 'typesols', 'heads2', 'actions2','parcelles'));
     }
 
     public function destroyGroup(Request $request)
@@ -129,7 +140,6 @@ class FermeController extends Controller
 
     public function store(FermesAdd $request)
     {
-        // dd($request);
         $validated = $request->validated();
         $logo = $request->validated()['logo'] ?? null;
         unset($validated['logo']);

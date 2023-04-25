@@ -56,7 +56,7 @@
                 <x-form.select col="col-12 col-sm-6"
                     name="typeSol"
                     label="typeSol"
-                    :bind-with="[\App\Models\TypeSol::all(), [\App\Models\TypeSol::PK , 'typesol_name']]" />
+                    :bind-with="[\App\Models\TypeSol::allForSelect(), [\App\Models\TypeSol::PK , 'typesol_name']]" />
                 @endBinding
 
                 <div class="col-12 mt-5">
@@ -64,7 +64,7 @@
                 </div>
 
             </x-form.card>
-            
+
         </x-form.form>
     {{-- @endBinding --}}
 @endsection

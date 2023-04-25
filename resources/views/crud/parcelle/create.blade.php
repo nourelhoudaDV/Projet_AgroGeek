@@ -39,7 +39,7 @@
             <x-form.input col="col-12 col-sm-3" name="pierosite" label="pierosite" />
             <x-form.input col="col-12 col-sm-6" name="gps" label="gps" />
             <x-form.text-area col="col-12 col-sm-12" name="description" label="description" />
-            <x-form.select col="col-12 col-sm-6" name="typeSol" label="typeSol" :bind-with="[\App\Models\TypeSol::all(), [\App\Models\TypeSol::PK, 'typesol_name']]" {{-- ['idTS', 'typeSol']]" --}} />
+            <x-form.select col="col-12 col-sm-6" name="typeSol" label="typeSol" :bind-with="[\App\Models\TypeSol::allForSelect(), [\App\Models\TypeSol::PK, 'typesol_name']]" {{-- ['idTS', 'typeSol']]" --}} />
 
             <div class="col-12 mt-5">
                 <x-form.button />

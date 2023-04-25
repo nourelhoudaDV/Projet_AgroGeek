@@ -2,84 +2,78 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\TypeMateriel;
+use App\Helpers\Components\Action;
+use App\Helpers\Components\Head;
 use Illuminate\Http\Request;
+use App\Http\Requests\TypeMateriel\Add as TypeMaterielAdd;
+use App\Models\TypeMateriel as ModelTarget;
+use League\Flysystem\FilesystemException;
 
-class TypeMaterielController extends Controller
+class TypesMaterielController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * Afficher la page de création
      */
     public function create()
     {
-        //
+        return view('crud.typesMateriel.create');
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * Afficher la page d'édition
      */
-    public function store(Request $request)
+    public function show(Request $request, $id)
     {
-        //
+        $data = ModelTarget::query()->findOrFail($id);
+        return view('crud.typesMateriel.edit', [
+            'model' => $data
+        ]);
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\TypeMateriel  $typeMateriel
-     * @return \Illuminate\Http\Response
+     * Supprimer plusieurs enregistrements
      */
-    public function show(TypeMateriel $typeMateriel)
+    public function destroyGroup(Request $request)
     {
-        //
+        $ids = $request['ids'] ?? [];
+        foreach ($ids as $id) {
+            $typeMateriel = ModelTarget::query()->find((int)\Crypt::decrypt($id));
+            $typeMateriel?->delete();
+        }
+        $this->success(text: trans('messages.deleted_message'));
+        return response()->json(['success' => true]);
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\TypeMateriel  $typeMateriel
-     * @return \Illuminate\Http\Response
+     * Supprimer un enregistrement par son ID s'il existe
      */
-    public function edit(TypeMateriel $typeMateriel)
+    public function destroy(Request $request, $id)
     {
-        //
+        ModelTarget::query()->findOrFail($id)->delete();
+        $this->success(trans('messages.deleted_message'));
+        return redirect(Route('typesMateriel.index'));
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\TypeMateriel  $typeMateriel
-     * @return \Illuminate\Http\Response
+     * Ajouter un nouvel enregistrement
      */
-    public function update(Request $request, TypeMateriel $typeMateriel)
+    public function store(TypeMaterielAdd $request)
     {
-        //
+        $validated = $request->validated();
+        $data = ModelTarget::query()->create($validated);
+        $this->success(text: trans('messages.added_message'));
+        return redirect(Route('typesMateriel.index'));
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\TypeMateriel  $typeMateriel
-     * @return \Illuminate\Http\Response
+     * Mettre à jour un enregistrement s'il existe
      */
-    public function destroy(TypeMateriel $typeMateriel)
+    public function update(TypesMaterielAdd $request, $id)
     {
-        //
+        $data = ModelTarget::query()->findOrFail($id);
+        $validated = $request->validated();
+        $data->update($validated);
+        $this->success(text: trans('messages.updated_message'));
+        return redirect(Route('typesMateriel.index'));
     }
 }
