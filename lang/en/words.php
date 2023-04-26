@@ -76,10 +76,11 @@ return [
     'address' => 'address',
     'gps' => 'gps',
     'city' => 'city',
-    
-    
-    
-    
+'prenom' => 'first name',
+'Gérants' => 'Managers',
+'Gérant' => 'Manager',
+'telephone' => 'mobile phone number',
+'nom' => 'name'
     
 
 

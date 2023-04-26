@@ -2,108 +2,119 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\Components\Action;
-use App\Helpers\Components\Head;
-use Illuminate\Http\Request;
-use App\Http\Requests\Stades\Add as StadeAdd;
 use App\Models\Stade as ModelTarget;
-use League\Flysystem\FilesystemException;
-
+use App\Http\Requests\AddStade;
+use Illuminate\Http\Request;
 
 class StadeController extends Controller
 {
-    // protected function index()
-    // {
-    //     /***
-    //      *  page index
-    //      */
-    //     $actions = [
-    //         new Action(ucwords(trans('pages/stades.add_a_new_stade')), Action::TYPE_NORMAL, url: route('stades.create')),
-    //         new Action(ucwords(trans('words.delete_all')), Action::TYPE_DELETE_ALL, url: route('stades.destroyGroup'))
-    //     ];
-    //     $heads = [
-    //         new Head('nom', Head::TYPE_TEXT, trans('pages/stades.nom')),
-    //         new Head('phaseFin', Head::TYPE_TEXT, trans('pages/stades.phaseFin')),
-    //         new Head('espece', Head::TYPE_TEXT, trans('pages/stades.espece')),
-    //         new Head('description', Head::TYPE_TEXT, trans('pages/stades.description')),
-    //     ];
 
-    // $collection = ModelTarget::query()
-    // ->join('especes', 'especes.ide', 'stades.espece')
-    // ->select('stades.*', 'especes.nomSc as espece')
-    // ->get();
-    //     $this->success(text: trans('messages.deleted_message'));
-    //     return view('crud.stade.index', compact(['actions', 'heads', 'collection']));
-    // }
 
     /***
      * Page create
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('crud.stade.create');
+        $especeId = $request->get('id_espece') ?? null;
+
+
+        $pagesIndexes = [
+            ['name' => 'Ajoute Stade', 'current' => true],
+        ];
+        if ($request->has('back')) {
+            array_unshift($pagesIndexes, [
+                'name' => "page president", 'route' => $request->get('back'),
+            ]);
+        }
+
+
+        return view('crud.stades.create', compact('pagesIndexes', 'especeId'));
     }
 
     /***
      * Page edit
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function show(Request $request, $id)
     {
-        $data = ModelTarget::query()->findOrFail($id);
-        return view('crud.stade.edit', [
-            'model' => $data
-        ]);
+        $model = ModelTarget::query()->where(ModelTarget::PK, $id)->firstOrFail();
+
+        $pagesIndexes = [
+            ['name' => 'Modifier Stade', 'current' => true],
+        ];
+        if ($request->has('back')) {
+            array_unshift($pagesIndexes, [
+                'name' => "page president", 'route' => $request->get('back'),
+            ]);
+        }
+        return view('crud.stades.edit', compact('model', "pagesIndexes"));
     }
 
     /***
-     * Delete multiple
+     * Delete multi records
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
      */
-    //---------------------------------
     public function destroyGroup(Request $request)
     {
+
         $ids = $request['ids'] ?? [];
-       foreach ($ids as $id) {
-           $client = ModelTarget::query()->find((int)\Crypt::decrypt($id));
-           $client?->delete();
+        foreach ($ids as $id) {
+            $model = ModelTarget::query()->find((int)\Crypt::decrypt($id));
+            $model?->delete();
         }
+
         $this->success(text: trans('messages.deleted_message'));
         return response()->json(['success' => true]);
     }
-    //----------------------------
+
     /***
      * Delete one record by id if exists
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function destroy(Request $request, $id)
     {
-        ModelTarget::query()->findOrFail($id)->delete();
+
+        $model = ModelTarget::query()->where(ModelTarget::PK, $id)->firstOrFail();
+        $idEspece = $model['espece'];
+        $model->delete();
         $this->success(trans('messages.deleted_message'));
-        return redirect(Route('varietes.index'));
+        return redirect(route('especes.show' , $idEspece));
     }
 
     /***
      * Add a new record
+     * @param Add $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @throws FilesystemException
      */
-    public function store(StadeAdd $request)
+    public function store(AddStade $request)
     {
         $validated = $request->validated();
-        $data = ModelTarget::query()
-            ->create($validated);
-        $data->update([]);
+        $model = ModelTarget::query()->create($validated);
         $this->success(text: trans('messages.added_message'));
-        return redirect(Route('varietes.index'));
+        return redirect(route('especes.show', $model['espece']));
     }
 
 
     /***
      * Update record if exists
+     * @param Add $request
+     * @param $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @throws FilesystemException
      */
-    public function update(StadeAdd $request, $id)
+    public function update(AddStade $request, $id)
     {
-        $data = ModelTarget::query()->findOrFail($id);
+        $model = ModelTarget::query()->where(ModelTarget::PK, $id)->firstOrFail();
         $validated = $request->validated();
-        $data->update($validated);
+        $model->update($validated);
         $this->success(text: trans('messages.updated_message'));
-        return redirect(Route('varietes.index'));
+        return redirect(route('especes.show', $model['espece']));
     }
-
 }

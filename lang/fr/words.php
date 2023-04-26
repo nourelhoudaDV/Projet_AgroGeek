@@ -76,9 +76,10 @@ return [
     'address' => 'adresse',
     'gps' => 'coordonnées GPS',
     'city' => 'ville',
+    'prenom'=>'prénom',
 
-
-
-
-
+    "Gérants"=>"Gérants",
+    "Gérant"=>"Gérant",
+    "telephone"=>"numéro de téléphone portable",
+    'nom' => 'nom'
 ];

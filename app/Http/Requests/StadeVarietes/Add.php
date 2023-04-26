@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests\StadeVarietes;
 
+use App\Models\Espece;
+use App\Models\Variete;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -28,8 +30,8 @@ class Add extends FormRequest
         return   [
             'nom' => 'required|string|max:150',
             'phaseFin' => 'required|string|max:150',
-            'espece' => 'required|string',
-            'variete' => 'required|string',
+            'espece' => 'required|exists:especes,'.Espece::PK,
+            'variete' => 'required|exists:varietes,'.Variete::PK,
             'sommesTemps' => 'required|string',
             'sommesTempFroid' => 'required|string',
             'Kc' => 'required|string',

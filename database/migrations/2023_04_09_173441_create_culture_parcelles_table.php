@@ -9,14 +9,14 @@ return new class extends Migration
     /**
      * Run the migrations.
      *
-     * @return void
+     * @retur
      */
     public function up()
     {
         Schema::create('culture_parcelles', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('varieteID')->constrained()->references('idV')->on('varietes');
-            $table->foreignId('parcelleId')->constrained()->references('idp')->on('parcelles');
+            // $table->foreignId('varieteID')->constrained()->references('idV')->on('varietes');
+            // $table->foreignId('parcelleId')->constrained()->references('idp')->on('parcelles');
             $table->timestamps();
         });
     }

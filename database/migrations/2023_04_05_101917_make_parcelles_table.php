@@ -19,9 +19,10 @@ return new class extends Migration
             $table->string('codification',50)->nullable();
             $table->foreignId('Ferme')
             ->constrained()
-            ->references('idF')
+            ->references(\App\Models\Ferme::PK)
             ->on('fermes')
-            ->cascadeOnUpdate();
+            ->cascadeOnUpdate()
+            ->cascadeOnDelete();
             $table->float('superficie',10,2);
             $table->string('modeCulture',50);
             $table->string('topographie',255)->nullable();
@@ -31,9 +32,10 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->foreignId('typeSol')
             ->constrained()
-            ->references('idTS')
+            ->references(\App\Models\Typesol::PK)
             ->on('typesols')
             ->cascadeOnUpdate()
+            ->cascadeOnDelete()
             ->nullable();
             $table->timestamps();
         });

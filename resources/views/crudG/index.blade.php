@@ -3,15 +3,14 @@
 
 
 
-@section('page_title' , 'Les données des Stade')
+@section('page_title' , trans('pages/Gerants.index_page_title'))
 @section('breadcrumb')
     <x-group.bread-crumb
-        page-tittle="Les données des Stade"
+        page-tittle="{{trans('pages/Gerants.index_page_title')}}"
         :indexes="[
-
             [
-               'name'=> 'Les données des Stade',
-               'route'=> route('stades.index')
+               'name'=> trans('pages/Gerants.Liste_des_Gérants'),
+               'route'=> route('GerantFermes.index')
            ],
         ]"
     />
@@ -22,8 +21,8 @@
         <x-table.data-table
             :actions="$actions"
             :heads="$heads"
-            edit-route="stades.show"
-            delete-route="stades.delete"
+            edit-route="GerantFermes.show"
+            delete-route="GerantFermes.delete"
         />
     @endBinding
 @endsection

@@ -83,7 +83,8 @@
                                 <td>
                                     <div class="form-check form-check-sm form-check-custom form-check-solid">
                                         <input class="form-check-input {{ $generateTbodyInputCheckboxClass() }}"
-                                            name="check[]" type="checkbox" value="{{ $model[$model::PK] }}" />
+                                            name="check[]" type="checkbox" value="{{ $model[$model::PK] }}"
+                                            />
                                     </div>
                                 </td>
                                 @if (isCleanArray($heads))
