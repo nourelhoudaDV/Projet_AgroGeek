@@ -14,7 +14,7 @@
     <x-form.form
         method="post"
         action="{{ route('varietes.update' , $model[$model::PK]) }}"
-    > 
+    >
     <x-form.card col="col-12 row" title="Entree Les Informations De Variete">
 
         @bind($model)
@@ -86,10 +86,7 @@
 
             </div>
 
-            <div class="tab-pane fade show " id="kt_users_tab" role="tabpanel">
-
-            </div>
         </div>
     </x-form.card>
-    
+
 @endsection

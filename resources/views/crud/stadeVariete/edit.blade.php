@@ -5,12 +5,12 @@
     <x-group.bread-crumb
      page-tittle="Modifier Stade Variete"
      :indexes="$pagesIndexes"
-     
+
      />
 @endsection
 @section('content')
-   
-        <x-form.form method="post" action="{{ route('stadevarietes.update', $model[$model::PK]) }}">
+
+        <x-form.form method="post" action="{{ route('stadeVarietes.update', $model[$model::PK]) }}">
                 <x-form.card col="col-12 row" title='Entre les informations de Stade de Variete'>
                      @bind($model)
                     <x-form.input col="col-12 col-sm-6" name="nom" label="nom" />
@@ -39,5 +39,5 @@
                     </div>
                 </x-form.card>
         </x-form.form>
-   
+
 @endsection

@@ -67,6 +67,7 @@ class EspeceController extends Controller
     {
 
         $model = ModelTarget::query()->with('stades')->where( ModelTarget::PK, $id )->firstOrFail();
+        $model2 = ModelTarget::query()->with('varietes')->where( ModelTarget::PK, $id )->firstOrFail();
 
         $actions = [
             new Action(ucwords(trans('words.add')), Action::TYPE_NORMAL, url: route('stades.create' , [
@@ -75,14 +76,29 @@ class EspeceController extends Controller
             ])),
             new Action(ucwords(trans('words.delete_all')), Action::TYPE_DELETE_ALL, url: route('stades.destroyGroup'))
         ];
+        $actions2 = [
+            new Action(ucwords(trans('words.add')), Action::TYPE_NORMAL, url: route('varietes.create' , [
+                'id_espece' => $model[ModelTarget::PK],
+                'back' => url()->current()
+            ])),
+            new Action(ucwords(trans('words.delete_all')), Action::TYPE_DELETE_ALL, url: route('varietes.destroyGroup'))
+        ];
         $heads = [
             new Head('nom' , Head::TYPE_TEXT, "nom"),
             new Head('phaseFin' , Head::TYPE_TEXT, 'phaseFin'),
             new Head('description' , Head::TYPE_TEXT, "description"),
         ];
 
-
-        return view('crud.especes.edit', compact('model' , 'heads' , 'actions'));
+        $heads2 = [
+            new Head('nomCommercial', Head::TYPE_TEXT, 'nom Commercial'),
+            new Head('appelationAr', Head::TYPE_TEXT, 'appelation Ar'),
+            new Head('quantite', Head::TYPE_TEXT, 'quantite'),
+            new Head('precocite', Head::TYPE_TEXT, 'precocite'),
+            new Head('resistance', Head::TYPE_TEXT, 'resistance'),
+            new Head('competitivite', Head::TYPE_TEXT, 'competitivite'),
+            new Head('description', Head::TYPE_TEXT, 'description'),
+        ];
+        return view('crud.especes.edit', compact('model' , 'heads' , 'actions','model2' , 'heads2' , 'actions2'));
     }
 
     /***

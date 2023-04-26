@@ -1,6 +1,8 @@
 @extends('layout.master')
 @include('include.blade-components')
+
 @section('page_title' , 'Modifier Espece')
+
 @section('breadcrumb')
     <x-group.bread-crumb
         page-tittle="Modifier Espece"
@@ -10,6 +12,7 @@
     ]"
     />
 @endsection
+
 @section('content')
     <x-form.form
         method="post"
@@ -52,7 +55,7 @@
                 <a class="nav-link active" data-bs-toggle="tab" href="#kt_stades_tab">Stades</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " data-bs-toggle="tab" href="#kt_users_tab">User</a>
+                <a class="nav-link " data-bs-toggle="tab" href="#kt_varietes_tab">Varietes</a>
             </li>
 
         </ul>
@@ -92,10 +95,35 @@
 
             </div>
 
-            <div class="tab-pane fade show " id="kt_users_tab" role="tabpanel">
+            <div class="tab-pane fade show " id="kt_varietes_tab" role="tabpanel">
 
+                @bind( $model2->varietes )
+                <x-table.data-table
+                    :actions="$actions2"
+                    :heads="$heads2"
 
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium amet consequatur dolore ducimus exercitationem libero necessitatibus non quidem rerum soluta! Autem dolores eligendi inventore officiis quidem repellat reprehenderit, sit totam.
+                    :more-routes="[
+                       [
+                           'name' => 'Modifier',
+                           'route' => 'varietes.show',
+                           'paras' => [
+                                    \App\Models\Variete::PK ,
+                                    [
+                                        'back' => url()->current()
+                                    ]
+                           ],
+
+                       ],
+                       [
+                           'name' => 'Supprime',
+                           'route' => 'varietes.delete',
+                           'paras' => [\App\Models\Variete::PK ],
+
+                       ]
+                  ]"
+
+                />
+                @endBinding
 
             </div>
         </div>

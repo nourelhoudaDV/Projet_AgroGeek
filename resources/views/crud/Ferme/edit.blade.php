@@ -74,58 +74,53 @@
         </ul>
 
         <div class="tab-content" id="myTabContent">
-
             <div class="tab-pane fade show active" id="kt_parcelles_tab" role="tabpanel">
 
                 @bind($parcelles)
-                {{-- @bind($modem->parcelles) --}}
-                {{-- @dd($parcelles); --}}
-                    <x-table.data-table
-                        :actions="$actions"
-                        :heads="$heads"
-                        :more-route="[
+                <x-table.data-table
+                    :actions="$actions"
+                    :heads="$heads"
+                    :more-route="[
                         [
                             'name' => 'Modifier',
                             'route' => 'parcelles.show',
                             'paras' => [
                                 \App\Models\Parcelle::PK,
-                                [
-                                    'back' => url()->current(),
-                                ],
-                            ],
+                                ['back' => url() -> current()],
+                            ]
                         ],
+
                         [
                             'name' => 'Supprime',
                             'route' => 'parcelles.delete',
-                            'paras' => [\App\Models\Parcelle::PK],
-                        ],
-                    ]" />
+                            'paras' => [\App\Models\Parcelle::PK]
+                        ]
+                    ]"
+                    />
                 @endBinding
             </div>
 
             <div class="tab-pane fade show" id="kt_typesols_tab" role="tabpanel">
-
                 @bind($typesols)
-                    <x-table.data-table
-                        :actions="$actions2"
-                        :heads="$heads2"
-                        :more-route="[
+                <x-table.data-table
+                    :actions="$actions2"
+                    :heads="$heads2"
+                    :more-route="[
                         [
                             'name' => 'Modifier',
                             'route' => 'typesols.show',
                             'paras' => [
                                 \App\Models\Typesol::PK,
-                                [
-                                    'back' => url()->current(),
-                                ],
+                                ['back' => url()->current()],
                             ],
                         ],
                         [
                             'name' => 'Supprime',
                             'route' => 'typesols.delete',
-                            'paras' => [\App\Models\Typesol::PK],
+                            'paras' => [\App\Models\Typesol::PK,],
                         ],
-                    ]" />
+                    ]"
+                />
                 @endBinding
             </div>
 

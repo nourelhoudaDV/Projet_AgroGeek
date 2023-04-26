@@ -9,14 +9,22 @@ class Espece extends Model
 {
     use HasFactory;
 
+    protected $table = 'especes';
     public const  PK = 'ide';
-
     protected $primaryKey = 'ide';
+    public $incrementing = true;
+    protected $keyType = 'int';
+    public $timestamps = false;
+
 
 
     public function stades()
     {
         return $this->hasMany(Stade::class, 'espece');
+    }
+    public function varietes()
+    {
+        return $this->hasMany(Variete::class, 'espece');
     }
 
     public static function allForSelect()

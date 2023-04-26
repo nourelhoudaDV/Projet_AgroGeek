@@ -117,11 +117,12 @@ class StadeVarieteController extends Controller
     {
 
         $model = ModelTarget::query()->where(ModelTarget::PK, $id)->firstOrFail();
-        $idEspece = $model['espece'];
+        // $idEspece = $model['espece'];
         $idvariete = $model['variete'];
         $model->delete();
         $this->success(trans('messages.deleted_message'));
-        return redirect(route('varietes.show' , $idEspece, $idvariete));
+        return redirect(route('varietes.show' , $idvariete));
+        // $idEspece));
     }
 
     /***

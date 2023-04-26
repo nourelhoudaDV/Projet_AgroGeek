@@ -5,7 +5,7 @@
     <x-group.bread-crumb
         page-tittle="Especes"
         :indexes="[
-             ['name'=> 'Les Varietes' , 'route'=> route('varietes.index')],
+            //  ['name'=> 'Les Varietes' , 'route'=> route('varietes.index')],
            [
                'name'=> 'Les Especes',
                'route'=> route('especes.index')

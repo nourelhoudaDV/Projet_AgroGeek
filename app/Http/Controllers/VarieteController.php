@@ -39,11 +39,12 @@ class VarieteController extends Controller
             ->join('especes', 'especes.ide', 'varietes.espece')
             ->select('varietes.*', 'especes.nomSc as especes')
             ->get();
-              $collectionSV = StadeVariete::query()
-        ->join('varietes', 'varietes.idV', 'stadeVarietes.variete')
-        ->select('stadeVarietes.*', 'variete.nomCommercial as variete')
-        ->get();
-        return view('crud.varietes.index', compact(['actions', 'heads', 'collection', 'collectionSV']));
+        // $collectionSV = StadeVariete::query()
+        // ->join('varietes', 'varietes.idV', 'stadeVarietes.variete')
+        // ->select('stadeVarietes.*', 'variete.nomCommercial as variete')
+        // ->get();
+        return view('crud.varietes.index', compact(['actions', 'heads', 'collection']));
+        // , 'collectionSV']));
     }
 
     /***
@@ -67,12 +68,12 @@ class VarieteController extends Controller
         $model = ModelTarget::query()->with('stadevarietes')->where( ModelTarget::PK, $id )->firstOrFail();
 
         $actions = [
-            new Action(ucwords(trans('words.add')), Action::TYPE_NORMAL, url: route('stadevarietes.create' , [
-                'id_espece' => $model[ModelTarget::PK],
+            new Action(ucwords(trans('words.add')), Action::TYPE_NORMAL, url: route('stadeVarietes.create' , [
+                // 'id_espece' => $model[ModelTarget::PK],
                 'id_variete' => $model[ModelTarget::PK],
                 'back' => url()->current()
             ])),
-            new Action(ucwords(trans('words.delete_all')), Action::TYPE_DELETE_ALL, url: route('stadevarietes.destroyGroup'))
+            new Action(ucwords(trans('words.delete_all')), Action::TYPE_DELETE_ALL, url: route('stadeVarietes.destroyGroup'))
         ];
         $heads = [
             new Head('nom' , Head::TYPE_TEXT, "nom"),
@@ -84,8 +85,7 @@ class VarieteController extends Controller
             new Head('maxEnracinement' , Head::TYPE_TEXT, 'maxEnracinement'),
             new Head('description' , Head::TYPE_TEXT, "description"),
         ];
-
-
+        
         return view('crud.varietes.edit', compact('model' , 'heads' , 'actions'));
     }
 
@@ -116,7 +116,7 @@ class VarieteController extends Controller
     {
         ModelTarget::query()->findOrFail($id)->delete();
         $this->success(trans('messages.deleted_message'));
-        return redirect(route('varietes.index'));
+        return redirect(route('varietes.show'));
     }
 
     /***

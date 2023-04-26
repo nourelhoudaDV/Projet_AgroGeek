@@ -13,7 +13,7 @@
 
 @section('content')
 
-    <x-form.form method="post" action="{{ route('stadevarietes.store') }}">
+    <x-form.form method="post" action="{{ route('stadeVarietes.store') }}">
             <x-form.card col="col-12 row" title='Entre les informations de Stade Variete'>
                 <x-form.input col="col-12 col-sm-6" name="nom" label="nom" />
                 <x-form.input col="col-12 col-sm-6" name="phaseFin" label="phase de Fin" />
