@@ -100,7 +100,9 @@
                                                     <div class="d-flex align-items-center">
 
                                                         <div class="symbol symbol-50px me-3">
-                                                            <x-media.imaage :alt="$model[$head->getName()]" :src="$image($model[$head->getName()])" />
+                                                            <x-media.imaage
+                                                                :alt="$model[$head->getName()]"
+                                                                :src="$image($model[$head->getName()])" />
 
                                                         </div>
                                                     </div>

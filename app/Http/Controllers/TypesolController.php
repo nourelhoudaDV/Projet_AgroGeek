@@ -7,6 +7,7 @@ use App\Helpers\Components\Head;
 use Illuminate\Http\Request;
 use App\Http\Requests\Typesols\Add as TypesolsAdd;
 use App\Models\Typesol as ModelTarget;
+use Illuminate\Support\Facades\DB;
 use League\Flysystem\FilesystemException;
 
 
@@ -68,8 +69,13 @@ class TypesolController extends Controller
     public function destroy(Request $request, $id)
     {
         ModelTarget::query()->findOrFail($id)->delete();
+        $idFerme = DB::table('parcelles')
+        ->select('parcelles.Ferme as laravel_through_key')
+        ->join('typesols','typesols.idTS', '=', 'parcelles.typeSol')
+        ->where('typesols.idTS', '=', $id)
+        ->get();
         $this->success(trans('messages.deleted_message'));
-        return redirect(Route('fermes.show'));
+        return redirect(Route('fermes.show',$idFerme));
     }
     /***
      * Add a new record
@@ -78,9 +84,14 @@ class TypesolController extends Controller
     {
         $validated = $request->validated();
         $data = ModelTarget::query()->create($validated);
+        $idFerme = DB::table('parcelles')
+        ->select('parcelles.Ferme as laravel_through_key')
+        ->join('typesols','typesols.idTS', '=', 'parcelles.typeSol')
+        ->where('typesols.idTS', '=', $data['idTS'])
+        ->get();
         $data->update([]);
         $this->success(text: trans('messages.added_message'));
-        return redirect(Route('fermes.show'));
+        return redirect(Route('fermes.show', $idFerme));
     }
     /***
      * Update record if exists
@@ -88,9 +99,14 @@ class TypesolController extends Controller
     public function update(TypesolsAdd $request, $id)
     {
         $data = ModelTarget::query()->findOrFail($id);
+        $idFerme = DB::table('parcelles')
+        ->select('parcelles.Ferme as laravel_through_key')
+        ->join('typesols','typesols.idTS', '=', 'parcelles.typeSol')
+        ->where('typesols.idTS', '=', $id)
+        ->get();
         $validated = $request->validated();
         $data->update($validated);
         $this->success(text: trans('messages.updated_message'));
-        return redirect(Route('fermes.show'));
+        return redirect(Route('fermes.show', $idFerme));
     }
 }

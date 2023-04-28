@@ -3,26 +3,27 @@
 
 @section('page_title', 'Ajouter noveau Stade variete')
 @section('breadcrumb')
-    <x-group.bread-crumb page-tittle='Ajouter noveau Stade variete' :indexes="[
-        ['name' => 'Stadevariete', 'route' => route('stadeVarietes.index')],
-        ['name' => 'pages/stadeVarietes.Ajouter noveau Stade variete', 'current' => true],
-    ]" />
+    <x-group.bread-crumb
+    page-tittle="Ajoute Stade Variete"
+    :indexes="$pagesIndexes"
+
+    />
 @endsection
 
 
 @section('content')
 
     <x-form.form method="post" action="{{ route('stadeVarietes.store') }}">
-            <x-form.card col="col-12 row" title='pages/parcelle.identification_stade_Variete'>
-                <x-form.input col="col-12 col-sm-6" name="nom" label="{{ trans('words.nom') }}" />
-                <x-form.input col="col-12 col-sm-6" name="phaseFin" label="{{ trans('words.phaseFin') }}" />
-                <x-form.select col="col-12 col-sm-6" name="espece" label="espece" :bind-with="[\App\Models\Espece::all(), ['ide', 'espece']]"/>
-                <x-form.select col="col-12 col-sm-6" name="variete" label="variete" :bind-with="[\App\Models\Variete::all(), ['idV', 'variete']]"/>
+            <x-form.card col="col-12 row" title='Entre les informations de Stade Variete'>
+                <x-form.input col="col-12 col-sm-6" name="nom" label="nom" />
+                <x-form.input col="col-12 col-sm-6" name="phaseFin" label="phase de Fin" />
+                <x-form.select col="col-12 col-sm-6" name="espece" label="espece" :bind-with="[\App\Models\Espece::allForSelect(), [\App\Models\Espece::PK,  'espece_name']]"/>
+                <x-form.select col="col-12 col-sm-6" name="variete" label="variete" :bind-with="[\App\Models\Variete::allForSelect(),  [\App\Models\Variete::PK, 'variete_nom']]"/>
                 <x-form.input col="col-12 col-sm-4" name="sommesTemps" label="sommesTemps"/>
                 <x-form.input col="col-12 col-sm-4" name="sommesTempFroid" label="sommesTempFroid"/>
                 <x-form.input col="col-12 col-sm-4" name="Kc" label="Kc"/>
                 <x-form.input col="col-12 col-sm-3" name="enracinement" label="enracinement"/>
-                <x-form.radios col="col-12 col-sm-3" name="maxEnracinement" label="{{ trans('words.maxEnracinement') }}"
+                <x-form.radios col="col-12 col-sm-3" name="maxEnracinement" label="maximum d'Enracinement"
                     :radios="[
                         [
                             'value' => 'Y',
@@ -42,7 +43,10 @@
     </x-form.form>
 @endsection
 
-
-{{-- @push('scripts')
-    <script src="{{ asset('assets/js/custom/crud/users/create.js') }}"></script>
-@endpush --}}
+@isset($especeId)
+    @push('scripts')
+        <script>
+            $('[name=espece]').val({{ $especeId }});
+        </script>
+    @endpush
+@endisset

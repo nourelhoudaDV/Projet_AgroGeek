@@ -4,20 +4,36 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Espece extends Model
 {
     use HasFactory;
+
     protected $table = 'especes';
-    public $primaryKey = 'ide';
+    public const  PK = 'ide';
+    protected $primaryKey = 'ide';
     public $incrementing = true;
     protected $keyType = 'int';
-    public const  PK = 'ide';
     public $timestamps = false;
 
-    public function varietes(): HasMany
+
+
+    public function stades()
     {
-        return $this->hasMany(Variete::class);
+        return $this->hasMany(Stade::class, 'espece');
     }
+    public function varietes()
+    {
+        return $this->hasMany(Variete::class, 'espece');
+    }
+
+    public static function allForSelect()
+    {
+        return self::query()
+            ->select('especes.'.self::PK, \DB::raw('CONCAT(especes.nomSc , " ",especes.nomCommercial ) as espece_name'))
+            ->get();
+    }
+
+
+
 }

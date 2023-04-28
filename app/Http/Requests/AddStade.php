@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Http\Requests\StadeVarietes;
+namespace App\Http\Requests;
 
 use App\Models\Espece;
-use App\Models\Variete;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class Add extends FormRequest
+class AddStade extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,17 +24,10 @@ class Add extends FormRequest
      */
     public function rules()
     {
-
-        return   [
+        return [
             'nom' => 'required|string|max:150',
             'phaseFin' => 'required|string|max:150',
             'espece' => 'required|exists:especes,'.Espece::PK,
-            'variete' => 'required|exists:varietes,'.Variete::PK,
-            'sommesTemps' => 'required|string',
-            'sommesTempFroid' => 'required|string',
-            'Kc' => 'required|string',
-            'enracinement' => 'required|string',
-            'maxEnracinement' => 'required|string|max:1',
             'description' => 'nullable|string',
         ];
     }

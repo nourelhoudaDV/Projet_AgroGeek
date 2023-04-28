@@ -17,10 +17,6 @@
 
                 <x-form.card col="col-12 row" title="{{ trans('pages/fermes.id_ferme') }}">
 
-                    <div class="col-12">
-                        <x-form.file col="col-12 col-sm-12" name="logo" label="{{ trans('pages/fermes.logo') }}" />
-                    </div>
-
                     <x-form.input col="col-12 col-sm-6" name="nomDomaine" label="{{ trans('pages/fermes.nomDomaine') }}" />
                     <x-form.input col="col-12 col-sm-6" name="fullNameG" label="{{ trans('pages/fermes.fullNameG') }}" />
                     <x-form.input col="col-12 col-sm-3" name="cin" label="{{ trans('pages/fermes.cin') }}" />
@@ -74,56 +70,53 @@
         </ul>
 
         <div class="tab-content" id="myTabContent">
-
             <div class="tab-pane fade show active" id="kt_parcelles_tab" role="tabpanel">
-            {{-- @bind($modem->parcelles) --}}
-                {{-- @dd($parcelles); --}}
-                @bind($parcelles)
-                 <x-table.data-table
+
+                @bind($model->parcelles)
+                <x-table.data-table
+                    :actions="$actions"
                     :heads="$heads"
                     :more-route="[
-                    [
-                        'name' => 'Modifier',
-                        'route' => 'parcelles.show',
-                        'paras' => [
-                            \App\Models\Parcelle::PK,
-                            [
-                                'back' => url()->current(),
-                            ],
+                        [
+                            'name' => 'Modifier',
+                            'route' => 'parcelles.show',
+                            'paras' => [
+                                \App\Models\Parcelle::PK,
+                                ['back' => url() -> current()],
+                            ]
                         ],
-                    ],
-                    [
-                        'name' => 'Supprime',
-                        'route' => 'parcelles.delete',
-                        'paras' => [\App\Models\Parcelle::PK],
-                    ],
-                ]" /> 
+
+                        [
+                            'name' => 'Supprime',
+                            'route' => 'parcelles.delete',
+                            'paras' => [\App\Models\Parcelle::PK]
+                        ]
+                    ]"
+                    />
                 @endBinding
             </div>
 
             <div class="tab-pane fade show" id="kt_typesols_tab" role="tabpanel">
-
                 @bind($typesols)
-                    <x-table.data-table
-                        :actions="$actions2"
-                        :heads="$heads2"
-                        :more-route="[
+                <x-table.data-table
+                    :actions="$actions2"
+                    :heads="$heads2"
+                    :more-route="[
                         [
                             'name' => 'Modifier',
                             'route' => 'typesols.show',
                             'paras' => [
                                 \App\Models\Typesol::PK,
-                                [
-                                    'back' => url()->current(),
-                                ],
+                                ['back' => url()->current()],
                             ],
                         ],
                         [
                             'name' => 'Supprime',
                             'route' => 'typesols.delete',
-                            'paras' => [\App\Models\Typesol::PK],
+                            'paras' => [\App\Models\Typesol::PK,],
                         ],
-                    ]" />
+                    ]"
+                />
                 @endBinding
             </div>
 
