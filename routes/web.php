@@ -36,6 +36,16 @@ Route::get('/', function () {
 })->name('dashboard');
 
 
+Route::name('TechniquesAgricole.')->prefix('TechniquesAgricole')->controller(CultureParcelleController::class)
+    ->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/store', 'store')->name('store');
+        Route::get('/edit', 'edit')->name('edit');
+        Route::post('/update', 'update')->name('update');
+        Route::post('/delete', 'delete')->name('delete');
+    });
+
 Route::name('cultureparcelle.')->prefix('cultureparcelle')->controller(CultureParcelleController::class)
     ->group(function () {
         Route::get('/', 'create')->name('create');
@@ -76,6 +86,17 @@ Route::name('fermes.')->prefix('fermes')->controller(FermeController::class)
     Route::get('create', 'create')->name('create');
     Route::post('store', 'store')->name('store');
     Route::post('{idF}/update', 'update')->name('update');
+    Route::post('delete', 'destroyGroup')->name('destroyGroup');
+});
+
+Route::name('techniquesAgricole.')->prefix('techniquesAgricole')->controller(FermeController::class)
+->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('{idTA}/delete', 'destroy')->name('delete');
+    Route::get('{idTA}/show', 'show')->name('show');
+    Route::get('create', 'create')->name('create');
+    Route::post('store', 'store')->name('store');
+    Route::post('{idTA}/update', 'update')->name('update');
     Route::post('delete', 'destroyGroup')->name('destroyGroup');
 });
 

@@ -122,6 +122,6 @@
 
         </div>
 
-    </x-form.card>
+    </x-form.card> 
 
 @endsection
