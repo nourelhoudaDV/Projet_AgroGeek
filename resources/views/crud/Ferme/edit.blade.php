@@ -58,7 +58,7 @@
         </x-form.form>
     @endBinding
 
-    <x-form.card col="col-12 row" title="Historique">
+    <x-form.card col="col-12 row" title="{{ trans('words.historique') }}">
 
         <ul class="nav nav-tabs nav-line-tabs nav-line-tabs-2x mb-5 fs-6">
             <li class="nav-item">

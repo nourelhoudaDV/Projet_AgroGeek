@@ -80,6 +80,7 @@ class ParcelleController extends Controller
     {
         $validated = $request->validated();
         $data = ModelTarget::query()->create($validated);
+        // dd($data);
         $this->success(text: trans('messages.added_message'));
         return redirect(route('fermes.show', $data['Ferme']));
     }

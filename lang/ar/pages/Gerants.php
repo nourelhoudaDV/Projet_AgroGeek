@@ -1,18 +1,27 @@
 <?php
 return [
     "codification" => "اسم القطعة",
-"Ferme" => "اسم المزرعة",
-"superficie" => "المساحة",
-"modeCulture" => "كود الزراعة",
-"Simple" => "بسيط",
-"Mixte" => "مختلط",
-"Etagère" => "رف",
-"topographie" => "وصف تضاريس القطعة",
-"pente" => "معدل الانحدار بال%",
-"pierosite" => "نسبة الصخور بال%",
-"gps" => "إحداثيات GPS",
-"description" => "الوصف",
-"typeSol" => "نوع التربة"
+    "Ferme" => "اسم المزرعة",
+    "superficie" => "المساحة",
+    "modeCulture" => "كود الزراعة",
+    "Simple" => "بسيط",
+    "Mixte" => "مختلط",
+    "Etagère" => "رف",
+    "topographie" => "وصف تضاريس القطعة",
+    "pente" => "معدل الانحدار بال%",
+    "pierosite" => "نسبة الصخور بال%",
+    "gps" => "إحداثيات GPS",
+    "description" => "الوصف",
+    "typeSol" => "نوع التربة",
+
+
+
+    'prenom' => 'الاسم الأول',
+    'Gérants' => 'المديرين',
+    'Gérant' => 'المدير',
+    'telephone' => 'رقم الهاتف المحمول',
+    'nom' => 'الاسم'
+
 
 
 ];

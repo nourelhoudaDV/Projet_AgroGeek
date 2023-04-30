@@ -1,8 +1,8 @@
-<?php 
+<?php
 return [
     "codification"=>"مفتاح الأساسي التلقائي يتزايد بشكل تلقائي",
     "Ferme"=>"مفتاح الخارجي لجدول Ferme ، عرض nameF",
-    "superficie"=>"بالهكتار",
+    "superficie"=>" المساحة بالهكتار",
     "modeCulture"=>"S: بسيطة ، M: مختلطة ، و E: رف",
     "topographie"=>"وصف تضاريس القطعة",
     "pente"=>"معدل الميل بال٪",

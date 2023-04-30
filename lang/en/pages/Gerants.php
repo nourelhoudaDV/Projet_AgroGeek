@@ -9,6 +9,12 @@ return [
     'add_a_new_Gérant' => 'Add New Manager',
     'update_Gérant' => 'Update Information',
     'Man'=>'Man',
-    'Liste_des_Gérants'=>"List of Managers"
+    'Liste_des_Gérants'=>"List of Managers",
 
+
+    'prenom' => 'firstname',
+    'Gérants' => 'Managers',
+    'Gérant' => 'Manager',
+    'telephone' => 'mobile phone number',
+    'nom' => 'lastname'
 ];
