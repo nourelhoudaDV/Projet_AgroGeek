@@ -1,20 +1,20 @@
 @extends('layout.master')
 @include('include.blade-components')
-@section('page_title' , 'Ajouter une qualification')
+@section('page_title' , 'Ajouter un type de matériel')
 @section('breadcrumb')
     <x-group.bread-crumb
-        page-tittle="Ajouter une qualification"
+        page-tittle="Ajouter un type de matériel"
         :indexes="$pagesIndexes"
     />
 @endsection
 @section('content')
     <x-form.form
         method="post"
-        action="{{ route('qualifications.store') }}"
+        action="{{ route('typemateriel.store') }}"
     >
-        <x-form.card col="col-12 row" title="Entrez les informations de qualification">
+        <x-form.card col="col-12 row" title="Entrez les informations du type de matériel">
 
-            <x-form.input required col="col-12 col-sm-6" name="nom" label="Nom"/>
+            <x-form.input required col="col-12 col-sm-6" name="nomTM" label="Nom"/>
             <x-form.select
                 col="col-12 col-sm-6"
                 required
