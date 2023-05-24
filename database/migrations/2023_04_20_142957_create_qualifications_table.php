@@ -13,14 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-    Schema::create('qualifications', function (Blueprint $table) {
-        $table->bigInteger('idTM', true, true);;
-        $table->string('nom', 150);
-        $table->text('description')->nullable();
-        $table->unsignedInteger('techniqueA_id');
-        $table->foreign('techniqueA_id')->references('idTA')->on('technique_agricoles')->onDelete('cascade');
-        $table->timestamps();
-    });
+    // Schema::create('qualifications', function (Blueprint $table) {
+    //     $table->bigInteger('idTM', true, true);;
+    //     $table->string('nom', 150);
+    //     $table->text('description')->nullable();
+    //     $table->unsignedInteger('techniqueA_id');
+    //     $table->foreign('techniqueA_id')->references('idTA')->on('technique_agricoles')->onDelete('cascade');
+    //     $table->timestamps();
+    // });
 }
 
     /**
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('qualifications');
+        // Schema::dropIfExists('qualifications');
     }
 };

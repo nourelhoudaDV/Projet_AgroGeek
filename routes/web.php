@@ -11,6 +11,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\TypesolController;
 use App\Http\Controllers\ParcelleController;
 use App\Http\Controllers\GerantFermeController;
+use App\Http\Controllers\TechniquesAgricoleController;
 
 use App\Http\Controllers\EspeceController;
 use App\Http\Controllers\Qualifications;
@@ -36,7 +37,7 @@ Route::get('/', function () {
 })->name('dashboard');
 
 
-Route::name('TechniquesAgricole.')->prefix('TechniquesAgricole')->controller(CultureParcelleController::class)
+Route::name('TechniquesAgricole.')->prefix('TechniquesAgricole')->controller(TechniquesAgricoleController::class)
     ->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/create', 'create')->name('create');
@@ -64,7 +65,7 @@ Route::name('users.')->prefix('users')->controller(UserController::class)
     });
 
 
-    
+
     Route::name('GerantFermes.')->prefix('GerantFermes')->controller(GerantFermeController::class)
     ->group(function () {
         Route::get('/', 'index')->name('index');
