@@ -62,15 +62,11 @@ class FermeController extends Controller
 
     public function show(Request $request, $id)
     {
-        $model = ModelTarget::query()->with('parcelles')->where(ModelTarget::PK, $id)->firstOrFail();
-        $parcelles = DB::table('parcelles')
-            ->select('parcelles.*')
-            ->where('parcelles.Ferme', '=', $id)
-            ->get();
-        $typesols = DB::table('parcelles')
+        $model = ModelTarget::query()->with(['parcelles'])->where(ModelTarget::PK, $id)->firstOrFail();
+        $typesols = Typesol::query()
             ->select('typesols.*', 'parcelles.Ferme as laravel_through_key')
-            ->join('typesols', 'typesols.idTS', '=', 'parcelles.typeSol')
-            ->where('parcelles.Ferme', '=', $id)
+            ->join('parcelles', 'typesols.idTS', 'parcelles.typeSol')
+            ->where('parcelles.Ferme', $id)
             ->get();
 
         $actions = [
@@ -83,7 +79,7 @@ class FermeController extends Controller
         $actions2 = [
             new Action(ucwords(trans('words.add')), Action::TYPE_NORMAL, url: route('typesols.create',
              [
-                // 'id_ferme' => $typesols[ModelTarget::PK],
+                'id_ferme' => $model[ModelTarget::PK],
                 'back' => url()->current()
             ])),
             new Action(ucwords(trans('words.delete_all')), Action::TYPE_DELETE_ALL, url: route('typesols.destroyGroup'))
@@ -116,8 +112,7 @@ class FermeController extends Controller
             new Head('HPF', Head::TYPE_TEXT, trans('pages/typeSols.HPF')),
             new Head('DA', Head::TYPE_TEXT, trans('pages/typeSols.DA')),
         ];
-        // dd($model,$heads, $actions, $typesols, $heads2, $actions2, $parcelles);
-        return view('crud.ferme.edit', compact('model', 'heads', 'actions', 'typesols', 'heads2', 'actions2','parcelles'));
+        return view('crud.ferme.edit', compact('model', 'heads', 'actions', 'typesols', 'heads2', 'actions2'));
     }
 
     public function destroyGroup(Request $request)
@@ -171,3 +166,4 @@ class FermeController extends Controller
         return back();
     }
 }
+

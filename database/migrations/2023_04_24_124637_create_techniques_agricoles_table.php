@@ -13,14 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('typesMateriel', function (Blueprint $table) {
-            $table->bigInteger('idTM', true, true);
+        Schema::create('techniques_agricoles', function (Blueprint $table) {
+            $table->id('idTA');
             $table->string('nom', 150);
-            $table->text('description')->nullable();
-            $table->unsignedInteger('techniqueA_id');
-            $table->foreign('techniqueA_id')->references('idTA')->on('techniqueAgricole')->onDelete('cascade');
+            $table->text('decription');
+            $table->timestamps();
         });
     }
+
     /**
      * Reverse the migrations.
      *
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('techniques_agricoles');
     }
 };

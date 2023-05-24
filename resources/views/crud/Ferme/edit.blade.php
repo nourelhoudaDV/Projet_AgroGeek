@@ -17,10 +17,6 @@
 
                 <x-form.card col="col-12 row" title="{{ trans('pages/fermes.id_ferme') }}">
 
-                    <div class="col-12">
-                        <x-form.file col="col-12 col-sm-12" name="logo" label="{{ trans('pages/fermes.logo') }}" />
-                    </div>
-
                     <x-form.input col="col-12 col-sm-6" name="nomDomaine" label="{{ trans('pages/fermes.nomDomaine') }}" />
                     <x-form.input col="col-12 col-sm-6" name="fullNameG" label="{{ trans('pages/fermes.fullNameG') }}" />
                     <x-form.input col="col-12 col-sm-3" name="cin" label="{{ trans('pages/fermes.cin') }}" />
@@ -76,7 +72,7 @@
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="kt_parcelles_tab" role="tabpanel">
 
-                @bind($parcelles)
+                @bind($model->parcelles)
                 <x-table.data-table
                     :actions="$actions"
                     :heads="$heads"
@@ -126,6 +122,6 @@
 
         </div>
 
-    </x-form.card>
+    </x-form.card> 
 
 @endsection

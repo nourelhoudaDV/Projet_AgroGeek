@@ -17,8 +17,9 @@ class Ferme extends Model
 
     public function parcelles()
     {
-        return $this->hasMany(Parcelle::class, 'ferme');
+        return $this->hasMany(Parcelle::class, 'Ferme');
     }
+
 
     public static function allForSelect()
     {
@@ -27,9 +28,5 @@ class Ferme extends Model
             ->get();
     }
 
-    // public function typesols()
-    // {
-    //     return $this->hasManyThrough( Parcelle::class, TypeSol::class);
-    // }
 
 }
