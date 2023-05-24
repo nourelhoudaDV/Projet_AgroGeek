@@ -21,7 +21,6 @@ return new class extends Migration
             $table->foreign('techniqueA_id')->references('idTA')->on('techniqueAgricole')->onDelete('cascade');
         });
     }
-
     /**
      * Reverse the migrations.
      *

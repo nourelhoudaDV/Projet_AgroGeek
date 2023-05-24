@@ -14,7 +14,8 @@ use App\Http\Controllers\GerantFermeController;
 use App\Http\Controllers\TechniquesAgricoleController;
 
 use App\Http\Controllers\EspeceController;
-use App\Http\Controllers\Qualifications;
+use App\Http\Controllers\QualificationsController;
+use App\Http\Controllers\TypesMaterielController;
 use App\Http\Controllers\VarieteController;
 use App\Http\Controllers\StadeVarieteController;
 use App\Http\Controllers\StadeController;
@@ -160,7 +161,29 @@ Route::name('stades.')->prefix('stades')->controller(StadeController::class)
     Route::post('store', 'store')->name('store');
     Route::post('{idS}/update', 'update')->name('update');
     Route::post('delete', 'destroyGroup')->name('destroyGroup');
+    
 });
+Route::name('qualifications.')->prefix('qualifications')->controller(QualificationsController::class)
+->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('{idQ}/delete', 'destroy')->name('delete');
+    Route::get('{idQ}/show', 'show')->name('show');
+    Route::get('create', 'create')->name('create');
+    Route::post('store', 'store')->name('store');
+    Route::post('{idQ}/update', 'update')->name('update');
+    Route::post('delete', 'destroyGroup')->name('destroyGroup');
+});
+
+Route::name('typemateriel.')->prefix('typemateriel')->controller(TypesMaterielController::class)->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('{idTM}/delete', 'destroy')->name('delete');
+    Route::get('{idTM}/show', 'show')->name('show');
+    Route::get('create', 'create')->name('create');
+    Route::post('store', 'store')->name('store');
+    Route::post('{idTM}/update', 'update')->name('update');
+    Route::post('delete', 'destroyGroup')->name('destroyGroup');
+});
+
 
 Route::group(['prefix' => 'admins'], function () {
     Route::get('', [AdminController::class, 'index'])
