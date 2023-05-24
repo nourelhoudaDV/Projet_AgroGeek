@@ -69,7 +69,7 @@
                         :actions="$actions"
                         :heads="$heads"
 
-                        :more-routes="[
+                        :more-route="[
                            [
                                'name' => 'Modifier',
                                'route' => 'stades.show',
@@ -101,8 +101,7 @@
                 <x-table.data-table
                     :actions="$actions2"
                     :heads="$heads2"
-
-                    :more-routes="[
+                    :more-route="[
                        [
                            'name' => 'Modifier',
                            'route' => 'varietes.show',
