@@ -68,8 +68,7 @@
                     <x-table.data-table
                         :actions="$actions"
                         :heads="$heads"
-
-                        :more-route="[
+                        :more-routes="[
                            [
                                'name' => 'Modifier',
                                'route' => 'stades.show',

@@ -33,4 +33,3 @@
     </x-form.form>
 
 @endsection
-

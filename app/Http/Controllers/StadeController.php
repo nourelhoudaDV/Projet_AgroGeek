@@ -17,8 +17,6 @@ class StadeController extends Controller
     public function create(Request $request)
     {
         $especeId = $request->get('id_espece') ?? null;
-
-
         $pagesIndexes = [
             ['name' => 'Ajoute Stade', 'current' => true],
         ];
@@ -27,8 +25,6 @@ class StadeController extends Controller
                 'name' => "page president", 'route' => $request->get('back'),
             ]);
         }
-
-
         return view('crud.stades.create', compact('pagesIndexes', 'especeId'));
     }
 
@@ -41,7 +37,6 @@ class StadeController extends Controller
     public function show(Request $request, $id)
     {
         $model = ModelTarget::query()->where(ModelTarget::PK, $id)->firstOrFail();
-
         $pagesIndexes = [
             ['name' => 'Modifier Stade', 'current' => true],
         ];
@@ -50,7 +45,7 @@ class StadeController extends Controller
                 'name' => "page president", 'route' => $request->get('back'),
             ]);
         }
-        return view('crud.stades.edit', compact('model', "pagesIndexes"));
+        return view('crud.stades.edit', compact('pagesIndexes', 'model'));
     }
 
     /***
