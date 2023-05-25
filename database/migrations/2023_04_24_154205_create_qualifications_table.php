@@ -15,12 +15,13 @@ return new class extends Migration
     {
     Schema::create('qualifications', function (Blueprint $table) {
         $table->bigInteger('idQT', true, true);;
-        $table->string('logo',255)->nullable();
+        $table->string('logo',255);
         $table->foreignId('idTechFK')
             ->references('idTA')
             ->on('techniques_agricole')
             ->cascadeOnUpdate()
-            ->cascadeOnDelete();        $table->string('titre', 255)->nullable();
+            ->cascadeOnDelete();
+        $table->string('titre', 255)->nullable();
         $table->string('unite', 50)->nullable();
         $table->text('description')->nullable();
         $table->timestamps();

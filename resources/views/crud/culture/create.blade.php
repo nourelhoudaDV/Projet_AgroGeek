@@ -27,8 +27,8 @@
             ]"
             /> --}}
 
-            <x-form.select name="idp" label="{{ trans('words.Parcelle') }}"
-                        :bind-with="[
+            <x-form.select name="idp" label="Parcelle"
+                           :bind-with="[
                 \App\Models\Parcelle::all(),
                 [
                     'idp' ,  'codification'
@@ -51,3 +51,4 @@
     </x-form.form>
 
 @endsection
+

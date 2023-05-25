@@ -15,12 +15,13 @@ return new class extends Migration
     {
         Schema::create('typesMateriel', function (Blueprint $table) {
             $table->bigInteger('idTM', true, true);
-            $table->string('logo',255)->nullable();
+            $table->string('logo',255);
             $table->foreignId('idTechFK')
                 ->references('idTA')
                 ->on('techniques_agricole')
                 ->cascadeOnUpdate()
-                ->cascadeOnDelete();            $table->string('titre', 255);
+                ->cascadeOnDelete();
+            $table->string('titre', 255);
             $table->text('description')->nullable();
         });
     }

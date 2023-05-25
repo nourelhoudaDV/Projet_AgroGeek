@@ -90,7 +90,6 @@ class TypesolController extends Controller
         ->where(ModelTarget::PK, $data['idTS'])
         ->get();
         $data->update([]);
-        dd($idFerme);
         $this->success(text: trans('messages.added_message'));
         return redirect(Route('fermes.show', $idFerme));
     }

@@ -12,14 +12,14 @@ class CultureParcelleController extends Controller
     public function create()
     {
         $heads = [
-            new Head('espece', Head::TYPE_TEXT, trans('words.especes_id')),
-            new Head('nomCommercial', Head::TYPE_TEXT, trans('words.nomCommercial')),
-            new Head('appelationAr', Head::TYPE_TEXT, trans('words.appelationAr')),
-            new Head('qualite', Head::TYPE_TEXT, trans('words.qualite')),
-            new Head('precocite', Head::TYPE_TEXT, trans('words.precocite')),
-            new Head('resistance', Head::TYPE_TEXT, trans('words.resistance')),
-            new Head('competitivite', Head::TYPE_TEXT, trans('words.competitivite')),
-            new Head('description', Head::TYPE_TEXT, trans('words.description')),
+            new Head('espece', Head::TYPE_TEXT, 'espece'),
+            new Head('nomCommercial', Head::TYPE_TEXT, 'nom Commercial'),
+            new Head('appelationAr', Head::TYPE_TEXT, 'appelation Arabe'),
+            new Head('qualite', Head::TYPE_TEXT, 'qualite'),
+            new Head('precocite', Head::TYPE_TEXT, 'precocite'),
+            new Head('resistance', Head::TYPE_TEXT, 'resistance'),
+            new Head('competitivite', Head::TYPE_TEXT, 'competitivite'),
+            new Head('description', Head::TYPE_TEXT, 'description'),
         ];
         $collection = Variete::all();
         return view('crud.culture.create', compact('heads', 'collection'));

@@ -21,7 +21,7 @@ return new class extends Migration
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
             $table->string('titre', 255);
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('techniques_agricole', function (Blueprint $table) {
             $table->id('idTA');
-            $table->string('logo',255)->nullable();
+            $table->string('logo',255);
             $table->string('titre', 255);
-            $table->text('decription');
+            $table->text('decription')->nullable();
             $table->timestamps();
         });
     }
