@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('modes_techniques', function (Blueprint $table) {
-            $table->id('idMT');
-            $table->string('nom', 150);
-            $table->text('description');
-            $table->foreignId('techniqueA')->constrained('techniques_agricoles');
+        Schema::create('techniques_agricole', function (Blueprint $table) {
+            $table->id('idTA');
+            $table->string('logo',255)->nullable();
+            $table->string('titre', 255);
+            $table->text('decription');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('modes_techniques');
+        Schema::dropIfExists('techniques_agricole');
     }
 };

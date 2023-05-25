@@ -15,10 +15,13 @@ return new class extends Migration
     {
         Schema::create('typesMateriel', function (Blueprint $table) {
             $table->bigInteger('idTM', true, true);
-            $table->string('nom', 150);
+            $table->string('logo',255)->nullable();
+            $table->foreignId('idTechFK')
+                ->references('idTA')
+                ->on('techniques_agricole')
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();            $table->string('titre', 255);
             $table->text('description')->nullable();
-            $table->unsignedInteger('techniqueA_id');
-            $table->foreign('techniqueA_id')->references('idTA')->on('techniqueAgricole')->onDelete('cascade');
         });
     }
     /**
@@ -28,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('typesMateriel');
     }
 };
