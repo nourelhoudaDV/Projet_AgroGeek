@@ -1,11 +1,11 @@
 @extends('layout.master')
 @include('include.blade-components')
 
-@section('page_title', trans('pages/fermes.index_page_title'))
+@section('page_title', 'Liste de Fermes')
 @section('breadcrumb')
-    <x-group.bread-crumb page-tittle="{{ trans('pages/fermes.index_page_title') }}" :indexes="[
+    <x-group.bread-crumb page-tittle="Liste de fermes" :indexes="[
         [
-            'name' => trans('pages/fermes.index_page_title'),
+            'name' => 'Liste de fermes',
             'route' => route('fermes.index'),
         ],
     ]" />
@@ -21,7 +21,5 @@
         edit-route="fermes.show"
         delete-route="fermes.delete" />
     @endBinding
-
-
 @endsection
 
