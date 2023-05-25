@@ -15,8 +15,8 @@
         <x-form.card col="col-12 row" title="{{ ucwords('id Type sol Ferme') }}">
            
             <input type="hidden" name="ferme" value="{{$fermeId }}">
-            <x-form.input col="col-12 col-md-6" name="vernaculaure" label="{{ 'vernaculaure' }}" />
-            <x-form.input col="col-12 col-md-6" name="nomDomaine" label="{{ 'nom de ferme' }}" />
+            <x-form.input col="col-12 col-md-6" name="vernaculaure" label="{{ 'nom vernaculaure' }}" />
+            <x-form.input col="col-12 col-md-6" name="nomDomaine" label="{{ 'nom pédologique' }}" />
 
         </x-form.card>
 

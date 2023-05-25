@@ -17,11 +17,11 @@
     >
         <x-form.card col="col-12 row" title="Entree Les Informations D'espece">
 
-            <x-form.input required col="col-12 col-sm-6" name="nomSc" label="nom d'espece"/>
-            <x-form.input required col="col-12 col-sm-6" name="nomCommercial" label="nom commercial"/>
-            <x-form.input  col="col-12 col-sm-6" name="appelationAr" label="appelation Ar"  />
+            <x-form.input required col="col-12 col-md-6" name="nomSc" label="nom d'espece"/>
+            <x-form.input required col="col-12 col-md-6" name="nomCommercial" label="nom commercial"/>
+            <x-form.input  col="col-12 col-md-6" name="appelationAr" label="appelation Ar"  />
             <x-form.select
-                col="col-12 col-sm-6"
+                col="col-12 col-md-6"
 
                 name="categorieEspece"
                 label="categorie d'espece"
@@ -35,8 +35,8 @@
                 ]"
             />
 
-            <x-form.input  col="col-12 col-sm-6" name="typeEnracinement" label="type enracinement"  />
-            <x-form.text-area  col="col-12 col-sm-6" name="description" label="description"  />
+            <x-form.input  col="col-12 col-md-6" name="typeEnracinement" label="type enracinement"  />
+            <x-form.text-area  col="col-12 col-md-6" name="description" label="description"  />
 
 
 
