@@ -53,9 +53,10 @@ class ParcelleController extends Controller
     //---------------------------------
     public function destroyGroup(Request $request)
     {
+        
         $ids = $request['ids'] ?? [];
        foreach ($ids as $id) {
-           $client = ModelTarget::query()->find((int)\Crypt::decrypt($id));
+           $client = ModelTarget::query()->findOrFail($id);
            $client?->delete();
         }
         $this->success(text: trans('messages.deleted_message'));
@@ -67,10 +68,12 @@ class ParcelleController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        $model = ModelTarget::query()->where(ModelTarget::PK, $id)->firstOrFail();
-        $idFerme = $model['ferme'];
+        $model = ModelTarget::find($id);
+        ModelTarget::find($id)->delete();
+        // dd($id);
+        
         $this->success(trans('messages.deleted_message'));
-        return redirect(route('ferme.show' , $idFerme));
+        return redirect(route('fermes.show' ,$model['Ferme']));
     }
 
     /***
@@ -80,7 +83,6 @@ class ParcelleController extends Controller
     {
         $validated = $request->validated();
         $data = ModelTarget::query()->create($validated);
-        // dd($data);
         $this->success(text: trans('messages.added_message'));
         return redirect(route('fermes.show', $data['Ferme']));
     }
@@ -90,10 +92,11 @@ class ParcelleController extends Controller
     public function update(ParcellesAdd $request, $id)
     {
         $data = ModelTarget::query()->where(ModelTarget::PK, $id)->firstOrFail();
+        
         $validated = $request->validated();
         $data->update($validated);
         $this->success(text: trans('messages.updated_message'));
-        return redirect(route('fermes.show', $data['ferme']));
+        return redirect(route('fermes.show', $data['Ferme']));
     }
 
 }

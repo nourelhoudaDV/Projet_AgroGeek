@@ -35,12 +35,12 @@ class Add extends FormRequest
 
         return   [
             'codification' => 'nullable|string|max:50',
-            'Ferme' => 'required|exists:fermes,'.Ferme::PK,
-            'superficie' => 'required|string|max:15',
+            'Ferme' => 'nullable|exists:fermes,'.Ferme::PK,
+            'superficie' => 'required|numeric',
             'modeCulture' => 'required|string',
             'topographie' => 'nullable|string|max:255',
-            'pente' => 'nullable|string',
-            'pierosite' => 'nullable|string',
+            'pente' => 'nullable|numeric',
+            'pierosite' => 'nullable|numeric',
             'gps' => 'nullable|string|max:255',
             'description' => 'nullable|string',
             'typeSol' => 'nullable|exists:typesols,'.Typesol::PK,
