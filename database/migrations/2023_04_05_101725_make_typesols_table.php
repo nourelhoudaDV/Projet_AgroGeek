@@ -30,6 +30,11 @@ return new class extends Migration
             $table->float('HCC', 10, 2, true)->nullable();
             $table->float('HPF', 10, 2, true)->nullable();
             $table->float('DA', 10, 2, true)->nullable();
+            $table->foreignId('ferme')
+                ->constrained()
+                ->references('idF')
+                ->on('fermes')
+                ->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }
