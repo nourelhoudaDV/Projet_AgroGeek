@@ -4,13 +4,13 @@
 	<a href="/">
 		@php $bodyAttribute = getHtmlAttribute('body', 'data-kt-app-layout') @endphp
 		@if ($bodyAttribute === 'dark-sidebar')
-			<img alt="Logo" src="{{ image('logos/default-dark.svg') }}" class="h-25px app-sidebar-logo-default" />
+			<img alt="Logo" src="{{ asset('assets/imgs/logo.png') }}" width="200" height="100" class="h-25px app-sidebar-logo-default" />
         @elseif($bodyAttribute === 'light-sidebar')
-				<img alt="Logo" src="{{ image('logos/default.svg') }}" class="theme-light-show h-25px app-sidebar-logo-default" />
-				<img alt="Logo" src="{{ image('logos/default-dark.svg') }}" class="theme-dark-show h-25px app-sidebar-logo-default" />
+				<img alt="Logo" src="{{ asset('assets/imgs/logo.png') }}" class="theme-light-show h-25px app-sidebar-logo-default" />
+				<img alt="Logo" src="{{ asset('assets/imgs/logo.png') }}" class="theme-dark-show h-25px app-sidebar-logo-default" />
 		@endif
 
-		<img alt="Logo" src="{{ image('logos/default-small.svg') }}" class="h-20px app-sidebar-logo-minimize" />
+		<img alt="Logo" src="{{ asset('assets/imgs/logo.png') }}" class="h-20px app-sidebar-logo-minimize" />
 	</a>
 	<!--end::Logo image-->
 	<!--begin::Sidebar toggle-->

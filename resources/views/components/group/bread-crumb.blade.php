@@ -4,10 +4,10 @@
     </h1>
     <ol class="breadcrumb text-muted fs-6 fw-semibold">
         @if (request()->is('/'))
-            <li class="breadcrumb-item text-muted"> {{ ucwords('home') }}</li>
+            <li class="breadcrumb-item text-muted" > {{ ucwords('home') }}</li>
         @else
             <li class="breadcrumb-item">
-                <a href="/" class="">
+                <a href="/" class="" style="color:#5EC267">
                     {{ ucwords(trans('words.Home')) }}
                 </a>
             </li>
@@ -21,7 +21,7 @@
                     <li class="breadcrumb-item text-muted"> {{ ucwords($index['name']) }}</li>
                 @else
                     <li class="breadcrumb-item">
-                        <a href="{{ $index['route'] ?? '#' }}" class="">
+                        <a href="{{ $index['route'] ?? '#' }}" class="" style="color:#5EC267">
                             {{ ucwords($index['name']) }}
                         </a>
                     </li>

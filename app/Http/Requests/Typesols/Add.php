@@ -25,27 +25,28 @@ class Add extends FormRequest
     public function rules()
     {
 
-//        dd(
-//          $this->all()
-//        );
+    //    dd(
+    //      $this->all()
+    //    );
 
 
 
         return   [
             'vernaculaure' => 'required|string|max:150',
             'nomDomaine' => 'nullable|string|max:150',
-            'teneurLimon' => 'nullable|string',
-            'teneurSable' => 'nullable|string',
-            'teneurAgile' => 'nullable|string',
-            'teneurPhosphore' => 'nullable|string',
-            'teneurPotassiume' => 'nullable|string',
-            'teneurAzote' => 'nullable|string',
-            'calcaireActif' => 'nullable|string',
-            'calcaireTotal' => 'nullable|string',
-            'conductiviteElectrique' => 'nullable|string',
-            'HCC' => 'nullable|string',
-            'HPF' => 'nullable|string',
-            'DA' => 'nullable|string'
+            'teneurLimon' => 'nullable|numeric',
+            'teneurSable' => 'nullable|numeric',
+            'teneurArgile' => 'nullable|numeric',
+            'teneurPhosphore' => 'nullable|numeric',
+            'teneurPotassiume' => 'nullable|numeric',
+            'teneurAzote' => 'nullable|numeric',
+            'calcaireActif' => 'nullable|numeric',
+            'calcaireTotal' => 'nullable|numeric',
+            'conductiviteElectrique' => 'nullable|numeric',
+            'HCC' => 'nullable|numeric',
+            'HPF' => 'nullable|numeric',
+            'DA' => 'nullable|numeric',
+            'ferme'=>'nullable|exists:fermes,idF'
         ];
     }
 }

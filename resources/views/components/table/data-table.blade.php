@@ -23,7 +23,7 @@
                 {!! $moreHtmlActions !!}
                 <ul class="nav nav-custom nav-tabs nav-line-tabs nav-line-tabs-2x border-0  fw-semibold ">
                     <li class="nav-item ms-auto">
-                        <a href="" class="btn btn-primary ps-7" data-kt-menu-trigger="click"
+                        <a href="" class="btn btn-success ps-7" style="background:#5EC267" data-kt-menu-trigger="click"
                             data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
                             {{ ucwords(trans('words.actions')) }}
                             <span class="svg-icon svg-icon-2 me-0"></span>
@@ -101,7 +101,7 @@
 
                                                         <div class="symbol symbol-50px me-3">
                                                             <x-media.imaage
-                                                                :alt="$model[$head->getName()]"
+                                                               
                                                                 :src="$image($model[$head->getName()])" />
 
                                                         </div>
@@ -258,6 +258,7 @@
             });
 
 
+            
             if (window.ids.length) {
                 Swal.fire({
                         confirmButtonColor: '#3085d6',
@@ -272,6 +273,8 @@
                     })
                     .then(function(result) {
                         if (result.value) {
+
+                            console.log(window.href);
                             axios.post(window.href, {
                                     'ids': window.ids,
                                 })
