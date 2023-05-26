@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Crypt;
-use Illuminate\Http\Request;
-use App\Helpers\Components\Head;
 use App\Helpers\Components\Action;
-use Illuminate\Support\Facades\DB;
-use App\Models\Typesol as ModelTarget;
-use League\Flysystem\FilesystemException;
+use App\Helpers\Components\Head;
+use Illuminate\Http\Request;
 use App\Http\Requests\Typesols\Add as TypesolsAdd;
+use App\Models\Typesol as ModelTarget;
+use Illuminate\Support\Facades\DB;
+use League\Flysystem\FilesystemException;
 
 
 class TypesolController extends Controller
@@ -57,7 +56,7 @@ class TypesolController extends Controller
     {
         $ids = $request['ids'] ?? [];
        foreach ($ids as $id) {
-           $client = ModelTarget::query()->findOrFail($id);
+           $client = ModelTarget::query()->find((int)\Crypt::decrypt($id));
            $client?->delete();
         }
         $this->success(text: trans('messages.deleted_message'));
@@ -70,10 +69,10 @@ class TypesolController extends Controller
     public function destroy(Request $request, $id)
     {
         ModelTarget::query()->findOrFail($id)->delete();
-        $idFerme = DB::table('parcelles')
+        $idFerme = ModelTarget::query()
         ->select('parcelles.Ferme as laravel_through_key')
-        ->join('typesols','typesols.idTS', '=', 'parcelles.typeSol')
-        ->where('typesols.idTS', '=', $id)
+        ->join('parcelles','typesols.idTS', 'parcelles.typeSol')
+        ->where('typesols.idTS', $id)
         ->get();
         $this->success(trans('messages.deleted_message'));
         return redirect(Route('fermes.show',$idFerme));
@@ -84,20 +83,30 @@ class TypesolController extends Controller
     public function store(TypesolsAdd $request)
     {
         $validated = $request->validated();
-        $model = ModelTarget::query()->create($validated);
-     
+        $data = ModelTarget::query()->create($validated);
+        $idFerme = ModelTarget::query()
+        ->select('parcelles.Ferme as laravel_through_key')
+        ->join('parcelles','typesols.idTS', 'parcelles.typeSol')
+        ->where(ModelTarget::PK, $data['idTS'])
+        ->get();
+        $data->update([]);
         $this->success(text: trans('messages.added_message'));
-        return redirect(Route('fermes.show', $model['ferme']));
+        return redirect(Route('fermes.show', $idFerme));
     }
     /***
      * Update record if exists
      */
     public function update(TypesolsAdd $request, $id)
     {
-        $model = ModelTarget::query()->findOrFail($id);
-        $validated=$request->validated();
-        $model->update($validated);
+        $data = ModelTarget::query()->findOrFail($id);
+        $idFerme = ModelTarget::query()
+        ->select('parcelles.Ferme as laravel_through_key')
+        ->join('parcelles','typesols.idTS', 'parcelles.typeSol')
+        ->where('typesols.idTS', $id)
+        ->get();
+        $validated = $request->validated();
+        $data->update($validated);
         $this->success(text: trans('messages.updated_message'));
-        return redirect(Route('fermes.show', $model['ferme']));
+        return redirect(Route('fermes.show', $idFerme));
     }
 }

@@ -13,14 +13,19 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('typesMateriel', function (Blueprint $table) {
-            $table->bigInteger('idTM', true, true);
-            $table->string('nom', 150);
+        Schema::create('modes_technique', function (Blueprint $table) {
+            $table->id('idM');
+            $table->foreignId('idTechFK')
+                ->references('idTA')
+                ->on('techniques_agricole')
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
+            $table->string('titre', 255);
             $table->text('description')->nullable();
-            $table->unsignedInteger('techniqueA_id');
-            $table->foreign('techniqueA_id')->references('idTA')->on('techniqueAgricole')->onDelete('cascade');
+            $table->timestamps();
         });
     }
+
     /**
      * Reverse the migrations.
      *
@@ -28,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('modes_technique');
     }
 };
