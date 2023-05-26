@@ -68,25 +68,8 @@
                     <x-table.data-table
                         :actions="$actions"
                         :heads="$heads"
-                        :more-routes="[
-                           [
-                               'name' => 'Modifier',
-                               'route' => 'stades.show',
-                               'paras' => [
-                                        \App\Models\Stade::PK ,
-                                        [
-                                            'back' => url()->current()
-                                        ]
-                               ],
-
-                           ],
-                           [
-                               'name' => 'Supprime',
-                               'route' => 'stades.delete',
-                               'paras' => [\App\Models\Stade::PK ],
-
-                           ]
-                      ]"
+                        edit-route="stades.show"
+                        delete-route="stades.delete"
 
                     />
                     @endBinding
@@ -100,26 +83,8 @@
                 <x-table.data-table
                     :actions="$actions2"
                     :heads="$heads2"
-                    :more-route="[
-                       [
-                           'name' => 'Modifier',
-                           'route' => 'varietes.show',
-                           'paras' => [
-                                    \App\Models\Variete::PK ,
-                                    [
-                                        'back' => url()->current()
-                                    ]
-                           ],
-
-                       ],
-                       [
-                           'name' => 'Supprime',
-                           'route' => 'varietes.delete',
-                           'paras' => [\App\Models\Variete::PK ],
-
-                       ]
-                  ]"
-
+                    edit-route="varietes.show"
+                    delete-route="varietes.delete"
                 />
                 @endBinding
 

@@ -30,8 +30,7 @@ class Add extends FormRequest
         return   [
             'nom' => 'required|string|max:150',
             'phaseFin' => 'required|string|max:150',
-            'espece' => 'required|exists:especes,'.Espece::PK,
-            'variete' => 'required|exists:varietes,'.Variete::PK,
+            'variete' => 'nullable|exists:varietes,'.Variete::PK,
             'sommesTemps' => 'required|string',
             'sommesTempFroid' => 'required|string',
             'Kc' => 'required|string',
