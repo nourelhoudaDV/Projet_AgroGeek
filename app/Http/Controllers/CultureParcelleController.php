@@ -4,11 +4,34 @@ namespace App\Http\Controllers;
 
 use App\Helpers\Components\Head;
 use App\Models\CultureParcelle;
+use App\Models\Parcelle;
 use App\Models\Variete;
 use Illuminate\Http\Request;
 
 class CultureParcelleController extends Controller
 {
+    public function index()
+    {
+        $Varietes = Variete::all();
+        $parcelles = Parcelle::all();
+        $CultureParcelle = CultureParcelle::all();
+        return view('crud.culture.index', compact('Varietes', 'parcelles', 'CultureParcelle'));
+    }
+    public function save(Request $request)
+    {
+        if(isset($request['check'])){
+            foreach($request['check'] as $idV)
+            {
+                CultureParcelle::create([
+                    'varieteID' => $idV,
+                    'parcelleId' => $request['idp']
+                ]);
+            }
+        }
+        $this->success(text: trans('messages.added_message'));
+        return redirect()->route('cultureparcelle.index');
+
+    }
     public function create()
     {
         $heads = [
@@ -40,4 +63,5 @@ class CultureParcelleController extends Controller
         $this->success(text: trans('messages.added_message'));
         return redirect()->route('cultureparcelle.create');
     }
+
 }

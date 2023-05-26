@@ -6,7 +6,7 @@
         page-tittle= 'culture parcelle'
         :indexes="[
         ['name'=> 'dashboard' , 'route'=> '/'],
-        ['name'=> 'pages/culture.Ajouter noveau cultureParcelle' ,     'current' =>true ],
+        ['name'=> 'Ajouter noveau cultureParcelle' ,     'current' =>true ],
     ]"
     />
 @endsection
@@ -18,14 +18,6 @@
     >
 
         <x-form.card col="col-12 row" title="{{ ucwords(trans('pages/users.pagename')) }}">
-            {{-- <x-form.select name="idV" label="{{ trans('words.')}}"
-                        :bind-with="[
-                \App\Models\Variete::all(),
-                [
-                    'idV' ,  'nomCommercial'
-                ]
-            ]"
-            /> --}}
 
             <x-form.select name="idp" label="Parcelle"
                            :bind-with="[
@@ -40,7 +32,7 @@
             <x-table.data-table
                 :heads="$heads"
             />
-        @endBinding
+            @endBinding
 
             <div class="col-12 mt-5">
                 <x-form.button/>

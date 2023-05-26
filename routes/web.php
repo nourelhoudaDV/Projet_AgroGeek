@@ -51,7 +51,9 @@ Route::name('TechniquesAgricole.')->prefix('TechniquesAgricole')->controller(Tec
 Route::name('cultureparcelle.')->prefix('cultureparcelle')->controller(CultureParcelleController::class)
     ->group(function () {
         Route::get('/', 'create')->name('create');
+        Route::get('hi', 'index')->name('index');
         Route::post('store', 'store')->name('store');
+        Route::post('save', 'save')->name('save');
     });
 
 Route::name('users.')->prefix('users')->controller(UserController::class)
@@ -161,7 +163,7 @@ Route::name('stades.')->prefix('stades')->controller(StadeController::class)
     Route::post('store', 'store')->name('store');
     Route::post('{idS}/update', 'update')->name('update');
     Route::post('delete', 'destroyGroup')->name('destroyGroup');
-    
+
 });
 Route::name('qualifications.')->prefix('qualifications')->controller(QualificationsController::class)
 ->group(function () {
