@@ -107,7 +107,7 @@ class FermeController extends Controller
             new Head('teneurAzote', Head::TYPE_TEXT, 'teneurAzote'),
             new Head('calcaireActif', Head::TYPE_TEXT, 'calcaire Actif'),
             new Head('calcaireTotal', Head::TYPE_TEXT, 'calcaire Total'),
-            new Head('conductiveElectrique', Head::TYPE_TEXT, 'conductive Electrique'),
+            new Head('conductiviteElectrique', Head::TYPE_TEXT, 'conductive Electrique'),
             new Head('HCC', Head::TYPE_TEXT, 'Humidité à la capacité au champ'),
             new Head('HPF', Head::TYPE_TEXT, 'Humidité Point de Filtration'),
             new Head('DA', Head::TYPE_TEXT, 'densité Apparente'),
