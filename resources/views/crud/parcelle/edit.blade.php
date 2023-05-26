@@ -23,7 +23,7 @@
         <x-form.card col="col-12 row" title='identification parcelle'>
             <x-form.select col="col-12 col-sm-6" name="typeSol" label="typeSol" :bind-with="[\App\Models\TypeSol::all(), [\App\Models\TypeSol::PK, 'vernaculaure']]" {{-- ['idTS', 'typeSol']]" --}} />
             <x-form.input col="col-12 col-sm-6" name="codification" label="codification" />
-            <x-form.input col="col-12 col-sm-3" name="superficie" label="superficie" />
+            <x-form.input type='number' col="col-12 col-sm-3" name="superficie" label="superficie" />
             <x-form.radios col="col-12 col-sm-9" name="modeCulture" label="modeCulture"
                 :radios="[
                     [
@@ -39,8 +39,8 @@
                         'label' => 'Etagère',
                     ],
                 ]" />
-            <x-form.input col="col-12 col-sm-3" name="pente" label="pente" />
-            <x-form.input col="col-12 col-sm-3" name="pierosite" label="pierosite" />
+            <x-form.input type='number' col="col-12 col-sm-3" name="pente" label="pente" />
+            <x-form.input type='number' col="col-12 col-sm-3" name="pierosite" label="pierosite" />
             <x-form.input col="col-12 col-sm-6" name="gps" label="gps" />
             <x-form.text-area col="col-12 col-sm-12" name="topographie" label="topographie" />
             <x-form.text-area col="col-12 col-sm-12" name="description" label="description" />

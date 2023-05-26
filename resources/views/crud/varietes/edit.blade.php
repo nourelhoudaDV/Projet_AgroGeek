@@ -14,33 +14,26 @@
     <x-form.form
         method="post"
         action="{{ route('varietes.update' , $model[$model::PK]) }}"
-    >
-    <x-form.card col="col-12 row" title="Entree Les Informations De Variete">
-
+        >
         @bind($model)
-        <div class="col-12 row">
-                <div class="col-10 row">
-                    <x-form.select
-                    col="col-12 col-sm-6"
-                    required
-                    name="espece"
-                    label="espece"
-                    :bind-with="[\App\Models\Espece::allForSelect(), [\App\Models\Espece::PK , 'espece_name']]"
-                />
-                    <x-form.input   name="nomCommercial" label="nom Commercial" />
-                    <x-form.input   name="appelationAr" label="appelation Ar" />
-                    <x-form.input   name="quantite" label="quantite" />
-                    <x-form.input   name="precocite" label="precocite" />
-                    <x-form.input   name="resistance" label="resistance" />
-                    <x-form.input   name="competitivite" label="competitivite" />
-                    <x-form.text-area col="col-12 col-sm-6" name="description" label="description"/>
-                       @endBinding
+            <x-form.card col=" row" title="Entree Les Informations De Variete">
 
-                    <div class="col-12 mt-5">
-                        <x-form.button/>
-                    </div>
+            
+                <x-form.input name="nomCommercial" col="col-12 col-md-6"  label="nom Commercial"/>
+                <x-form.input name="appelationAr" col="col-12 col-md-6" label="appelation Ar"/>
+                <x-form.input col="col-12 col-md-6" name="quantite" label="quantite"/>
+                <x-form.input col="col-12 col-md-6" name="precocite" label="precocite"/>
+                <x-form.input col="col-12 col-md-6" name="resistance" label="resistance"/>
+                <x-form.input col="col-12 col-md-6" name="competitivite" label="competitivite"/>
+                
+                <x-form.text-area  name="description" label="description"/>
+                
+                <div class="col-12 mt-5">
+                    <x-form.button/>
+                </div>
             </x-form.card>
-        </div>
+
+        @endBinding
     </x-form.form>
 
     <x-form.card col="col-12 row pt-5" title="Historique">
@@ -59,26 +52,8 @@
                     <x-table.data-table
                         :actions="$actions"
                         :heads="$heads"
-
-                        :more-routes="[
-                           [
-                               'name' => 'Modifier',
-                               'route' => 'stadevarietes.show',
-                               'paras' => [
-                                        \App\Models\StadeVariete::PK ,
-                                        [
-                                            'back' => url()->current()
-                                        ]
-                               ],
-
-                           ],
-                           [
-                               'name' => 'Supprime',
-                               'route' => 'stadevarietes.delete',
-                               'paras' => [\App\Models\StadeVariete::PK ],
-
-                           ]
-                      ]"
+                        edit-route="stadeVarietes.show"
+                        delete-route="stadeVarietes.delete"
 
                     />
                     @endBinding

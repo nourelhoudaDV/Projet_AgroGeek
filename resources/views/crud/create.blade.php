@@ -18,7 +18,7 @@
         method="post"
         action="{{ route('users.store') }}"
     >
-        <x-form.card col="col-12 row" title="{{ ucwords(trans('pages/users.edit_form_title')) }}">
+        <x-form.card col="row" title="{{ ucwords(trans('pages/users.edit_form_title')) }}">
 
             <div class="col-2">
                 <x-form.file name="avatar" label="{{ trans('words.avatar') }}"/>

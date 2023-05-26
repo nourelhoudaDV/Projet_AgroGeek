@@ -58,7 +58,7 @@ class StadeController extends Controller
 
         $ids = $request['ids'] ?? [];
         foreach ($ids as $id) {
-            $model = ModelTarget::query()->find((int)\Crypt::decrypt($id));
+            $model = ModelTarget::query()->findOrFail($id);
             $model?->delete();
         }
 
