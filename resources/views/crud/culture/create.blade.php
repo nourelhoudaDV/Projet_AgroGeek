@@ -47,7 +47,7 @@
                         <th class="min-w-100px">espece</th>
                         <th class="min-w-100px">nomCommercial</th>
                         <th class="min-w-100px">appelationAr</th>
-                        <th class="min-w-100px">qualite</th>
+                        <th class="min-w-100px">quantite</th>
                         <th class="min-w-100px">precocite</th>
                         <th class="min-w-100px">resistance</th>
                         <th class="min-w-100px">competitivite</th>
@@ -72,7 +72,7 @@
 
     </x-form.form>
 
-
+{{-- @dd($collection) --}}
 @endsection
 
 @push('scripts')
@@ -92,30 +92,30 @@
             });
             selectElement.onchange=()=>getVarietes()
             function getVarietes(){
-                console.log(selectElement.value);
+                console.log(dataV);
                 document.querySelector('#tbody').innerHTML=''
                 dataV.forEach(v => {
                     document.querySelector('#tbody').innerHTML +=`
-                    <tr>
-                        <td>
-                            <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                <input class="form-check-input"
-                                name="check[${v.idV}]" type="checkbox" value="${v.idV}"
-                                ${
-                                    dataCP.find(culture=>culture.varieteID==v.idV && selectElement.value==culture.parcelleId) ? 'checked':''
-                                    
-                                }
-                                />
-                                </div>
-                                </td>
-                                <td>${v.espece}</td>
-                                <td>${v.nomCommercial}</td>
-                                <td>${v.appelationAr}</td>
-                                <td>${v.qualite}</td>
-                                <td>${v.precocite}<td>
-                                    <td>${v.resistance}</td>
-                                    <td>${v.resistance}</td>
-                                    <td>${v.description}</td>
+                            <tr>
+                                <td>
+                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                        <input class="form-check-input"
+                                        name="check[${v.idV}]" type="checkbox" value="${v.idV}"
+                                        ${
+                                            dataCP.find(culture=>culture.varieteID==v.idV && selectElement.value==culture.parcelleId) ? 'checked':''
+                                            
+                                        }
+                                        />
+                                        </div>
+                                        </td>
+                                        <td>${v.espece}</td>
+                                        <td>${v.nomCommercial}</td>
+                                        <td>${v.appelationAr}</td>
+                                        <td>${v.quantite}</td>
+                                        <td>${v.precocite}</td>
+                                        <td>${v.resistance}</td>
+                                        <td>${v.competitivite}</td>
+                                        <td>${v.description}</td>
                                     </tr>`
                                 });
                                 

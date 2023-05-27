@@ -15,7 +15,9 @@
      .page-link.active, .active > .page-link,.scrolltop {
             background-color: #5EC267 !important;
         }
-        
+    a:hover{
+        color: #5EC267 !important;
+    }
     </style>
 
 @stack('styles')
