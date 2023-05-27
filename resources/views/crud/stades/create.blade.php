@@ -1,6 +1,6 @@
 @extends('layout.master')
 @include('include.blade-components')
-@section('page_title' , 'Ajoute Stade')
+@section('page_title' , 'Ajouter Stade')
 @section('breadcrumb')
     <x-group.bread-crumb
         page-tittle="Ajoute Stade"

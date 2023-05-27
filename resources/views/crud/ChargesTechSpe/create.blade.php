@@ -1,12 +1,12 @@
 @extends('layout.master')
 @include('include.blade-components')
-@section('page_title' , 'Ajoute TechniqueSpecifique')
+@section('page_title' , 'Ajouter ChargesTechSpe')
 @section('breadcrumb')
     <x-group.bread-crumb
-        page-tittle="Ajoute TechniqueSpecifique"
+        page-tittle="Ajouter ChargesTechSpe"
         :indexes="[
         ['name'=> 'retour' , 'route'=> route('TechniqueSpecifique.show',$especeId)],
-        ['name'=> 'Ajoute Charge Technique specifique' ,     'current' =>true ],
+        ['name'=> 'Ajouter Charge Technique specifique' ,     'current' =>true ],
     ]"
     />
 @endsection
@@ -18,7 +18,7 @@
         method="post"
         action="{{ route('ChargesTechSpe.store') }}"
     >
-        <x-form.card col="col-12 row" title="Entre les informations des TechniqueSpecifique">
+        <x-form.card col="col-12 row" title="Entre les informations des ChargesTechSpe">
        
              
             <x-form.input  name="titre"    col='col-12 col-md-8' label="titre"/>

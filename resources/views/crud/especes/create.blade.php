@@ -1,12 +1,12 @@
 @extends('layout.master')
 @include('include.blade-components')
-@section('page_title' , 'Ajoute Espece')
+@section('page_title' , 'Ajouter Espece')
 @section('breadcrumb')
     <x-group.bread-crumb
-        page-tittle="Ajoute Espece"
+        page-tittle="Ajouter Espece"
         :indexes="[
         ['name'=> 'Les Especes' , 'route'=> route('especes.index')],
-        ['name'=> 'Ajoute Espece',     'current' =>true ],
+        ['name'=> 'Ajouter Espece',     'current' =>true ],
     ]"
     />
 @endsection

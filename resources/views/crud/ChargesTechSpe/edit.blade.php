@@ -16,7 +16,7 @@
         action="{{ route('ChargesTechSpe.update' , $model[$model::PK]) }}"
         >
         @bind($model)
-        <x-form.card col="col-12 row" title="Entre les informations des TechniqueSpecifique">
+        <x-form.card col="col-12 row" title="Entre les informations des ChargesTechSpe">
             
             <x-form.input  name="titre"    col='col-12 col-md-8' label="titre"/>
             <x-form.input  name="costUnit" col='col-12 col-md-4'  label="costUnit"/>

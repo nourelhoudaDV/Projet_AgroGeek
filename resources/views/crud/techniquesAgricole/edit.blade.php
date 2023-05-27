@@ -1,12 +1,12 @@
 @extends('layout.master')
 @include('include.blade-components')
 
-@section('page_title', 'Techniques Agricole')
+@section('page_title', 'modifier le Technique Agricole')
 @section('breadcrumb')
     <x-group.bread-crumb page-tittle="Techniques Agricole" 
     :indexes="[
         ['name'=> 'Les TechniquesAgricole' , 'route'=> route('TechniquesAgricole.index')],
-        ['name'=> 'modifier le TechniquesAgricole' ,     'current' =>true ],
+        ['name'=> 'modifier le Technique Agricole' ,     'current' =>true ],
     ]"
     />
 @endsection

@@ -8,7 +8,7 @@
         page-tittle="Modifier Espece"
         :indexes="[
         ['name'=> 'Les Especes' , 'route'=> route('especes.index')],
-        ['name'=> 'Modifier Espece',     'current' =>true ],
+        ['name'=> 'Modifier le Espece',     'current' =>true ],
     ]"
     />
 @endsection
