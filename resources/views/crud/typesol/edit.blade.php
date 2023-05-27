@@ -6,7 +6,7 @@
     <x-group.bread-crumb
         page-tittle="Modifier le Type Sol"
         :indexes="[
-        ['name'=> 'fermes' , 'route'=> route('fermes.index')],
+        ['name'=> 'retour' , 'route'=> route('fermes.show',$model['ferme'])],
         ['name'=> 'Modifier le Type Sol' ,     'current' =>true ],
     ]"
     />

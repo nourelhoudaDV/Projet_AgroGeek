@@ -3,7 +3,7 @@
 @section('page_title', 'Ajouter Nouveau Type Sol'))
 @section('breadcrumb')
     <x-group.bread-crumb page-tittle="Ajouter Nouveau Type Sol" :indexes="[
-        ['name' => 'fermes', 'route' => route('fermes.index')],
+        ['name'=> 'retour' , 'route'=> route('fermes.show',$fermeId)],
         ['name' => 'Ajouter Nouveau Type Sol', 'current' => true],
     ]" />
 @endsection

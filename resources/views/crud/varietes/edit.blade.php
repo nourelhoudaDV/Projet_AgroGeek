@@ -5,8 +5,8 @@
     <x-group.bread-crumb
         page-tittle="Modifier Variete"
         :indexes="[
-        ['name'=> 'Les Varietes' , 'route'=> route('varietes.index')],
-        ['name'=> 'Modifier Variete' ,     'current' =>true ],
+                ['name'=> 'retour' , 'route'=> route('especes.show',$model['espece'])],
+                ['name'=> 'Modifier Variete' ,     'current' =>true ],
     ]"
     />
 @endsection
@@ -19,12 +19,12 @@
             <x-form.card col=" row" title="Entree Les Informations De Variete">
 
             
-                <x-form.input name="nomCommercial" col="col-12 col-md-6"  label="nom Commercial"/>
-                <x-form.input name="appelationAr" col="col-12 col-md-6" label="appelation Ar"/>
-                <x-form.input col="col-12 col-md-6" name="quantite" label="quantite"/>
-                <x-form.input col="col-12 col-md-6" name="precocite" label="precocite"/>
-                <x-form.input col="col-12 col-md-6" name="resistance" label="resistance"/>
-                <x-form.input col="col-12 col-md-6" name="competitivite" label="competitivite"/>
+                <x-form.input required name="nomCommercial" col="col-12 col-md-6"  label="nom Commercial"/>
+                <x-form.input required name="appelationAr" col="col-12 col-md-6" label="appelation Ar"/>
+                <x-form.input required col="col-12 col-md-6" name="quantite" label="quantite"/>
+                <x-form.input required col="col-12 col-md-6" name="precocite" label="precocite"/>
+                <x-form.input required col="col-12 col-md-6" name="resistance" label="resistance"/>
+                <x-form.input required col="col-12 col-md-6" name="competitivite" label="competitivite"/>
                 
                 <x-form.text-area  name="description" label="description"/>
                 

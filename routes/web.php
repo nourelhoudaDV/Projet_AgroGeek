@@ -3,24 +3,30 @@
 // use App\Http\Controllers\ClientController;
 // use App\Http\Controllers\DashboardController;
 
-use App\Http\Controllers\CultureParcelleController;
-use App\Http\Controllers\FermeController;
-use App\Http\Controllers\StorageController;
-//use App\Http\Controllers\TestController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\TypesolController;
-use App\Http\Controllers\ParcelleController;
-use App\Http\Controllers\GerantFermeController;
-use App\Http\Controllers\TechniquesAgricoleController;
-
-use App\Http\Controllers\EspeceController;
-use App\Http\Controllers\QualificationsController;
-use App\Http\Controllers\TypesMaterielController;
-use App\Http\Controllers\VarieteController;
-use App\Http\Controllers\StadeVarieteController;
-use App\Http\Controllers\StadeController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\FermeController;
+//use App\Http\Controllers\TestController;
+use App\Http\Controllers\StadeController;
+use App\Http\Controllers\EspeceController;
+use App\Http\Controllers\StorageController;
+use App\Http\Controllers\TypesolController;
+use App\Http\Controllers\VarieteController;
+
+use App\Http\Controllers\ParcelleController;
+use App\Http\Controllers\GerantFermeController;
+use App\Http\Controllers\StadeVarieteController;
+use App\Http\Controllers\TypeMaterielController;
+use App\Http\Controllers\TypesMaterielController;
+use App\Http\Controllers\ChargesTechSpeController;
+use App\Http\Controllers\ModesTechniqueController;
+use App\Http\Controllers\QualificationsController;
+use App\Http\Controllers\CultureParcelleController;
+use App\Http\Controllers\QualificationsControllers;
+use App\Http\Controllers\TechniquesAgricoleController;
+use App\Http\Controllers\TechniqueSpecifiqueController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -51,7 +57,6 @@ Route::name('TechniquesAgricole.')->prefix('TechniquesAgricole')->controller(Tec
 Route::name('cultureparcelle.')->prefix('cultureparcelle')->controller(CultureParcelleController::class)
     ->group(function () {
         Route::get('/', 'create')->name('create');
-        Route::get('hi', 'index')->name('index');
         Route::post('store', 'store')->name('store');
         Route::post('save', 'save')->name('save');
     });
@@ -93,16 +98,7 @@ Route::name('fermes.')->prefix('fermes')->controller(FermeController::class)
     Route::post('delete', 'destroyGroup')->name('destroyGroup');
 });
 
-Route::name('techniquesAgricole.')->prefix('techniquesAgricole')->controller(FermeController::class)
-->group(function () {
-    Route::get('/', 'index')->name('index');
-    Route::get('{idTA}/delete', 'destroy')->name('delete');
-    Route::get('{idTA}/show', 'show')->name('show');
-    Route::get('create', 'create')->name('create');
-    Route::post('store', 'store')->name('store');
-    Route::post('{idTA}/update', 'update')->name('update');
-    Route::post('delete', 'destroyGroup')->name('destroyGroup');
-});
+
 
 Route::name('parcelles.')->prefix('parcelles')->controller(ParcelleController::class)
 ->group(function () {
@@ -185,6 +181,88 @@ Route::name('typemateriel.')->prefix('typemateriel')->controller(TypesMaterielCo
     Route::post('{idTM}/update', 'update')->name('update');
     Route::post('delete', 'destroyGroup')->name('destroyGroup');
 });
+
+
+Route::name('TechniqueSpecifique.')->prefix('TechniqueSpecifique')->controller(TechniqueSpecifiqueController::class)->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('{id}/delete', 'destroy')->name('delete');
+    Route::get('{id}/show', 'show')->name('show');
+    Route::get('create', 'create')->name('create');
+    Route::post('store', 'store')->name('store');
+    Route::post('{id}/update', 'update')->name('update');
+    Route::post('delete', 'destroyGroup')->name('destroyGroup');
+});
+Route::name('ChargesTechSpe.')->prefix('ChargesTechSpe')->controller(ChargesTechSpeController::class)->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('{id}/delete', 'destroy')->name('delete');
+    Route::get('{id}/show', 'show')->name('show');
+    Route::get('create', 'create')->name('create');
+    Route::post('store', 'store')->name('store');
+    Route::post('{id}/update', 'update')->name('update');
+    Route::post('delete', 'destroyGroup')->name('destroyGroup');
+});
+
+
+
+Route::name('TechniquesAgricole.')->prefix('TechniquesAgricole')->controller(TechniquesAgricoleController::class)
+    ->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('{id}/delete', 'destroy')->name('delete');
+        Route::get('{id}/show', 'show')->name('show');
+        Route::get('create', 'create')->name('create');
+        Route::post('store', 'store')->name('store');
+        Route::post('{id}/update', 'update')->name('update');
+        Route::post('delete', 'destroyGroup')->name('destroyGroup');
+
+    });
+
+Route::name('ModesTechnique.')->prefix('ModesTechnique')->controller(ModesTechniqueController::class)
+    ->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('{id}/delete', 'destroy')->name('delete');
+        Route::get('{id}/show', 'show')->name('show');
+        Route::get('create', 'create')->name('create');
+        Route::post('store', 'store')->name('store');
+        Route::post('{id}/update', 'update')->name('update');
+        Route::post('delete', 'destroyGroup')->name('destroyGroup');
+
+    });
+
+    
+Route::name('qualifications.')->prefix('qualifications')->controller(QualificationsController::class)
+->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('{id}/delete', 'destroy')->name('delete');
+    Route::get('{id}/show', 'show')->name('show');
+    Route::get('create', 'create')->name('create');
+    Route::post('store', 'store')->name('store');
+    Route::post('{id}/update', 'update')->name('update');
+    Route::post('delete', 'destroyGroup')->name('destroyGroup');
+
+});
+
+Route::name('typeMateriel.')->prefix('typeMateriel')->controller(TypeMaterielController::class)
+->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('{id}/delete', 'destroy')->name('delete');
+    Route::get('{id}/show', 'show')->name('show');
+    Route::get('create', 'create')->name('create');
+    Route::post('store', 'store')->name('store');
+    Route::post('{id}/update', 'update')->name('update');
+    Route::post('delete', 'destroyGroup')->name('destroyGroup');
+
+});
+
+
+
+
+
+
+
+
+
+
+
 
 
 Route::group(['prefix' => 'admins'], function () {

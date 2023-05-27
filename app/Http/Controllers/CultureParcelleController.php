@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\Components\Head;
-use App\Models\CultureParcelle;
-use App\Models\Parcelle;
 use App\Models\Variete;
+use App\Models\Parcelle;
 use Illuminate\Http\Request;
+use App\Helpers\Components\Head;
+use Illuminate\Validation\Validator;
+use App\Models\CultureParcelle as ModelTarget;
 
 class CultureParcelleController extends Controller
 {
@@ -14,26 +15,14 @@ class CultureParcelleController extends Controller
     {
         $Varietes = Variete::all();
         $parcelles = Parcelle::all();
-        $CultureParcelle = CultureParcelle::all();
+        $CultureParcelle = ModelTarget::all();
         return view('crud.culture.index', compact('Varietes', 'parcelles', 'CultureParcelle'));
     }
-    public function save(Request $request)
-    {
-        if(isset($request['check'])){
-            foreach($request['check'] as $idV)
-            {
-                CultureParcelle::create([
-                    'varieteID' => $idV,
-                    'parcelleId' => $request['idp']
-                ]);
-            }
-        }
-        $this->success(text: trans('messages.added_message'));
-        return redirect()->route('cultureparcelle.index');
 
-    }
     public function create()
     {
+        // dd(33);
+
         $heads = [
             new Head('espece', Head::TYPE_TEXT, 'espece'),
             new Head('nomCommercial', Head::TYPE_TEXT, 'nom Commercial'),
@@ -50,16 +39,24 @@ class CultureParcelleController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request);
+        ModelTarget::query()->where('parcelleId','=',$request->idp)->delete();
+        $options=$request->check;
+       
 
-        if(isset($request['check'])){
-        foreach($request['check'] as $idV)
-        {
-            CultureParcelle::create([
-            'varieteID' => $idV,
-            'parcelleId' => $request['idp']
-            ]);
-        }
-        }
+        foreach ($options as $index => $value) {
+                $val=[
+                    'parcelleId'=>$request->idp,
+                    'varieteID'=>$value
+                    
+                ];
+         
+       
+                $model= ModelTarget::query()->create($val);
+         
+        } 
+
+       
         $this->success(text: trans('messages.added_message'));
         return redirect()->route('cultureparcelle.create');
     }

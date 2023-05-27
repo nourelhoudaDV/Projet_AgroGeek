@@ -17,15 +17,9 @@ class StadeController extends Controller
     public function create(Request $request)
     {
         $especeId = $request->get('id_espece') ?? null;
-        $pagesIndexes = [
-            ['name' => 'Ajoute Stade', 'current' => true],
-        ];
-        if ($request->has('back')) {
-            array_unshift($pagesIndexes, [
-                'name' => "page president", 'route' => $request->get('back'),
-            ]);
-        }
-        return view('crud.stades.create', compact('pagesIndexes', 'especeId'));
+     
+     
+        return view('crud.stades.create', compact( 'especeId'));
     }
 
     /***

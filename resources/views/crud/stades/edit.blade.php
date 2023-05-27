@@ -4,7 +4,10 @@
 @section('breadcrumb')
     <x-group.bread-crumb
         page-tittle="Modifier Stade"
-        :indexes="$pagesIndexes"
+        :indexes="[                
+            ['name'=> 'retour' , 'route'=> route('especes.show',$model['espece'])],
+            ['name' => 'Modifier le Stade', 'current' => true],
+        ]"
     />
 @endsection
 @section('content')

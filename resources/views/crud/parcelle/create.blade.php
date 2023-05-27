@@ -4,7 +4,7 @@
 @section('page_title', 'Ajouter noveau parcelle')
 @section('breadcrumb')
     <x-group.bread-crumb page-tittle='Ajouter noveau parcelle' :indexes="[
-        // ['name' => 'liste de parcelles', 'route' => route('parcelles.index')],
+        ['name'=> 'retour' , 'route'=> route('fermes.show',$fermeId)],
         ['name' => 'ajouter un parcelle', 'current' => true],
     ]" />
 @endsection

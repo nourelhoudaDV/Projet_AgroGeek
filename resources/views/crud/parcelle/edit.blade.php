@@ -5,8 +5,8 @@
 @section('breadcrumb')
     <x-group.bread-crumb
         page-tittle="Modifier la parcelle"
-        :indexes=:indexes="[
-            ['name' => 'liste de parcelles', 'route' => route('parcelles.index')],
+       :indexes="[
+            ['name'=> 'retour' , 'route'=> route('fermes.show',$model['Ferme'])],
             ['name' => 'modifier le parcelle', 'current' => true],
         ]" />
 @endsection
