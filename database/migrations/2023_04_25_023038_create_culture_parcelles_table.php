@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('culture_parcelles', function (Blueprint $table) {
-            $table->id();
+            $table->bigInteger('idCP', true, true);
             $table->foreignId('varieteID')
                 ->constrained()
                 ->references('idV')
