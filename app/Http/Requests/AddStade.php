@@ -27,7 +27,7 @@ class AddStade extends FormRequest
         return [
             'nom' => 'required|string|max:150',
             'phaseFin' => 'required|string|max:150',
-            'espece' => 'required|exists:especes,'.Espece::PK,
+            'espece' => 'nullable|exists:especes,'.Espece::PK,
             'description' => 'nullable|string',
         ];
     }

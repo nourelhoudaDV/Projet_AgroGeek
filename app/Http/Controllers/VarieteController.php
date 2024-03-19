@@ -51,9 +51,18 @@ class VarieteController extends Controller
      * Page create
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('crud.varietes.create');
+        $especeId = $request->get('id_espece') ?? null;
+        $pagesIndexes = [
+            ['name' => 'Ajoute Stade', 'current' => true],
+        ];
+        if ($request->has('back')) {
+            array_unshift($pagesIndexes, [
+                'name' => "page president", 'route' => $request->get('back'),
+            ]);
+        }
+        return view('crud.varietes.create',compact('pagesIndexes', 'especeId'));
     }
 
     /***
@@ -77,12 +86,16 @@ class VarieteController extends Controller
         ];
         $heads = [
             new Head('nom' , Head::TYPE_TEXT, "nom"),
-            new Head('phaseFin' , Head::TYPE_TEXT, 'phaseFin'),
-            new Head('sommesTemp' , Head::TYPE_TEXT, 'sommesTemp'),
-            new Head('sommesTempFroid' , Head::TYPE_TEXT, 'sommesTempFroid'),
-            new Head('kc' , Head::TYPE_TEXT, 'kc'),
+            new Head('phaseFin' , Head::TYPE_TEXT, 'phase Fin'),
+            new Head('sommesTemps' , Head::TYPE_TEXT, 'sommes Temps'),
+            new Head('sommesTempFroid' , Head::TYPE_TEXT, 'sommes Temp Froid'),
+            new Head('Kc' , Head::TYPE_TEXT, 'kc'),
             new Head('enracinement' , Head::TYPE_TEXT, 'enracinement'),
-            new Head('maxEnracinement' , Head::TYPE_TEXT, 'maxEnracinement'),
+            new Head('maxEnracinement', Head::TYPE_OPTIONS, 'max Enracinement', [
+                'Y' => 'Oui',
+                'N' => 'Non',
+            ]),
+           
             new Head('description' , Head::TYPE_TEXT, "description"),
         ];
         
@@ -99,7 +112,7 @@ class VarieteController extends Controller
 
         $ids = $request['ids'] ?? [];
         foreach ($ids as $id) {
-            $model = ModelTarget::query()->find((int)\Crypt::decrypt($id));
+            $model = ModelTarget::query()->findOrFail($id);
             $model?->delete();
         }
         $this->success(text: trans('messages.deleted_message'));

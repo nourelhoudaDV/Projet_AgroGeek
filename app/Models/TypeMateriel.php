@@ -5,18 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TypesMateriel extends Model
+class TypeMateriel extends Model
 {
     use HasFactory;
 
     protected $table = 'typesMateriel';
     protected $primaryKey = 'idTM';
     public $timestamps = false;
-    protected $fillable = [
-        'nom',
-        'description',
-        'techniqueA_id',
-    ];
+  
     protected $keyType = 'int';
     public const PK = 'idTM';
 

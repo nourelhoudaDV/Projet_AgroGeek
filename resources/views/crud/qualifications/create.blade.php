@@ -4,7 +4,10 @@
 @section('breadcrumb')
     <x-group.bread-crumb
         page-tittle="Ajouter une qualification"
-        :indexes="$pagesIndexes"
+        :indexes="[
+        ['name'=> 'retour' , 'route'=> route('TechniquesAgricole.show',$idta)],
+        ['name'=> 'Ajoute qualification' ,     'current' =>true ],
+    ]"
     />
 @endsection
 @section('content')
@@ -13,16 +16,15 @@
         action="{{ route('qualifications.store') }}"
     >
         <x-form.card col="col-12 row" title="Entrez les informations de qualification">
-
-            <x-form.input required col="col-12 col-sm-6" name="nom" label="Nom"/>
-            <x-form.select
-                col="col-12 col-sm-6"
-                required
-                name="techniqueA_id"
-                label="Technique Agricole"
-                :bind-with="[\App\Models\TechniqueAgricole::allForSelect(), [\App\Models\TechniqueAgricole::PK , 'nom']]"
-            />
-            <x-form.text-area col="col-12 col-sm-12" name="description" label="Description"/>
+            <div class="col-2">
+                <input type="hidden" value="{{ $idta }}" name="idTA"/>
+                <x-form.file name="logo" required label="logo"/>
+            </div>
+            <div class="col-10">
+                <x-form.input col="col-6" required name="titre" label="titre" />
+                <x-form.input col="col-6" name="unite" label="unite" />
+                <x-form.text-area col="col-12" name="description" label="description" />
+            </div>
             <div class="col-12 mt-5">
                 <x-form.button/>
             </div>

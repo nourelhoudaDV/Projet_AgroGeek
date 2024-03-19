@@ -1,12 +1,12 @@
 @extends('layout.master')
 @include('include.blade-components')
-@section('page_title' , 'Ajoute Espece')
+@section('page_title' , 'Ajouter Espece')
 @section('breadcrumb')
     <x-group.bread-crumb
-        page-tittle="Ajoute Espece"
+        page-tittle="Ajouter Espece"
         :indexes="[
         ['name'=> 'Les Especes' , 'route'=> route('especes.index')],
-        ['name'=> 'Ajoute Espece',     'current' =>true ],
+        ['name'=> 'Ajouter Espece',     'current' =>true ],
     ]"
     />
 @endsection
@@ -17,11 +17,11 @@
     >
         <x-form.card col="col-12 row" title="Entree Les Informations D'espece">
 
-            <x-form.input required col="col-12 col-sm-6" name="nomSc" label="nom d'espece"/>
-            <x-form.input required col="col-12 col-sm-6" name="nomCommercial" label="nom commercial"/>
-            <x-form.input  col="col-12 col-sm-6" name="appelationAr" label="appelation Ar"  />
+            <x-form.input required col="col-12 col-md-6" name="nomSc" label="nom d'espece"/>
+            <x-form.input required col="col-12 col-md-6" name="nomCommercial" label="nom commercial"/>
+            <x-form.input  col="col-12 col-md-6" name="appelationAr" label="appelation Ar"  />
             <x-form.select
-                col="col-12 col-sm-6"
+                col="col-12 col-md-6"
 
                 name="categorieEspece"
                 label="categorie d'espece"
@@ -35,8 +35,8 @@
                 ]"
             />
 
-            <x-form.input  col="col-12 col-sm-6" name="typeEnracinement" label="type enracinement"  />
-            <x-form.text-area  col="col-12 col-sm-6" name="description" label="description"  />
+            <x-form.input  col="col-12 col-md-6" name="typeEnracinement" label="type enracinement"  />
+            <x-form.text-area  col="col-12 col-md-6" name="description" label="description"  />
 
 
 

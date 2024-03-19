@@ -6,7 +6,7 @@
     <x-group.bread-crumb
         page-tittle="Modifier le Type Sol"
         :indexes="[
-        ['name'=> 'fermes' , 'route'=> route('fermes.index')],
+        ['name'=> 'retour' , 'route'=> route('fermes.show',$model['ferme'])],
         ['name'=> 'Modifier le Type Sol' ,     'current' =>true ],
     ]"
     />
@@ -24,7 +24,7 @@
     <x-form.card col="col-12 row" title="{{ ucwords('id Type sol Ferme') }}">
            
         
-        <x-form.input col="col-12 col-sm-6" name="vernaculaure" label="{{ 'vernaculaure' }}" />
+        <x-form.input required col="col-12 col-sm-6" name="vernaculaure" label="{{ 'vernaculaure' }}" />
         <x-form.input col="col-12 col-sm-6" name="nomDomaine" label="{{ 'nom de ferme' }}" />
 
     </x-form.card>

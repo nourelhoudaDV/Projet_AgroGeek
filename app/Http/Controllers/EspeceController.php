@@ -27,8 +27,8 @@ class EspeceController extends Controller
 
 
         $actions = [
-            new Action(ucwords(trans('words.add')), Action::TYPE_NORMAL, url: route('especes.create')),
-            new Action(ucwords(trans('words.delete_all')), Action::TYPE_DELETE_ALL, url: route('especes.destroyGroup'))
+            new Action(ucwords('ajouter nouveau'), Action::TYPE_NORMAL, url: route('especes.create')),
+            new Action(ucwords('supprimer les selectionner'), Action::TYPE_DELETE_ALL, url: route('especes.destroyGroup'))
         ];
         $heads = [
             new Head('nomSc' , Head::TYPE_TEXT, "nom d'espece"),
@@ -70,14 +70,14 @@ class EspeceController extends Controller
         $model2 = ModelTarget::query()->with('varietes')->where( ModelTarget::PK, $id )->firstOrFail();
 
         $actions = [
-            new Action(ucwords(trans('words.add')), Action::TYPE_NORMAL, url: route('stades.create' , [
+            new Action(ucwords('ajouter nouveau'), Action::TYPE_NORMAL, url: route('stades.create' , [
                 'id_espece' => $model[ModelTarget::PK],
                 'back' => url()->current()
             ])),
             new Action(ucwords(trans('words.delete_all')), Action::TYPE_DELETE_ALL, url: route('stades.destroyGroup'))
         ];
         $actions2 = [
-            new Action(ucwords(trans('words.add')), Action::TYPE_NORMAL, url: route('varietes.create' , [
+            new Action(ucwords('ajouter nouveau'), Action::TYPE_NORMAL, url: route('varietes.create' , [
                 'id_espece' => $model[ModelTarget::PK],
                 'back' => url()->current()
             ])),
@@ -111,7 +111,7 @@ class EspeceController extends Controller
 
         $ids = $request['ids'] ?? [];
         foreach ($ids as $id) {
-            $model = ModelTarget::query()->find((int)\Crypt::decrypt($id));
+            $model = ModelTarget::query()->findOrFail($id);
             $model?->delete();
         }
         $this->success(text: trans('messages.deleted_message'));

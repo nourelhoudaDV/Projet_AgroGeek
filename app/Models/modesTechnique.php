@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class modesTechnique extends Model
+class ModesTechnique extends Model
 {
     use HasFactory;
-    protected $table = 'modes_techniques';
-    public $primaryKey = 'idMT';
+    protected $table = 'modes_technique';
+    public $primaryKey = 'idM';
     public $incrementing = true;
     protected $keyType = 'int';
-    public const  PK = 'idMT';
+    public const  PK = 'idM';
     public $timestamps = true;
 }

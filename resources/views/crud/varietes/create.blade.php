@@ -4,9 +4,9 @@
 @section('breadcrumb')
     <x-group.bread-crumb
         page-tittle="Ajoute Variete"
-        :indexes="[
-        ['name'=> 'Les Varietes' , 'route'=> route('varietes.index')],
-        ['name'=> 'Ajoute Variete' ,     'current' =>true ],
+        :indexes="[                
+            ['name'=> 'retour' , 'route'=> route('especes.show',$especeId)],
+            ['name'=> 'Ajoute Variete' ,     'current' =>true ],
     ]"
     />
 @endsection
@@ -19,26 +19,20 @@
         action="{{ route('varietes.store') }}"
     >
         <x-form.card col="col-12 row" title="Entre les informations des Varietes">
-
-            <div class="col-10 row">
-                <x-form.select
-                col="col-12 col-sm-6"
-                required
-                name="espece"
-                label="espece"
-                :bind-with="[\App\Models\Espece::allForSelect(), [\App\Models\Espece::PK , 'espece_name']]"
-            />
-                <x-form.input name="nomCommercial" label="nom Commercial"/>
-                <x-form.input name="appelationAr" label="appelation Ar"/>
-                <x-form.text-area col="col-12 col-sm-6" name="description" label="description"/>
-                <x-form.input col="col-12 col-sm-6" name="quantite" label="quantite"/>
-                <x-form.input col="col-12 col-sm-6" name="precocite" label="precocite"/>
-                <x-form.input col="col-12 col-sm-6" name="resistance" label="resistance"/>
-                <x-form.input col="col-12 col-sm-6" name="competitivite" label="competitivite"/>
-
-                <div class="col-12 mt-5">
-                    <x-form.button/>
-                </div>
+            
+         
+            <x-form.input required  name="nomCommercial" col="col-12 col-md-6" label="nom Commercial"/>
+            <x-form.input required  name="appelationAr" col="col-12 col-md-6" label="appelation Ar"/>
+            <x-form.input required col="col-12 col-md-4" name="quantite" label="quantite"/>
+            <x-form.input required col="col-12 col-md-4" name="precocite" label="precocite"/>
+            <x-form.input required col="col-12 col-md-4" name="resistance" label="resistance"/>
+            <x-form.input required col="col-12 col-md-6" name="competitivite" label="competitivite"/>
+            <x-form.text-area  name="description" label="description"/>
+            <input type="hidden" name="espece" value="{{$especeId }}">
+        
+            <div class="col-12 mt-5">
+                <x-form.button/>
+            </div>
         </x-form.card>
 
     </x-form.form>

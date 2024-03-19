@@ -4,7 +4,7 @@
 @section('page_title', 'Ajouter noveau parcelle')
 @section('breadcrumb')
     <x-group.bread-crumb page-tittle='Ajouter noveau parcelle' :indexes="[
-        // ['name' => 'liste de parcelles', 'route' => route('parcelles.index')],
+        ['name'=> 'retour' , 'route'=> route('fermes.show',$fermeId)],
         ['name' => 'ajouter un parcelle', 'current' => true],
     ]" />
 @endsection
@@ -34,8 +34,8 @@
                         'label' => 'Etagère',
                     ],
                 ]" />
-            <x-form.input col="col-12 col-sm-3" name="pente" label="pente" />
-            <x-form.input col="col-12 col-sm-3" name="pierosite" label="pierosite" />
+            <x-form.input type='number' col="col-12 col-sm-3" name="pente" label="pente" />
+            <x-form.input type='number' col="col-12 col-sm-3" name="pierosite" label="pierosite" />
             <x-form.input col="col-12 col-sm-6" name="gps" label="gps" />
             <x-form.text-area col="col-12 col-sm-12" name="topographie" label="topographie" />
             <x-form.text-area col="col-12 col-sm-12" name="description" label="description" />

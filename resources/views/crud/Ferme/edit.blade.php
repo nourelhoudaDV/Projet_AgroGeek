@@ -24,8 +24,8 @@
                     <x-form.input required col="col-12 col-md-4" name="fullNameG" label="Nom Gerant" />
                     <x-form.input required col="col-12 col-md-4" name="cin" label="CIN" />
                     <x-form.input col="col-12 col-md-4" name="contactG" label="Contact Gerant" />
-                    <x-form.input col="col-12 col-md-6" name="SAT" label="Superficie Agricole Totale" />
-                    <x-form.input col="col-12 col-md-6" name="SAU" label="Superficie Agricole Utile" />
+                    <x-form.input type='number' col="col-12 col-md-6" name="SAT" label="Superficie Agricole Totale" />
+                    <x-form.input type='number' col="col-12 col-md-6" name="SAU" label="Superficie Agricole Utile" />
                     <x-form.text-area col="col-12 col-md-12" name="observation" label="Observation" />
                 </div>
     

@@ -4,19 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Helpers\Components\Action;
 use App\Helpers\Components\Head;
+use App\Http\Requests\TypeMaterielRequest;
 use Illuminate\Http\Request;
-use App\Http\Requests\TypeMateriel\Add as TypeMaterielAdd;
 use App\Models\TypeMateriel as ModelTarget;
 use League\Flysystem\FilesystemException;
 
-class TypesMaterielController extends Controller
+class TypeMaterielController extends Controller
 {
     /**
      * Afficher la page de création
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('crud.typesMateriel.create');
+        $idta = $request['idTA'] ?? null ;
+        return view('crud.typemateriel.create' , compact('idta'));
     }
 
     /**
@@ -25,7 +26,7 @@ class TypesMaterielController extends Controller
     public function show(Request $request, $id)
     {
         $data = ModelTarget::query()->findOrFail($id);
-        return view('crud.typesMateriel.edit', [
+        return view('crud.typemateriel.edit', [
             'model' => $data
         ]);
     }
@@ -37,7 +38,7 @@ class TypesMaterielController extends Controller
     {
         $ids = $request['ids'] ?? [];
         foreach ($ids as $id) {
-            $typeMateriel = ModelTarget::query()->find((int)\Crypt::decrypt($id));
+            $typeMateriel = ModelTarget::query()->findOrFail($id);
             $typeMateriel?->delete();
         }
         $this->success(text: trans('messages.deleted_message'));
@@ -51,29 +52,38 @@ class TypesMaterielController extends Controller
     {
         ModelTarget::query()->findOrFail($id)->delete();
         $this->success(trans('messages.deleted_message'));
-        return redirect(Route('typesMateriel.index'));
+        return redirect()->back();
     }
 
     /**
      * Ajouter un nouvel enregistrement
      */
-    public function store(TypeMaterielAdd $request)
+    public function store(TypeMaterielRequest $request)
     {
         $validated = $request->validated();
+        $avatar = $request->validated()['logo'] ?? null;
+        $validated['idTechFK'] = $request['idTA'];
+        unset($validated['logo']);
         $data = ModelTarget::query()->create($validated);
+        $data->update([
+            'logo' => $this->saveFile('TypeMateriel', file: $avatar)
+        ]);
         $this->success(text: trans('messages.added_message'));
-        return redirect(Route('typesMateriel.index'));
+        return redirect()->route('TechniquesAgricole.show' , ['id' => $request['idTA'] ]);
     }
 
     /**
      * Mettre à jour un enregistrement s'il existe
      */
-    public function update(TypesMaterielAdd $request, $id)
+    public function update(TypeMaterielRequest $request, $id)
     {
         $data = ModelTarget::query()->findOrFail($id);
         $validated = $request->validated();
+        unset($validated['logo']);
+
+        $this->saveAndDeleteOld($request->validated()['logo'] ?? null, 'TypeMateriel', $data, 'logo');
         $data->update($validated);
         $this->success(text: trans('messages.updated_message'));
-        return redirect(Route('typesMateriel.index'));
+        return redirect()->route('TechniquesAgricole.show' , ['id' => $data['idTechFK']]);
     }
 }

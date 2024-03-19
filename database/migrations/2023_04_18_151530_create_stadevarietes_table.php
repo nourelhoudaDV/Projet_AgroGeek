@@ -18,11 +18,6 @@ return new class extends Migration
             $table->bigInteger('idS', true, true);
             $table->string('nom',150);
             $table->string('phaseFin',150);
-            $table->foreignId('espece')
-            ->constrained()
-            ->references('ide')
-            ->on('especes')
-            ->cascadeOnUpdate();
             $table->foreignId('variete')
             ->constrained()
             ->references('idV')

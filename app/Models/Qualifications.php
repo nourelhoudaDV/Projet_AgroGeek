@@ -9,13 +9,9 @@ class Qualifications extends Model
 {
     use HasFactory;
     protected $table = 'qualifications';
-    protected $primaryKey = 'idQ';
+    protected $primaryKey = 'idQT';
     public $timestamps = false;
-    protected $fillable = [
-        'nom',
-        'description',
-        'techniqueA_id',
-    ];
-    protected $keyType = 'int'; public const PK = 'idQ';
+    protected $keyType = 'int';
+     public const PK = 'idQT';
 }
 

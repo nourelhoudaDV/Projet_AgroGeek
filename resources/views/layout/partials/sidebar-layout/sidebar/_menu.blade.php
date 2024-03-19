@@ -13,7 +13,7 @@
 				<!--begin:Menu link-->
 				<a class="menu-link" >
 					
-					<span class="menu-title">Dashboards</span>
+					<span class="menu-title">Tableau De Bord</span>
 				
 				</a>
 				<!--end:Menu link-->
@@ -140,10 +140,45 @@
 
 				<!--end:Menu sub-->
 				</div>
+
 			</div>
 					<!--end:Menu item-->
-	
+					<div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+						<!--begin:Menu link-->
+						<span class="menu-link">
+							<span class="menu-icon">{!! getSvgIcon('duotune/communication/com005.svg', 'svg-icon svg-icon-2') !!}</span>
+							<span class="menu-title" style="color:#5EC267">Techniques Agricole</span>
+							<span class="menu-arrow"></span>
+						</span>
+						<div class="menu-sub menu-sub-accordion">
+								<!--begin:Menu item-->
+								<div class="menu-item">
+									<!--begin:Menu link-->
+									<a class="menu-link" href="{{route('TechniquesAgricole.index')}}">
+										<span class="menu-bullet">
+											<span class="bullet bullet-dot"></span>
+										</span>
+										<span class="menu-title">Listes Techniques Agricole</span>
+									</a>
+									<!--end:Menu link-->
+								</div>
+								<!--end:Menu item-->
+								<!--begin:Menu item-->
+								<div class="menu-item">
+									<!--begin:Menu link-->
+									<a class="menu-link" href="{{ route('TechniquesAgricole.create') }}">
+										<span class="menu-bullet">
+											<span class="bullet bullet-dot"></span>
+										</span>
+										<span class="menu-title">Ajouter Technique Agricole</span>
+									</a>
+									<!--end:Menu link-->
+								</div>
+					<!--end:Menu item-->
 
+				<!--end:Menu sub-->
+				</div>
+			</div>
 		</div>
 		<!--end::Menu-->
 	</div>
